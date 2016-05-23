@@ -7,9 +7,9 @@ In the sample PHP SDK code, I have the following calls implemented from https://
 * Check Storage Account Name Availability
 * Delete Storage Account.
 
-## To run the tests in [root]/StorageResourceProviderSample.php, you must have the following prerequisites,
+## To run the sample code in [root]/StorageResourceProviderSample.php, you must have the following prerequisites,
 
-* must have a valid tenant at Azure Active Directory(https://azure.microsoft.com/en-us/documentation/articles/resource-group-create-service-principal-portal/)
+* must have a valid tenant at [Azure Active Directory](https://manage.windowsazure.com/microsoft.onmicrosoft.com#Workspaces/ActiveDirectoryExtension/directory)
 * must have an application set up at Azure Active Directory and get its client id and client secret
 * must have an existing Resource Group and have permissions granted to the application above
 
@@ -33,10 +33,10 @@ Once you have set up the above settings, open StorageResourceProviderSample.php,
 ## Then do the following,
 * Go to the root folder of the project
 * php composer.phar Install    -- this will install all dependencies
-* php  StorageResourcePrivderSample.php  -- this will run the tests for Storage Resource Provider
+* php StorageResourceProviderSample.php  -- this will run the sample calls for Storage Resource Provider
 
 
-## In the tests,
+## In the sample,
 * It will check if the storage account $accountName exists
 * If $accountName exists, it will be deleted
 * If $accountName does not exists, it will be created.
