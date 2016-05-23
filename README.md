@@ -34,7 +34,8 @@ Once you have set up the above settings, open StorageResourceProviderSample.php,
 ```
 
 ## Dependences
-* Go to the root folder of the project
+* Download **[composer.phar](http://getcomposer.org/composer.phar)** to your project root
+* Go to the root of the project from the a command prompt or shell
 * ```php composer.phar Install```    -- this will install all dependencies
 * ```php StorageResourceProviderSample.php```  -- this will run the sample code for Storage Resource Provider
 
