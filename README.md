@@ -1,13 +1,14 @@
 # Microsoft Azure SDK for PHP - Storage Resource Provider
 
-In the sample PHP SDK code, I have the following calls implemented from https://msdn.microsoft.com/en-us/library/azure/mt163683.aspx,
+In the current PHP SDK code, I have implemented the following calls from https://msdn.microsoft.com/en-us/library/azure/mt163683.aspx,
 
 * Create Storage Account
 * Poll Async Storage Operation
 * Check Storage Account Name Availability
 * Delete Storage Account.
 
-## To run the sample code in [root]/StorageResourceProviderSample.php, you must have the following prerequisites,
+## Prerequisites
+To run the sample code in [root]/StorageResourceProviderSample.php, you must have the following prerequisites,
 
 * must have a valid tenant at [Azure Active Directory](https://manage.windowsazure.com/microsoft.onmicrosoft.com#Workspaces/ActiveDirectoryExtension/directory)
 * must have an application set up at Azure Active Directory and get its client id and client secret
@@ -30,14 +31,14 @@ Once you have set up the above settings, open StorageResourceProviderSample.php,
     //include_once '../testsrc/srpconfig.php'; // the above settings for the test account
 ```
 
-## Then do the following,
+## Dependences
 * Go to the root folder of the project
-* php composer.phar Install    -- this will install all dependencies
-* php StorageResourceProviderSample.php  -- this will run the sample calls for Storage Resource Provider
+* ```php composer.phar Install```    -- this will install all dependencies
+* ```php StorageResourceProviderSample.php```  -- this will run the sample calls for Storage Resource Provider
 
 
-## In the sample,
-* It will check if the storage account $accountName exists
+## The Sample Code,
+* Checks if the storage account $accountName exists
 * If $accountName exists, it will be deleted
 * If $accountName does not exists, it will be created.
 
