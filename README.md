@@ -1,4 +1,5 @@
-# Microsoft Azure SDK for PHP - Storage Resource Provider
+# Microsoft Azure SDK for PHP
+### - Storage Resource Provider -
 
 In the current PHP SDK code, I have implemented the following calls from https://msdn.microsoft.com/en-us/library/azure/mt163683.aspx,
 
@@ -19,26 +20,27 @@ For detailed instructions, go to https://azure.microsoft.com/en-us/documentation
 Once you have set up the above settings, open StorageResourceProviderSample.php, and modify the following,
 ```
     $tenant_id = '<your organizations tenant id at Azure Active Director>';
-    $client_id = '<your client id for Storage Resoure Provider applicaton at Azure Active Directory>';
-    $client_secret = '<your client secret for Storage Resoure Provider applicaton at Azure Active Directory>';
+    $client_id = '<your client id for your applicaton at Azure Active Directory>';
+    $client_secret = '<your client secret for your applicaton at Azure Active Directory>';
     $subscriptionId = '<your subscription id>';
 
-    // info about the storage account
-    $resourceGroup = '<your existing resource group name>'; // this group should have been created already
-    $accountName = '<your new storage account nanme>'; // the storage account to create or modify. don't use existing accounts
+    // this resource group should have been created already
+    $resourceGroup = '<your existing resource group name>';
+    // the storage account to create or modify. don't use existing accounts
+    $accountName = '<your new storage account nanme>';
 
-    // uncomment this line if you want to read the settings from a file
+    // uncomment this line if you want to read the settings from a file instead
     //include_once '../testsrc/srpconfig.php'; // the above settings for the test account
 ```
 
 ## Dependences
 * Go to the root folder of the project
 * ```php composer.phar Install```    -- this will install all dependencies
-* ```php StorageResourceProviderSample.php```  -- this will run the sample calls for Storage Resource Provider
+* ```php StorageResourceProviderSample.php```  -- this will run the sample code for Storage Resource Provider
 
 
-## The Sample Code,
-* Checks if the storage account $accountName exists
+## In the Sample
+* It checks if the storage account $accountName exists
 * If $accountName exists, it will be deleted
 * If $accountName does not exists, it will be created.
 

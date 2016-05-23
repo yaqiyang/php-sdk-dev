@@ -16,15 +16,16 @@
      * For detailed instructions, go to https://azure.microsoft.com/en-us/documentation/articles/resource-group-create-service-principal-portal/
      */
     $tenant_id = '<your organizations tenant id at Azure Active Director>';
-    $client_id = '<your client id for Storage Resoure Provider applicaton at Azure Active Directory>';
-    $client_secret = '<your client secret for Storage Resoure Provider applicaton at Azure Active Directory>';
+    $client_id = '<your client id for your applicaton at Azure Active Directory>';
+    $client_secret = '<your client secret for your applicaton at Azure Active Directory>';
     $subscriptionId = '<your subscription id>';
 
-    // info about the storage account
-    $resourceGroup = '<your existing resource group name>'; // this group should have been created already
-    $accountName = '<your new storage account nanme>'; // the storage account to create or modify. don't use existing accounts
+    // this resource group should have been created already
+    $resourceGroup = '<your existing resource group name>';
+    // the storage account to create or modify. don't use existing accounts
+    $accountName = '<your new storage account nanme>';
 
-    // comment this line if you don't want to read the settings from a file
+    // uncomment this line if you want to read the settings from a file instead
     include_once '../testsrc/srpconfig.php'; // the above settings for the test account
 
     // now we will check if the storage account exists or not. If not, create it.
