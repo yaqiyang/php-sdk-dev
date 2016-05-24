@@ -25,8 +25,12 @@
     // the storage account to create or modify. don't use existing accounts
     $accountName = '<your new storage account nanme>';
 
-    // uncomment this line if you want to read the settings from a file instead
-    include_once '../testsrc/srpconfig.php'; // the above settings for the test account
+    // or, read the settings from a file
+    $config = 'privatesettings.php';
+    if (file_exists($config))
+    {
+        include_once $config;
+    }
 
     // now we will check if the storage account exists or not. If not, create it.
     $srp = new StorageResourceProviderProxy($tenant_id,  $client_id, $client_secret);

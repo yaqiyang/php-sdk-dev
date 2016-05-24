@@ -23,14 +23,8 @@ Once you have set up the above settings, open StorageResourceProviderSample.php,
     $client_id = '<your client id for your applicaton at Azure Active Directory>';
     $client_secret = '<your client secret for your applicaton at Azure Active Directory>';
     $subscriptionId = '<your subscription id>';
-
-    // this resource group should have been created already
     $resourceGroup = '<your existing resource group name>';
-    // the storage account to create or modify. don't use existing accounts
     $accountName = '<your new storage account nanme>';
-
-    // uncomment this line if you want to read the settings from a file instead
-    //include_once '../testsrc/srpconfig.php'; // the above settings for the test account
 ```
 
 ## Dependences

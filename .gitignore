@@ -12,3 +12,5 @@ composer.phar
 .project
 .vscode
 .settings
+privatesettings.php
+
