@@ -19,10 +19,7 @@
     $client_id = '<your client id for your applicaton at Azure Active Directory>';
     $client_secret = '<your client secret for your applicaton at Azure Active Directory>';
     $subscriptionId = '<your subscription id>';
-
-    // this resource group should have been created already
     $resourceGroup = '<your existing resource group name>';
-    // the storage account to create or modify. don't use existing accounts
     $accountName = '<your new storage account nanme>';
 
     // or, read the settings from a file
