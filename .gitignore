@@ -1,16 +1,9 @@
-bin/api
 bin/logs
-bin/coverage
-channel/
-*.tgz
 phpunit.xml
-cache.properties
 vendor
-nbproject
 phpcs-checkstyle.tmp
 composer.phar
 .project
 .vscode
 .settings
 privatesettings.php
-
