@@ -33,34 +33,61 @@
 
     if (!$srp->checkNameAvailability($subscriptionId, $accountName))
     {
-        echo "Storage Account $accountName already exists.\n";
-        $status = 0;
-        echo 'Deleting...';
-        do
-        {
-            try
-            {
-                $status = $srp->DeleteStorageAccount($subscriptionId, $resourceGroup, $accountName);
-            }
-            catch (ServiceException $e)
-            {
-                $status = $e->getCode();
-            }
-
-            echo '.';
-
-            if ($status == 200)
-            {
-                break;
-            }
-
-            sleep(5);
+        $prompt = "Storage Account $accountName already exists. Do you want to update it, delete it, or get properties? (u/d/g)";
+        $action = 'u';
+        if (PHP_OS == 'WINNT') {
+            echo "$prompt";
+            $action = stream_get_line(STDIN, 1024, PHP_EOL);
+        } else {
+            $action = readline("$prompt");
         }
-        while ($status != 200);
 
-        echo "\nStorage Account $accountName deleted.\n";
+        if (strtolower($action ) == 'd')
+        {
+            $status = 0;
+            echo 'Deleting...';
+            do
+            {
+                try
+                {
+                    $status = $srp->DeleteStorageAccount($subscriptionId, $resourceGroup, $accountName);
+                }
+                catch (ServiceException $e)
+                {
+                    $status = $e->getCode();
+                }
+
+                echo '.';
+
+                if ($status == 200)
+                {
+                    break;
+                }
+
+                sleep(5);
+            }
+            while ($status != 200);
+
+            echo "\nStorage Account $accountName deleted.\n";
+        }
+        else if (strtolower($action ) == 'u')
+        {
+            $updateParams = [];
+            $updateParams['tags'] = ['key1' => time(), 'key2' => date('F Y h:i:s A')];  //sample changes
+            $srp->UpdateStorageAccount($subscriptionId, $resourceGroup, $accountName, $updateParams);
+            echo "\nStorage Account $accountName updated.\n";
+        }
+        else if (strtolower($action ) == 'g')
+        {
+            $result = $srp->GetStorageAccountProperties($subscriptionId, $resourceGroup, $accountName);
+            echo "\nStorage Account $accountName prperties:\n" . $result;
+        }
+        else
+        {
+            echo "\nYou entered unrecognized command: $action.\n";
+        }
     }
-    else
+    else // account not existed
     {
         echo "Creating Storage Account $accountName ...";
         $result = $srp->CreateStorageAccount($subscriptionId, $resourceGroup, $accountName);

@@ -6,7 +6,9 @@ In the current PHP SDK code, I have implemented the following calls from https:/
 * Create Storage Account
 * Poll Async Storage Operation
 * Check Storage Account Name Availability
-* Delete Storage Account.
+* Update Storage Account
+* Delete Storage Account
+* Get Storage Account Properties
 
 ## Prerequisites
 To run the sample code in [root]/StorageResourceProviderSample.php, you must have the following prerequisites,
@@ -36,7 +38,7 @@ Once you have set up the above settings, open StorageResourceProviderSample.php,
 
 ## In the Sample
 * It checks if the storage account $accountName exists
-* If $accountName exists, it will be deleted
+* If $accountName exists, it can be updated, deleted, and queried for properties
 * If $accountName does not exists, it will be created.
 
 

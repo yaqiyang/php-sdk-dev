@@ -75,7 +75,10 @@ class StorageResourceProviderProxy extends ServiceRestProxy
         {
             if (array_key_exists($index, $values))
             {
-                $params['{' . $param->name . '}'] = $values[$index];
+                if (!is_array($values[$index])) //don't replace array parameters
+                {
+                    $params['{' . $param->name . '}'] = $values[$index];
+                }
             }
         }
 
@@ -237,6 +240,87 @@ class StorageResourceProviderProxy extends ServiceRestProxy
         );
 
         return $response->getStatusCode();
+    }
+
+    /**
+     * To add details
+     *
+     */
+    public function UpdateStorageAccount($subscriptionId, $resourceGroupName, $accountName, array $updateParams = [])
+    {
+        // properites from Swagger spec
+        $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}';
+
+        $path = $this->getUrl($this->replaceParams($path, __CLASS__, __FUNCTION__, func_get_args()));
+        $headers =array();
+        $queryParams = [Resources::API_VERSION => $this->api_version];
+        $postParams = array();
+        $method = 'PATCH';
+        $statusCodes = [Resources::STATUS_OK];
+
+        if (count($updateParams) == 0) // sample changes
+        {
+            $updateParams['location'] = 'eastus';
+            $updateParams['tags'] = ['key1' => 'value123', 'key2' => 'value321'];
+
+            $customDomain = ['name' => '', 'useSubDomainName' => 'false'];
+            $encrypotioin = ['services' => ['blob' => ['enabled' => 'false']], 'keySource' => 'Microsoft.Storage'];
+
+            $updateParams['properties'] = ['customDomain' => $customDomain, 'encryption' => $encrypotioin, ];
+            $updateParams['sku'] = ['name' => 'Standard_LRS'];
+            $updateParams['kind'] = 'Storage';
+
+            // "accessTier": "Cool" not valid?
+        }
+
+        $body = $this->dataSerializer->serialize($updateParams);
+        $headers['Content-Type'] = $this->consumes[0];
+        $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
+
+        $response = HttpClient::send(
+            $method,
+            $headers,
+            $queryParams,
+            $postParams,
+            $path,
+            $statusCodes,
+            $body,
+            $this->filters
+        );
+
+        return $response->getStatusCode();
+    }
+    /**
+     * To add details
+     *
+     */
+    public function GetStorageAccountProperties($subscriptionId, $resourceGroupName, $accountName)
+    {
+        // properites from Swagger spec
+        $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}';
+
+        $path = $this->getUrl($this->replaceParams($path, __CLASS__, __FUNCTION__, func_get_args()));
+        $headers =array();
+        $queryParams = [Resources::API_VERSION => $this->api_version];
+        $postParams = array();
+        $method = 'GET';
+        $statusCodes = [Resources::STATUS_OK];
+
+        $body = '';
+        $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
+
+        $response = HttpClient::send(
+            $method,
+            $headers,
+            $queryParams,
+            $postParams,
+            $path,
+            $statusCodes,
+            $body,
+            $this->filters
+        );
+
+        return $response->getBody()->getContents();
     }
 
 }
