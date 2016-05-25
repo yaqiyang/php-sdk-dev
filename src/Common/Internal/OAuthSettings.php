@@ -69,6 +69,11 @@ class OAuthSettings extends ServiceSettings
         $this->_oauthEndpointUri = sprintf(Resources::ACCESS_TOKEN_URL, $this->_tenant_id);
     }
 
+    /**
+     * Gets array of OAuth parameters.
+     *
+     * @return array of all parameters for OAuth
+     */
     public function getOAuthParams()
     {
        return [

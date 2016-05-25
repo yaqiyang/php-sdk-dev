@@ -29,7 +29,7 @@
         include_once $config;
     }
 
-    $srp = ServicesBuilder::getInstance()->createStorageResourceProviderService($tenant_id,  $client_id, $client_secret);
+    $srp = ServicesBuilder::getInstance()->createStorageResourceProviderService($tenant_id, $client_id, $client_secret);
 
     if (!$srp->checkNameAvailability($subscriptionId, $accountName))
     {

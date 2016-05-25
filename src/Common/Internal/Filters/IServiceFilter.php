@@ -14,21 +14,21 @@ namespace MicrosoftAzure\Common\Internal\Filters;
 interface IServiceFilter
 {
     /**
-     * Processes HTTP request before send.
+     * Adds header to the request headers.
      *
-     * @param mix $request HTTP request object.
+     * @param $request HTTP channel object.
      *
-     * @return mix processed HTTP request object.
+     * @return $request HTTP channel object.
      */
     public function handleRequest($request);
 
     /**
      * Processes HTTP response after send.
      *
-     * @param mix $request  HTTP request object.
-     * @param mix $response HTTP response object.
+     * @param $request  HTTP channel object.
+     * @param $response HTTP response object.
      *
-     * @return mix processed HTTP response object.
+     * @return $response HTTP channel object.
      */
     public function handleResponse($request, $response);
 }

@@ -10,7 +10,7 @@ use MicrosoftAzure\Common\Internal\Resources;
 use MicrosoftAzure\Common\Internal\Validate;
 
 /**
- * Provides authentication scheme for OAuth.
+ * Provides OAth authentication scheme.
  *
  * @category  Microsoft: to add details
  */
@@ -50,7 +50,7 @@ class OAuthScheme implements IAuthScheme
      */
     public function getAuthorizationHeader($headers, $url, $queryParams, $httpMethod)
     {
-        if (($this->oauthAccessToken == null) || ($this->oauthAccessToken->getExpiresOn() > strtotime("now")))
+        if (($this->oauthAccessToken == null) || (time() > $this->oauthAccessToken->getExpiresOn()))
         {
             $this->oauthAccessToken = $this->oauthService->getOAuthAccessToken();
         }

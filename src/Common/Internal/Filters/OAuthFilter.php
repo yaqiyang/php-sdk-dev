@@ -34,13 +34,13 @@ class OAuthFilter implements IServiceFilter
     /**
      * Adds authentication header to the request headers.
      *
-     * @param HttpClient $request HTTP channel object.
+     * @param $request HTTP channel object.
      *
-     * @return \HTTP_Request2
+     * @return $request HTTP channel object.
      */
     public function handleRequest($request)
     {
-        $signedKey = $this->_authenticationScheme->getAuthorizationHeader(null, '',  '', '' );
+        $signedKey = $this->_authenticationScheme->getAuthorizationHeader([], '',  '', '' );
         $request = $request->withHeader(Resources::AUTHENTICATION, $signedKey);
 
         return $request;
@@ -49,10 +49,10 @@ class OAuthFilter implements IServiceFilter
     /**
      * Does nothing with the response.
      *
-     * @param HttpClient              $request  HTTP channel object.
-     * @param \HTTP_Request2_Response $response HTTP response object.
+     * @param $request  HTTP channel object.
+     * @param $response HTTP response object.
      *
-     * @return \HTTP_Request2_Response
+     * @return $response HTTP channel object.
      */
     public function handleResponse($request, $response)
     {
