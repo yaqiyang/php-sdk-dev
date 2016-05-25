@@ -8,23 +8,10 @@ namespace MicrosoftAzure\Common\Internal;
 
 use MicrosoftAzure\Common\ServiceException;
 
-use GuzzleHttp\Psr7;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Psr7\Uri;
-
 /**
  * Base class for all services rest proxies.
  *
- * @category  Microsoft
- *
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- *
- * @version   Release: 0.10.0
- *
- * @link      https://github.com/azure/azure-storage-php
+ * @category  Microsoft: to add details
  */
 class ServiceRestProxy extends RestProxy
 {
@@ -32,11 +19,6 @@ class ServiceRestProxy extends RestProxy
      * @var string
      */
     private $_accountName;
-
-       /**
-        * @var \Uri
-        */
-       private $_psrUri;
 
     /**
      * Initializes new ServiceRestProxy object.
@@ -54,7 +36,6 @@ class ServiceRestProxy extends RestProxy
         parent::__construct($dataSerializer, $uri);
 
         $this->_accountName = $accountName;
-        $this->_psrUri = new \GuzzleHttp\Psr7\Uri($uri);
     }
 
     /**
@@ -65,115 +46,6 @@ class ServiceRestProxy extends RestProxy
     public function getAccountName()
     {
         return $this->_accountName;
-    }
-
-    /**
-     * Sends HTTP request with the specified parameters.
-     *
-     * @param string $method         HTTP method used in the request
-     * @param array  $headers        HTTP headers.
-     * @param array  $queryParams    URL query parameters.
-     * @param array  $postParameters The HTTP POST parameters.
-     * @param string $path           URL path
-     * @param int    $statusCode     Expected status code received in the response
-     * @param string $body           Request body
-     *
-     * @return GuzzleHttp\Psr7\Response
-     */
-    protected function send(
-        $method,
-        $headers,
-        $queryParams,
-        $postParameters,
-        $path,
-        $statusCode,
-        $body = Resources::EMPTY_STRING
-    ) {
-        // add query parameters into headers
-        $uri = $this->_psrUri;
-        if ($path != null) {
-            $uri = $uri->withPath($path);
-        }
-
-        if ($queryParams != null) {
-            $queryString = Psr7\build_query($queryParams);
-            $uri = $uri->withQuery($queryString);
-        }
-
-        // add post parameters into bodys
-        $actualBody = null;
-        if (empty($body)) {
-            if (empty($headers['content-type'])) {
-                $headers['content-type'] = 'application/x-www-form-urlencoded';
-                $actualBody = Psr7\build_query($postParameters);
-            }
-        } else {
-            $actualBody = $body;
-        }
-
-        $request = new Request(
-                $method,
-                $uri,
-                $headers,
-                $actualBody);
-
-        $client = new \GuzzleHttp\Client(
-            array(
-                'defaults' => array(
-                        'allow_redirects' => true, 'exceptions' => true,
-                        'decode_content' => true,
-                ),
-                'cookies' => true,
-                'verify' => false,
-                // For testing with Fiddler
-                // 'proxy' => "localhost:8888",
-        ));
-
-        $bodySize = $request->getBody()->getSize();
-        if ($bodySize > 0) {
-            $request = $request->withHeader('content-length', $bodySize);
-        }
-
-        // Apply filters to the requests
-        foreach ($this->getFilters() as $filter) {
-            $request = $filter->handleRequest($request);
-        }
-
-        try {
-            $response = $client->send($request);
-            self::throwIfError(
-                    $response->getStatusCode(),
-                    $response->getReasonPhrase(),
-                    $response->getBody(),
-                    $statusCode);
-
-            return $response;
-        } catch (\GuzzleHttp\Exception\RequestException $e) {
-            if ($e->hasResponse()) {
-                $response = $e->getResponse();
-                self::throwIfError(
-                        $response->getStatusCode(),
-                        $response->getReasonPhrase(),
-                        $response->getBody(),
-                        $statusCode);
-
-                return $response;
-            } else {
-                throw $e;
-            }
-        }
-    }
-
-    protected function sendContext($context)
-    {
-        return $this->send(
-                $context->getMethod(),
-                $context->getHeaders(),
-                $context->getQueryParameters(),
-                $context->getPostParameters(),
-                $context->getPath(),
-                $context->getStatusCodes(),
-                $context->getBody());
     }
 
     /**

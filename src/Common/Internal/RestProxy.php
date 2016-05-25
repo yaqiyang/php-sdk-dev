@@ -9,15 +9,7 @@ namespace MicrosoftAzure\Common\Internal;
 /**
  * Base class for all REST proxies.
  *
- * @category  Microsoft
- *
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- *
- * @version   Release: 0.10.0
- *
- * @link      https://github.com/azure/azure-storage-php
+ * @category  Microsoft: to add details
  */
 class RestProxy
 {
@@ -84,7 +76,7 @@ class RestProxy
     /**
      * Adds new filter to new service rest proxy object and returns that object back.
      *
-     * @param MicrosoftAzure\Common\Internal\IServiceFilter $filter Filter to add for
+     * @param MicrosoftAzure\Common\Internal\Filters\IServiceFilter $filter Filter to add for
      *                                                              the pipeline.
      *
      * @return RestProxy.

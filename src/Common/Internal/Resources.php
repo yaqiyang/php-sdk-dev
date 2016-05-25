@@ -9,15 +9,7 @@ namespace MicrosoftAzure\Common\Internal;
 /**
  * Project resources.
  *
- * @category  Microsoft
- *
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- *
- * @version   Release: 0.10.0
- *
- * @link      https://github.com/azure/azure-storage-php
+ * @category  Microsoft: to add details
  */
 class Resources
 {
@@ -41,6 +33,15 @@ class Resources
     const DEV_STORE_CONNECTION_STRING = 'BlobEndpoint=127.0.0.1:10000;QueueEndpoint=127.0.0.1:10001;TableEndpoint=127.0.0.1:10002;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==';
     const SUBSCRIPTION_ID_NAME = 'SubscriptionID';
     const CERTIFICATE_PATH_NAME = 'CertificatePath';
+    const SERVICE_MANAGEMENT_ENDPOINT_NAME = 'ServiceManagementEndpoint';
+    const SERVICE_BUS_ENDPOINT_NAME = 'Endpoint';
+    const SHARED_SECRET_ISSUER_NAME = 'SharedSecretIssuer';
+    const SHARED_SECRET_VALUE_NAME = 'SharedSecretValue';
+    const STS_ENDPOINT_NAME = 'StsEndpoint';
+    const MEDIA_SERVICES_ENDPOINT_URI_NAME = 'MediaServicesEndpoint';
+    const MEDIA_SERVICES_ACCOUNT_NAME = 'AccountName';
+    const MEDIA_SERVICES_ACCESS_KEY = 'AccessKey';
+    const MEDIA_SERVICES_OAUTH_ENDPOINT_URI_NAME = 'OAuthEndpoint';
 
     // Messages
     const INVALID_TYPE_MSG = 'The provided variable should be of type: ';
@@ -164,6 +165,9 @@ class Resources
     const QUEUE_TYPE_NAME = 'IQueue';
     const BLOB_TYPE_NAME = 'IBlob';
     const TABLE_TYPE_NAME = 'ITable';
+    const SERVICE_MANAGEMENT_TYPE_NAME = 'IServiceManagement';
+    const SERVICE_BUS_TYPE_NAME = 'IServiceBus';
+    const WRAP_TYPE_NAME = 'IWrap';
 
     // WRAP
     const WRAP_ACCESS_TOKEN = 'wrap_access_token';
@@ -171,6 +175,17 @@ class Resources
     const WRAP_NAME = 'wrap_name';
     const WRAP_PASSWORD = 'wrap_password';
     const WRAP_SCOPE = 'wrap_scope';
+
+    // OAuth
+    const OAUTH_GRANT_TYPE = 'grant_type';
+    const OAUTH_CLIENT_ID = 'client_id';
+    const OAUTH_CLIENT_SECRET = 'client_secret';
+    const OAUTH_SCOPE = 'scope';
+    const OAUTH_GT_CLIENT_CREDENTIALS = 'client_credentials';
+    const OAUTH_ACCESS_TOKEN = 'access_token';
+    const OAUTH_EXPIRES_IN = 'expires_in';
+    const OAUTH_EXPIRES_ON = 'expires_on';
+    const OAUTH_ACCESS_TOKEN_PREFIX = 'Bearer ';
 
     // HTTP Methods
     const HTTP_GET = 'GET';
@@ -205,10 +220,13 @@ class Resources
     const DS_XML_NAMESPACE = 'http://schemas.microsoft.com/ado/2007/08/dataservices';
     const DSM_XML_NAMESPACE = 'http://schemas.microsoft.com/ado/2007/08/dataservices/metadata';
     const XSI_XML_NAMESPACE = 'http://www.w3.org/2001/XMLSchema-instance';
+    const TRT_XML_NAMESPACE = 'http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/TokenRestrictionTemplate/v1';
+    const PRL_XML_NAMESPACE = 'http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/PlayReadyTemplate/v1';
 
     // Header values
-    const SDK_VERSION = '0.10.0';
-    const STORAGE_API_LATEST_VERSION = '2015-04-05';
+    const SDK_USER_AGENT = 'Azure-SDK-For-PHP/0.4.1';
+    const STORAGE_API_LATEST_VERSION = '2012-02-12';
+    const SM_API_LATEST_VERSION = '2011-10-01';
     const DATA_SERVICE_VERSION_VALUE = '1.0;NetFx';
     const MAX_DATA_SERVICE_VERSION_VALUE = '2.0;NetFx';
     const ACCEPT_HEADER_VALUE = 'application/atom+xml,application/xml';
@@ -216,6 +234,9 @@ class Resources
     const ATOM_FEED_CONTENT_TYPE = 'application/atom+xml;type=feed;charset=utf-8';
     const ACCEPT_CHARSET_VALUE = 'utf-8';
     const INT32_MAX = 2147483647;
+    const MEDIA_SERVICES_API_LATEST_VERSION = '2.11';
+    const MEDIA_SERVICES_DATA_SERVICE_VERSION_VALUE = '3.0;NetFx';
+    const MEDIA_SERVICES_MAX_DATA_SERVICE_VERSION_VALUE = '3.0;NetFx';
 
     // Query parameter names
     const QP_PREFIX = 'Prefix';
@@ -285,7 +306,6 @@ class Resources
     const XTAG_CODE = 'Code';
     const XTAG_MESSAGE = 'Message';
     const XTAG_STORAGE_SERVICE_PROPERTIES = 'StorageServiceProperties';
-    const XTAG_SERVICE_ENDPOINT = 'ServiceEndpoint';
     const XTAG_ENDPOINT = 'Endpoint';
     const XTAG_ENDPOINTS = 'Endpoints';
     const XTAG_PRIMARY = 'Primary';
@@ -351,6 +371,34 @@ class Resources
     const XTAG_CONTAINER_NAME = 'ContainerName';
     const XTAG_ACCOUNT_NAME = 'AccountName';
 
+    // Service Bus
+    const LIST_TOPICS_PATH = '$Resources/Topics';
+    const LIST_QUEUES_PATH = '$Resources/Queues';
+    const LIST_RULES_PATH = '%s/subscriptions/%s/rules';
+    const LIST_SUBSCRIPTIONS_PATH = '%s/subscriptions';
+    const RECEIVE_MESSAGE_PATH = '%s/messages/head';
+    const RECEIVE_SUBSCRIPTION_MESSAGE_PATH = '%s/subscriptions/%s/messages/head';
+    const SEND_MESSAGE_PATH = '%s/messages';
+    const RULE_PATH = '%s/subscriptions/%s/rules/%s';
+    const SUBSCRIPTION_PATH = '%s/subscriptions/%s';
+    const DEFAULT_RULE_NAME = '$Default';
+    const UNIQUE_ID_PREFIX = 'urn:uuid:';
+    const SERVICE_BUS_NAMESPACE = 'http://schemas.microsoft.com/netservices/2010/10/servicebus/connect';
+    const BROKER_PROPERTIES = 'BrokerProperties';
+    const XMLNS_ATOM = 'xmlns:atom';
+    const XMLNS = 'xmlns';
+    const ATOM_NAMESPACE = 'http://www.w3.org/2005/Atom';
+    const AUTHORITY_FORMAT = 'grant_type=client_credentials&client_id={0}&client_secret={1}';
+
+    // ATOM string
+    const AUTHOR = 'author';
+    const CATEGORY = 'category';
+    const CONTRIBUTOR = 'contributor';
+    const ENTRY = 'entry';
+    const LINK = 'link';
+    const PROPERTIES = 'properties';
+    const ELEMENT = 'element';
+
     // PHP URL Keys
     const PHP_URL_SCHEME = 'scheme';
     const PHP_URL_HOST = 'host';
@@ -369,6 +417,22 @@ class Resources
     const STATUS_PARTIAL_CONTENT = 206;
     const STATUS_MOVED_PERMANENTLY = 301;
 
+    // HTTP_Request2 config parameter names
+    const USE_BRACKETS = 'use_brackets';
+    const SSL_VERIFY_PEER = 'ssl_verify_peer';
+    const SSL_VERIFY_HOST = 'ssl_verify_host';
+    const SSL_LOCAL_CERT = 'ssl_local_cert';
+    const SSL_CAFILE = 'ssl_cafile';
+    const CONNECT_TIMEOUT = 'connect_timeout';
+
+    // Media services
+    const MEDIA_SERVICES_URL = 'https://media.windows.net/API/';
+    const MEDIA_SERVICES_OAUTH_URL = 'https://wamsprodglobal001acs.accesscontrol.windows.net/v2/OAuth2-13';
+    const MEDIA_SERVICES_OAUTH_SCOPE = 'urn:WindowsAzureMediaServices';
+    const MEDIA_SERVICES_INPUT_ASSETS_REL = 'http://schemas.microsoft.com/ado/2007/08/dataservices/related/InputMediaAssets';
+    const MEDIA_SERVICES_ASSET_REL = 'http://schemas.microsoft.com/ado/2007/08/dataservices/related/Asset';
+    const MEDIA_SERVICES_ENCRYPTION_VERSION = '1.0';
+
     // Access Tokens
     const ACCESS_TOKEN_URL = 'https://login.microsoftonline.com/%s/oauth2/token';
     const ACCESS_TOKEN = 'access_token';
@@ -377,4 +441,6 @@ class Resources
     // Storage Resource Provider
     const API_VERSION = 'api-version';
     const SRP_API_VERSION = '2016-01-01';
+
+    // @codingStandardsIgnoreEnd
 }

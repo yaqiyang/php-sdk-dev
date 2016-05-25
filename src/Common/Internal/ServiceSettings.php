@@ -18,15 +18,7 @@ namespace MicrosoftAzure\Common\Internal;
  * 4- createFromConnectionString($connectionString): A public static function that
  *    takes a connection string and returns the created settings object.
  *
- * @category  Microsoft
- *
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- *
- * @version   Release: 0.10.0
- *
- * @link      https://github.com/azure/azure-storage-php
+ * @category  Microsoft: to add details
  */
 abstract class ServiceSettings
 {

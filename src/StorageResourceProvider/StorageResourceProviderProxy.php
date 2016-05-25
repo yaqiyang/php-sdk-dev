@@ -6,10 +6,13 @@
 
 namespace MicrosoftAzure\StorageResourceProvider;
 
-use MicrosoftAzure\Common\Internal\Authentication\AccessTokenAuthScheme;
+use MicrosoftAzure\Common\Internal\Authentication\OAuthScheme;
+use MicrosoftAzure\Common\Internal\Filters\OAuthFilter;
 use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\OAuthRestProxy;
 use MicrosoftAzure\Common\Internal\Resources;
 use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer;
+use MicrosoftAzure\Common\Internal\ServiceRestProxy;
 use MicrosoftAzure\Common\Internal\Utilities;
 
 /**
@@ -18,7 +21,7 @@ use MicrosoftAzure\Common\Internal\Utilities;
  * @category  Microsoft: to add details
  *
  */
-class StorageResourceProviderProxy
+class StorageResourceProviderProxy extends ServiceRestProxy
 {
     // properites read from Swagger spec
     private $api_version = '2016-01-01';
@@ -28,51 +31,25 @@ class StorageResourceProviderProxy
     private $produces = ['applicaton/json', 'text/json'];
 
     // properties for authentication
-    private $tenant_id;
-    private $client_id;
-    private $client_secret;
-
-    // other properites
-    private $serializer;
-    private $authScheme;
-    private $auth_header;
+    private $oauthSettings;
+    private $filters;
 
     /**
      * To add details
      *
      */
-    public function __construct($tenant_id, $client_id, $client_secret)
+    public function __construct($oauthSettings)
     {
-        $this->tenant_id = $tenant_id;
-        $this->client_id = $client_id;
-        $this->client_secret = $client_secret;
+        parent::__construct(
+            $oauthSettings->getOAuthEndpointUri(),
+            $oauthSettings->getTenantId(),
+            new JsonSerializer()
+        );
 
-        $this->serializer = new JsonSerializer();
-    }
-
-    /**
-     * To add details
-     *
-     */
-    private function getAuthToken()
-    {
-        $this->authScheme = new AccessTokenAuthScheme($this->tenant_id, $this->client_id, $this->client_secret);
-    }
-
-    /**
-     * To add details
-     *
-     */
-    public function getAuthHeaders()
-    {
-        // check if the access_token is still valid, if not, get a new one
-        if ( is_null($this->authScheme) || strtotime("now") > $this->authScheme->getTokenExpiresOn())
-        {
-            $this->getAuthToken();
-            $this->auth_header = $this->authScheme->addAuthorizationHeader();
-        }
-
-        return $this->auth_header;
+        $this->oauthSettings = $oauthSettings;
+        $oauthService = new OAuthRestProxy($oauthSettings);
+        $authentification = new OAuthScheme($oauthService );
+        $this->filters = [new OAuthFilter($authentification)];
     }
 
     /**
@@ -120,13 +97,13 @@ class StorageResourceProviderProxy
         $method = Resources::HTTP_POST;
         $statusCode = Resources::STATUS_OK;
 
-        $headers = $this->getAuthHeaders();
+        $headers =array();
         $headers['Content-Type'] = $this->consumes[0];
 
         $params = [];
         $params['name'] = $accountName;
         $params['type'] = 'Microsoft.Storage/storageAccounts';
-        $body = $this->serializer->serialize($params);
+        $body = $this->dataSerializer->serialize($params);
 
         $response = HttpClient::send(
             $method,
@@ -135,10 +112,11 @@ class StorageResourceProviderProxy
             $postParams,
             $path,
             $statusCode,
-            $body
+            $body,
+            $this->filters
         );
 
-        $parsed = $this->serializer->unserialize($response->getBody()->getContents());
+        $parsed = $this->dataSerializer->unserialize($response->getBody()->getContents());
         return $parsed['nameAvailable'];
     }
 
@@ -152,7 +130,7 @@ class StorageResourceProviderProxy
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}';
 
         $path = $this->getUrl($this->replaceParams($path, __CLASS__, __FUNCTION__, func_get_args()));
-        $headers = $this->getAuthHeaders();
+        $headers =array();
         $queryParams = [Resources::API_VERSION => $this->api_version];
         $postParams = array();
         $method = Resources::HTTP_PUT;
@@ -173,7 +151,7 @@ class StorageResourceProviderProxy
             // "accessTier": "Cool" not valid?
         }
 
-        $body = $this->serializer->serialize($createParams);
+        $body = $this->dataSerializer->serialize($createParams);
         $headers['Content-Type'] = $this->consumes[0];
         $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
 
@@ -184,7 +162,8 @@ class StorageResourceProviderProxy
             $postParams,
             $path,
             $statusCodes,
-            $body
+            $body,
+            $this->filters
         );
 
         if ($response->getStatusCode() == Resources::STATUS_OK)
@@ -209,7 +188,7 @@ class StorageResourceProviderProxy
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}';
 
         $path = $this->getUrl($this->replaceParams($path, __CLASS__, __FUNCTION__, func_get_args()));
-        $headers = $this->getAuthHeaders();
+        $headers =array();
         $queryParams = [Resources::API_VERSION => $this->api_version];
 
         $postParams = array();
@@ -224,7 +203,8 @@ class StorageResourceProviderProxy
             $postParams,
             $path,
             $statusCodes,
-            $body
+            $body,
+            $this->filters
         );
 
         return $response->getStatusCode();
@@ -241,7 +221,7 @@ class StorageResourceProviderProxy
         $method = Resources::HTTP_GET;
         $statusCodes = [Resources::STATUS_OK, Resources::STATUS_ACCEPTED];
 
-        $headers = $this->getAuthHeaders();
+        $headers =array();
         $headers[Resources::X_MS_REQUEST_ID] = $requestId;
         $body = '';
 
@@ -252,7 +232,8 @@ class StorageResourceProviderProxy
             $postParams,
             $path,
             $statusCodes,
-            $body
+            $body,
+            $this->filters
         );
 
         return $response->getStatusCode();

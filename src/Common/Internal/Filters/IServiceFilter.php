@@ -4,21 +4,12 @@
  * LICENSE: To add details.
  */
 
-namespace MicrosoftAzure\Common\Internal;
+namespace MicrosoftAzure\Common\Internal\Filters;
 
 /**
- * ServceFilter is called when the sending the request and after receiving the
- * response.
+ * ServceFilter is called when the sending the request and after receiving the response.
  *
- * @category  Microsoft
- *
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- *
- * @version   Release: 0.10.0
- *
- * @link      https://github.com/azure/azure-storage-php
+ * @category  Microsoft: to add details
  */
 interface IServiceFilter
 {

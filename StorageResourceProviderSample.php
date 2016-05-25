@@ -6,7 +6,7 @@
     date_default_timezone_set('America/Los_Angeles');
 
     require_once 'vendor/autoload.php';
-    use MicrosoftAzure\StorageResourceProvider\StorageResourceProviderProxy;
+    use MicrosoftAzure\Common\ServicesBuilder;
     use MicrosoftAzure\Common\ServiceException;
 
     /** To use the Storage Resource Provider APIs,
@@ -29,8 +29,7 @@
         include_once $config;
     }
 
-    // now we will check if the storage account exists or not. If not, create it.
-    $srp = new StorageResourceProviderProxy($tenant_id,  $client_id, $client_secret);
+    $srp = ServicesBuilder::getInstance()->createStorageResourceProviderService($tenant_id,  $client_id, $client_secret);
 
     if (!$srp->checkNameAvailability($subscriptionId, $accountName))
     {
@@ -84,8 +83,5 @@
              echo "Storage Account $accountName already created.\n";
         }
     }
-
-
-
 
 ?>

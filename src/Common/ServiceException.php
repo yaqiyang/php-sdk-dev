@@ -11,15 +11,7 @@ use MicrosoftAzure\Common\Internal\Resources;
 /**
  * Fires when the response code is incorrect.
  *
- * @category  Microsoft
- *
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- *
- * @version   Release: 0.10.0
- *
- * @link      https://github.com/azure/azure-storage-php
+ * @category  Microsoft: to add details
  */
 class ServiceException extends \LogicException
 {

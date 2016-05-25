@@ -4,22 +4,14 @@
  * LICENSE: To add details.
  */
 
-namespace MicrosoftAzure\Common\Internal\Filters;
+namespace WindowsAzure\Common\Internal\Filters;
 
-use MicrosoftAzure\Common\Internal\IServiceFilter;
+use WindowsAzure\Common\Internal\IServiceFilter;
 
 /**
  * Adds all passed headers to the HTTP request headers.
  *
- * @category  Microsoft
- *
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright 2016 Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- *
- * @version   Release: 0.10.0
- *
- * @link      https://github.com/azure/azure-storage-php
+ * @category  Microsoft: to add details
  */
 class HeadersFilter implements IServiceFilter
 {
@@ -43,31 +35,29 @@ class HeadersFilter implements IServiceFilter
     /**
      * Adds static header(s) to the HTTP request headers.
      *
-     * @param \GuzzleHttp\Psr7\Request $request HTTP request object.
+     * @param HttpClient $request HTTP channel object.
      *
-     * @return \GuzzleHttp\Psr7\Request
+     * @return \HTTP_Request2
      */
     public function handleRequest($request)
     {
-        $result = $request;
-
         foreach ($this->_headers as $key => $value) {
             $headers = $request->getHeaders();
             if (!array_key_exists($key, $headers)) {
-                $result = $result->withHeader($key, $value);
+                $request->setHeader($key, $value);
             }
         }
 
-        return $result;
+        return $request;
     }
 
     /**
      * Does nothing with the response.
      *
-     * @param \GuzzleHttp\Psr7\Request  $request  HTTP request object.
-     * @param \GuzzleHttp\Psr7\Response $response HTTP response object.
+     * @param HttpClient              $request  HTTP channel object.
+     * @param \HTTP_Request2_Response $response HTTP response object.
      *
-     * @return \GuzzleHttp\Psr7\Response
+     * @return \HTTP_Request2_Response
      */
     public function handleResponse($request, $response)
     {

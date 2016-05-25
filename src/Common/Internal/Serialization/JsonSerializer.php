@@ -11,15 +11,7 @@ use MicrosoftAzure\Common\Internal\Validate;
 /**
  * Perform JSON serialization / deserialization.
  *
- * @category  Microsoft
- *
- * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
- * @copyright Microsoft Corporation
- * @license   https://github.com/azure/azure-storage-php/LICENSE
- *
- * @version   Release: 0.10.0
- *
- * @link      https://github.com/azure/azure-storage-php
+ * @category  Microsoft: to add details
  */
 class JsonSerializer implements ISerializer
 {
