@@ -12,6 +12,7 @@ use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Uri;
+use Http\Discovery\HttpAsyncClientDiscovery;
 
 /**
  * Holds basic elements for making HTTP calls. This is a wrapper for Guzzle. To change to a new external Http
@@ -75,6 +76,116 @@ class HttpClient
         foreach ($filters as $filter) {
             $request = $filter->handleRequest($request);
         }
+
+        try {
+            $response = $client->send($request);
+            self::throwIfError(
+                    $response->getStatusCode(),
+                    $response->getReasonPhrase(),
+                    $response->getBody(),
+                    $statusCodes);
+
+            return $response;
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+            if ($e->hasResponse()) {
+                $response = $e->getResponse();
+                self::throwIfError(
+                        $response->getStatusCode(),
+                        $response->getReasonPhrase(),
+                        $response->getBody(),
+                        $statusCodes);
+
+                return $response;
+            } else {
+                throw $e;
+            }
+        }
+    }
+
+    public static function sendAsync(
+        $method,
+        $headers,
+        $queryParams,
+        $postParameters,
+        $path,
+        $statusCodes,
+        $body = Resources::EMPTY_STRING,
+        array $filters = []
+    ) {
+
+
+
+
+
+        $uri = new \GuzzleHttp\Psr7\Uri($path);
+
+        if ($queryParams != null) {
+            $queryString = Psr7\build_query($queryParams);
+            $uri = $uri->withQuery($queryString);
+        }
+
+        $actualBody = null;
+        if (empty($body)) {
+            if (empty($headers['content-type'])) {
+                $headers['content-type'] = 'application/x-www-form-urlencoded';
+                $actualBody = Psr7\build_query($postParameters);
+            }
+        } else {
+            $actualBody = $body;
+        }
+
+        $request = new Request(
+                $method,
+                $uri,
+                $headers,
+                $actualBody);
+
+        $client = new \GuzzleHttp\Client(
+            array(
+                'defaults' => array(
+                        'allow_redirects' => true, 'exceptions' => true,
+                        'decode_content' => true,
+                ),
+                'cookies' => true,
+                'verify' => false,
+                // For testing with Fiddler
+                // 'proxy' => "localhost:8888",
+        ));
+
+        $bodySize = $request->getBody()->getSize();
+        if ($bodySize > 0) {
+            $request = $request->withHeader('content-length', $bodySize);
+        }
+
+        foreach ($filters as $filter) {
+            $request = $filter->handleRequest($request);
+        }
+
+        $httpAsyncClient = HttpAsyncClientDiscovery::find();
+        $promise = $httpAsyncClient->sendAsyncRequest($request);
+        $promise->then(function (ResponseInterface $response) {
+
+            echo 'The response is available';
+            return $response;
+
+        }, function (Exception $e) {
+
+            echo 'An error happens';
+            throw $e;
+
+        });
+
+
+        $promise->wait();
+
+        if (Promise::FULFILLED === $promise->getState()) {
+            $response = $promise->getResponse();
+        } else {
+            throw new \Exception('Response not available');
+        }
+
+        return;
+
 
         try {
             $response = $client->send($request);

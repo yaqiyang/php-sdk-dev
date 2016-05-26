@@ -31,6 +31,10 @@
 
     $srp = ServicesBuilder::getInstance()->createStorageResourceProviderService($tenant_id, $client_id, $client_secret);
 
+    echo $srp->checkNameAvailability($subscriptionId, $accountName);
+
+    return;
+
     if (!$srp->checkNameAvailability($subscriptionId, $accountName))
     {
         $prompt = "Storage Account $accountName already exists. Do you want to update it, delete it, or get properties? (u/d/g)";
