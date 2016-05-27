@@ -31,9 +31,9 @@
 
     $srp = ServicesBuilder::getInstance()->createStorageResourceProviderService($tenant_id, $client_id, $client_secret);
 
-    echo $srp->checkNameAvailability($subscriptionId, $accountName);
+    //echo $srp->checkNameAvailability($subscriptionId, $accountName) . "\n";
 
-    return;
+    //return;
 
     if (!$srp->checkNameAvailability($subscriptionId, $accountName))
     {

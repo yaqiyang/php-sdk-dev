@@ -108,7 +108,7 @@ class StorageResourceProviderProxy extends ServiceRestProxy
         $params['type'] = 'Microsoft.Storage/storageAccounts';
         $body = $this->dataSerializer->serialize($params);
 
-        $response = HttpClient::sendAsync(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
