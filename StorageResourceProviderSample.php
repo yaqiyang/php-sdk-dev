@@ -33,7 +33,7 @@
 
     if (!$srp->checkNameAvailability($subscriptionId, $accountName))
     {
-        $prompt = "Storage Account $accountName already exists. Do you want to update it, delete it, or get properties? (u/d/g)";
+        $prompt = "Storage Account $accountName already exists. Do you want to Update it, Delete it, Get properties, or List accounts? (u/d/g/l)";
         $action = 'u';
         if (PHP_OS == 'WINNT') {
             echo "$prompt";
@@ -82,6 +82,11 @@
             $result = $srp->GetStorageAccountProperties($subscriptionId, $resourceGroup, $accountName);
             echo "\nStorage Account $accountName prperties:\n" . $result;
         }
+        else if (strtolower($action ) == 'l')
+        {
+            $result = $srp->StorageAccounts_ListByResourceGroup($subscriptionId, $resourceGroup);
+            echo "\nList Storage Accounts:\n" . $result;
+        }
         else
         {
             echo "\nYou entered unrecognized command: $action.\n";
@@ -90,7 +95,8 @@
     else // account not existed
     {
         echo "Creating Storage Account $accountName ...";
-        $result = $srp->CreateStorageAccount($subscriptionId, $resourceGroup, $accountName);
+        //$result = $srp->CreateStorageAccount($subscriptionId, $resourceGroup, $accountName);
+        $result = $srp->StorageAccounts_CreateAsync($subscriptionId, $resourceGroup, $accountName);
 
         if (is_array($result)) // async operaton
         {

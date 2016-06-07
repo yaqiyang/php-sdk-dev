@@ -323,4 +323,102 @@ class StorageResourceProviderProxy extends ServiceRestProxy
         return $response->getBody()->getContents();
     }
 
+    /**
+     * Lists all the storage accounts available under the given resource group. Note that storage keys are not returned;
+     * use the ListKeys operation for this.
+     *
+     */
+    public function StorageAccounts_ListByResourceGroup($subscriptionId, $resourceGroupName)
+    {
+        // properites from Swagger spec
+        $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts';
+        $statusCodes = [200];
+        $method = 'GET';
+        $postParams = [];  //emmpty for GET calls
+        $body = '';
+
+        // process parameters
+        $path = $this->getUrl($this->replaceParams($path, __CLASS__, __FUNCTION__, func_get_args()));
+        $queryParams = [Resources::API_VERSION => $this->api_version];
+        $headers = [Resources::X_MS_REQUEST_ID => Utilities::getGuid()];
+
+        $response = HttpClient::send(
+            $method,
+            $headers,
+            $queryParams,
+            $postParams,
+            $path,
+            $statusCodes,
+            $body,
+            $this->filters
+        );
+
+        // need to return reponse? or resposne body, or nextLinkName if available?
+        return $response->getBody()->getContents();
+    }
+
+    /**
+     * Asynchronously creates a new storage account with the specified parameters. If an account is already created and subsequent
+     * create request is issued with different properties, the account properties will be updated. If an account is already created
+     * and subsequent create or update request is issued with exact same set of properties, the request will succeed.
+     *
+     * Name the function xxxAsync if x-ms-long-running-operation = true
+     */
+    public function StorageAccounts_CreateAsync($subscriptionId, $resourceGroupName, $accountName, array $bodyParams = [])
+    {
+        // properites from Swagger spec
+        $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}';
+        $method = 'PUT';
+        $statusCodes = [202, 200];
+        $postParams = [];
+
+
+        // process parameters and validate them (to do)
+        $path = $this->getUrl($this->replaceParams($path, __CLASS__, __FUNCTION__, func_get_args()));
+        // the API version is not per call since we should generate different code for it, right?
+        $queryParams = [Resources::API_VERSION => $this->api_version];
+        $headers = [Resources::X_MS_REQUEST_ID => Utilities::getGuid()];
+        $headers['Content-Type'] = 'application/json'; // need to set this if body is Json object
+
+        // default values for body params
+        if (count($bodyParams) == 0)
+        {
+            $bodyParams['location'] = 'eastus';
+            $bodyParams['tags'] = ['key1' => 'value1', 'key2' => 'value2'];
+
+            $customDomain = ['name' => '', 'useSubDomainName' => 'false'];
+            $encrypotioin = ['services' => ['blob' => ['enabled' => 'false']], 'keySource' => 'Microsoft.Storage'];
+
+            $bodyParams['properties'] = ['customDomain' => $customDomain, 'encryption' => $encrypotioin, ];
+            $bodyParams['sku'] = ['name' => 'Standard_LRS'];
+            $bodyParams['kind'] = 'Storage';
+
+            // "accessTier": "Cool" not valid?
+        }
+
+        $body = $this->dataSerializer->serialize($bodyParams);
+
+        $response = HttpClient::send(
+            $method,
+            $headers,
+            $queryParams,
+            $postParams,
+            $path,
+            $statusCodes,
+            $body,
+            $this->filters
+        );
+
+        // x-ms-long-running-operation = true
+        if ($response->getStatusCode() == Resources::STATUS_OK)
+        {
+            return Resources::STATUS_OK; // storage account already created
+        }
+        else
+        {
+            $locations = $response->getHeaders()['Location'];
+            $requestIds = $response->getHeaders()[Resources::X_MS_REQUEST_ID];
+            return [$locations[0], $requestIds[0]];   // what is a better return structure?
+        }
+    }
 }
