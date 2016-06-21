@@ -41,4 +41,9 @@ Once you have set up the above settings, open StorageResourceProviderSample.php,
 * If $accountName exists, it can be updated, deleted, and queried for properties
 * If $accountName does not exists, it will be created.
 
+## Learn More
+[Microsoft Azure PHP Developer Center](http://www.windowsazure.com/en-us/develop/php/)
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
+contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
