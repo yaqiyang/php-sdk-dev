@@ -372,7 +372,6 @@ class StorageResourceProviderProxy extends ServiceRestProxy
         $statusCodes = [202, 200];
         $postParams = [];
 
-
         // process parameters and validate them (to do)
         $path = $this->getUrl($this->replaceParams($path, __CLASS__, __FUNCTION__, func_get_args()));
         // the API version is not per call since we should generate different code for it, right?

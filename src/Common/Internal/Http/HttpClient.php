@@ -26,7 +26,7 @@ class HttpClient
         $method,
         $headers,
         $queryParams,
-        $postParameters,
+        $postParams,
         $path,
         $statusCodes,
         $body = Resources::EMPTY_STRING,
@@ -43,7 +43,7 @@ class HttpClient
         if (empty($body)) {
             if (empty($headers['content-type'])) {
                 $headers['content-type'] = 'application/x-www-form-urlencoded';
-                $actualBody = Psr7\build_query($postParameters);
+                $actualBody = Psr7\build_query($postParams);
             }
         } else {
             $actualBody = $body;
