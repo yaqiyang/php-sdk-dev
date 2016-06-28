@@ -4,7 +4,7 @@
  * LICENSE: To add details.
  */
 
-namespace MicrosoftAzure\StorageResourceProvider;
+namespace MicrosoftAzure\Common;
 
 use MicrosoftAzure\Common\Internal\Authentication\OAuthScheme;
 use MicrosoftAzure\Common\Internal\Filters\OAuthFilter;

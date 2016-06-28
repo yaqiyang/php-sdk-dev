@@ -5,7 +5,7 @@
     error_reporting(E_ALL);
     date_default_timezone_set('America/Los_Angeles');
 
-    require_once 'vendor/autoload.php';
+    require_once __DIR__ .'/../vendor/autoload.php';
     use MicrosoftAzure\Common\ServicesBuilder;
     use MicrosoftAzure\Common\ServiceException;
 
@@ -23,7 +23,7 @@
     $accountName = '<your new storage account nanme>';
 
     // or, read the settings from a file
-    $config = 'privatesettings.php';
+    $config =  __DIR__ . '/privatesettings.php';
     if (file_exists($config))
     {
         include_once $config;

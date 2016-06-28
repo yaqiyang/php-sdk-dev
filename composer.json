@@ -16,7 +16,7 @@
     "require-dev": {
         "mikey179/vfsStream": "^1.6",
         "phpunit/phpunit": "^4.8",
-        "fabpot/php-cs-fixer": "^1.11"
+        "friendsofphp/php-cs-fixer": "^1.11"
     },
     "autoload": {
         "psr-4": { "MicrosoftAzure\\": "src/" }

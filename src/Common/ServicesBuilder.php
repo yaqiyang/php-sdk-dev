@@ -11,7 +11,7 @@ use MicrosoftAzure\Common\Internal\Utilities;
 use MicrosoftAzure\Common\Internal\OAuthSettings;
 use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer;
 use MicrosoftAzure\Common\Internal\Serialization\XmlSerializer;
-use MicrosoftAzure\StorageResourceProvider\StorageResourceProviderProxy;
+use MicrosoftAzure\Common\StorageResourceProviderProxy;
 
 /**
  * Builds azure service objects.
