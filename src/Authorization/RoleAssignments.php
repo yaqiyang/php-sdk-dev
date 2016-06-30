@@ -8,40 +8,37 @@
  * PHP version: >=5.5
  *
  * @category    Microsoft
+ *
  * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
  * @copyright   2016 Microsoft Corporation
  * @license     http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
+ *
  * @link        https://github.com/Azure/azure-sdk-for-php
+ *
  * @version     Release: 0.10.0_2016-07, API Version: 2015-07-01
  */
 
 namespace MicrosoftAzure\StorageResourceProvider;
 
-use MicrosoftAzure\Common\Internal\Authentication\OAuthScheme;
-use MicrosoftAzure\Common\Internal\Filters\OAuthFilter;
 use MicrosoftAzure\Common\Internal\Http\HttpClient;
-use MicrosoftAzure\Common\Internal\OAuthRestProxy;
 use MicrosoftAzure\Common\Internal\Resources;
-use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer;
-use MicrosoftAzure\Common\Internal\ServiceRestProxy;
 use MicrosoftAzure\Common\Internal\Utilities;
 use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * RoleAssignments
  */
-class RoleAssignments {
-
+class RoleAssignments
+{
     private $_client;
 
     /**
-    * Creates a new instance for RoleAssignments.
-    *
-    * @param AuthorizationManagementClient, Service client for RoleAssignments
-    *
-    */
-    public function __construct($client) {
-
+     * Creates a new instance for RoleAssignments.
+     *
+     * @param AuthorizationManagementClient, Service client for RoleAssignments
+     */
+    public function __construct($client)
+    {
         $this->_client = $client;
     }
 
@@ -53,15 +50,16 @@ class RoleAssignments {
      * @param string $parentResourcePath Resource identity.
      * @param string $resourceType Resource identity.
      * @param string $resourceName Resource identity.
-     * @param string $filter The filter to apply on the operation.
+     * @param array (RoleAssignmentFilter) $filter The filter to apply on the
+     * operation.
      * @param array $customHeaders [String => String] A hash of custom headers
      * that will be added to the HTTP request.
      *
      * @return array, deserialized Jason array of the response body for
      * RoleAssignmentListResult operation results
      */
-    public function listForResource($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, $filter = null, array $customHeaders = []) {
-
+    public function listForResource($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, array $filter, array $customHeaders = [])
+    {
         $response = $this->listForResourceAsync($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, $filter, $customHeaders);
 
         if ($response->getBody()) {
@@ -82,40 +80,34 @@ class RoleAssignments {
      * @param string $parentResourcePath Resource identity.
      * @param string $resourceType Resource identity.
      * @param string $resourceName Resource identity.
-     * @param string $filter The filter to apply on the operation.
+     * @param array (RoleAssignmentFilter) $filter The filter to apply on the
+     * operation.
      * @param array $customHeaders [String => String] A hash of custom headers
      * that will be added to the HTTP request.
      *
      * @return Response, Response object from the http call
      */
-    public function listForResourceAsync($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, $filter = null, array $customHeaders = []) {
-
-        if ($resourceGroupName == null)
-        {
+    public function listForResourceAsync($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, array $filter, array $customHeaders = [])
+    {
+        if ($resourceGroupName == null) {
             Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
-        if ($resourceProviderNamespace == null)
-        {
+        if ($resourceProviderNamespace == null) {
             Validate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
         }
-        if ($parentResourcePath == null)
-        {
+        if ($parentResourcePath == null) {
             Validate::notNullOrEmpty($parentResourcePath, '$parentResourcePath');
         }
-        if ($resourceType == null)
-        {
+        if ($resourceType == null) {
             Validate::notNullOrEmpty($resourceType, '$resourceType');
         }
-        if ($resourceName == null)
-        {
+        if ($resourceName == null) {
             Validate::notNullOrEmpty($resourceName, '$resourceName');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
-        if ($this->_client->getSubscriptionId() == null)
-        {
+        if ($this->_client->getSubscriptionId() == null) {
             Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
@@ -123,15 +115,13 @@ class RoleAssignments {
         $statusCodes = [200];
         $method = 'GET';
 
-        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName,'{resourceProviderNamespace}' => $resourceProviderNamespace,'{resourceName}' => $resourceName,'{subscriptionId}' => $this->_client->getSubscriptionId()]);
-        $queryParams = ['$filter' => $filter,'api-version' => $this->_client->getApiVersion()];
+        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName, '{resourceProviderNamespace}' => $resourceProviderNamespace, '{resourceName}' => $resourceName, '{subscriptionId}' => $this->_client->getSubscriptionId()]);
+        $queryParams = ['$filter' => $filter, 'api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -155,15 +145,16 @@ class RoleAssignments {
      * Gets role assignments of the resource group.
      *
      * @param string $resourceGroupName Resource group name.
-     * @param string $filter The filter to apply on the operation.
+     * @param array (RoleAssignmentFilter) $filter The filter to apply on the
+     * operation.
      * @param array $customHeaders [String => String] A hash of custom headers
      * that will be added to the HTTP request.
      *
      * @return array, deserialized Jason array of the response body for
      * RoleAssignmentListResult operation results
      */
-    public function listForResourceGroup($resourceGroupName, $filter = null, array $customHeaders = []) {
-
+    public function listForResourceGroup($resourceGroupName, array $filter, array $customHeaders = [])
+    {
         $response = $this->listForResourceGroupAsync($resourceGroupName, $filter, $customHeaders);
 
         if ($response->getBody()) {
@@ -180,24 +171,22 @@ class RoleAssignments {
      * Gets role assignments of the resource group.
      *
      * @param string $resourceGroupName Resource group name.
-     * @param string $filter The filter to apply on the operation.
+     * @param array (RoleAssignmentFilter) $filter The filter to apply on the
+     * operation.
      * @param array $customHeaders [String => String] A hash of custom headers
      * that will be added to the HTTP request.
      *
      * @return Response, Response object from the http call
      */
-    public function listForResourceGroupAsync($resourceGroupName, $filter = null, array $customHeaders = []) {
-
-        if ($resourceGroupName == null)
-        {
+    public function listForResourceGroupAsync($resourceGroupName, array $filter, array $customHeaders = [])
+    {
+        if ($resourceGroupName == null) {
             Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
-        if ($this->_client->getSubscriptionId() == null)
-        {
+        if ($this->_client->getSubscriptionId() == null) {
             Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
@@ -205,15 +194,13 @@ class RoleAssignments {
         $statusCodes = [200];
         $method = 'GET';
 
-        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName,'{subscriptionId}' => $this->_client->getSubscriptionId()]);
-        $queryParams = ['$filter' => $filter,'api-version' => $this->_client->getApiVersion()];
+        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName, '{subscriptionId}' => $this->_client->getSubscriptionId()]);
+        $queryParams = ['$filter' => $filter, 'api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -244,8 +231,8 @@ class RoleAssignments {
      * @return array, deserialized Jason array of the response body for
      * RoleAssignment operation results
      */
-    public function delete($scope, $roleAssignmentName, array $customHeaders = []) {
-
+    public function delete($scope, $roleAssignmentName, array $customHeaders = [])
+    {
         $response = $this->deleteAsync($scope, $roleAssignmentName, $customHeaders);
 
         if ($response->getBody()) {
@@ -268,18 +255,15 @@ class RoleAssignments {
      *
      * @return Response, Response object from the http call
      */
-    public function deleteAsync($scope, $roleAssignmentName, array $customHeaders = []) {
-
-        if ($scope == null)
-        {
+    public function deleteAsync($scope, $roleAssignmentName, array $customHeaders = [])
+    {
+        if ($scope == null) {
             Validate::notNullOrEmpty($scope, '$scope');
         }
-        if ($roleAssignmentName == null)
-        {
+        if ($roleAssignmentName == null) {
             Validate::notNullOrEmpty($roleAssignmentName, '$roleAssignmentName');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
@@ -290,12 +274,10 @@ class RoleAssignments {
         $path = strtr($path, ['{roleAssignmentName}' => $roleAssignmentName]);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -327,8 +309,8 @@ class RoleAssignments {
      * @return array, deserialized Jason array of the response body for
      * RoleAssignment operation results
      */
-    public function create($scope, $roleAssignmentName, array $parameters, array $customHeaders = []) {
-
+    public function create($scope, $roleAssignmentName, array $parameters, array $customHeaders = [])
+    {
         $response = $this->createAsync($scope, $roleAssignmentName, $parameters, $customHeaders);
 
         if ($response->getBody()) {
@@ -352,22 +334,18 @@ class RoleAssignments {
      *
      * @return Response, Response object from the http call
      */
-    public function createAsync($scope, $roleAssignmentName, array $parameters, array $customHeaders = []) {
-
-        if ($scope == null)
-        {
+    public function createAsync($scope, $roleAssignmentName, array $parameters, array $customHeaders = [])
+    {
+        if ($scope == null) {
             Validate::notNullOrEmpty($scope, '$scope');
         }
-        if ($roleAssignmentName == null)
-        {
+        if ($roleAssignmentName == null) {
             Validate::notNullOrEmpty($roleAssignmentName, '$roleAssignmentName');
         }
-        if ($parameters == null)
-        {
+        if ($parameters == null) {
             Validate::notNullOrEmpty($parameters, '$parameters');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
@@ -378,12 +356,10 @@ class RoleAssignments {
         $path = strtr($path, ['{roleAssignmentName}' => $roleAssignmentName]);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -415,8 +391,8 @@ class RoleAssignments {
      * @return array, deserialized Jason array of the response body for
      * RoleAssignment operation results
      */
-    public function get($scope, $roleAssignmentName, array $customHeaders = []) {
-
+    public function get($scope, $roleAssignmentName, array $customHeaders = [])
+    {
         $response = $this->getAsync($scope, $roleAssignmentName, $customHeaders);
 
         if ($response->getBody()) {
@@ -439,18 +415,15 @@ class RoleAssignments {
      *
      * @return Response, Response object from the http call
      */
-    public function getAsync($scope, $roleAssignmentName, array $customHeaders = []) {
-
-        if ($scope == null)
-        {
+    public function getAsync($scope, $roleAssignmentName, array $customHeaders = [])
+    {
+        if ($scope == null) {
             Validate::notNullOrEmpty($scope, '$scope');
         }
-        if ($roleAssignmentName == null)
-        {
+        if ($roleAssignmentName == null) {
             Validate::notNullOrEmpty($roleAssignmentName, '$roleAssignmentName');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
@@ -461,12 +434,10 @@ class RoleAssignments {
         $path = strtr($path, ['{roleAssignmentName}' => $roleAssignmentName]);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -496,8 +467,8 @@ class RoleAssignments {
      * @return array, deserialized Jason array of the response body for
      * RoleAssignment operation results
      */
-    public function deleteById($roleAssignmentId, array $customHeaders = []) {
-
+    public function deleteById($roleAssignmentId, array $customHeaders = [])
+    {
         $response = $this->deleteByIdAsync($roleAssignmentId, $customHeaders);
 
         if ($response->getBody()) {
@@ -519,14 +490,12 @@ class RoleAssignments {
      *
      * @return Response, Response object from the http call
      */
-    public function deleteByIdAsync($roleAssignmentId, array $customHeaders = []) {
-
-        if ($roleAssignmentId == null)
-        {
+    public function deleteByIdAsync($roleAssignmentId, array $customHeaders = [])
+    {
+        if ($roleAssignmentId == null) {
             Validate::notNullOrEmpty($roleAssignmentId, '$roleAssignmentId');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
@@ -537,12 +506,10 @@ class RoleAssignments {
         $path = strtr($path, []);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -573,8 +540,8 @@ class RoleAssignments {
      * @return array, deserialized Jason array of the response body for
      * RoleAssignment operation results
      */
-    public function createById($roleAssignmentId, array $parameters, array $customHeaders = []) {
-
+    public function createById($roleAssignmentId, array $parameters, array $customHeaders = [])
+    {
         $response = $this->createByIdAsync($roleAssignmentId, $parameters, $customHeaders);
 
         if ($response->getBody()) {
@@ -597,18 +564,15 @@ class RoleAssignments {
      *
      * @return Response, Response object from the http call
      */
-    public function createByIdAsync($roleAssignmentId, array $parameters, array $customHeaders = []) {
-
-        if ($roleAssignmentId == null)
-        {
+    public function createByIdAsync($roleAssignmentId, array $parameters, array $customHeaders = [])
+    {
+        if ($roleAssignmentId == null) {
             Validate::notNullOrEmpty($roleAssignmentId, '$roleAssignmentId');
         }
-        if ($parameters == null)
-        {
+        if ($parameters == null) {
             Validate::notNullOrEmpty($parameters, '$parameters');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
@@ -619,12 +583,10 @@ class RoleAssignments {
         $path = strtr($path, []);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -655,8 +617,8 @@ class RoleAssignments {
      * @return array, deserialized Jason array of the response body for
      * RoleAssignment operation results
      */
-    public function getById($roleAssignmentId, array $customHeaders = []) {
-
+    public function getById($roleAssignmentId, array $customHeaders = [])
+    {
         $response = $this->getByIdAsync($roleAssignmentId, $customHeaders);
 
         if ($response->getBody()) {
@@ -678,14 +640,12 @@ class RoleAssignments {
      *
      * @return Response, Response object from the http call
      */
-    public function getByIdAsync($roleAssignmentId, array $customHeaders = []) {
-
-        if ($roleAssignmentId == null)
-        {
+    public function getByIdAsync($roleAssignmentId, array $customHeaders = [])
+    {
+        if ($roleAssignmentId == null) {
             Validate::notNullOrEmpty($roleAssignmentId, '$roleAssignmentId');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
@@ -696,12 +656,10 @@ class RoleAssignments {
         $path = strtr($path, []);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -724,15 +682,16 @@ class RoleAssignments {
     /*
      * Gets role assignments of the subscription.
      *
-     * @param string $filter The filter to apply on the operation.
+     * @param array (RoleAssignmentFilter) $filter The filter to apply on the
+     * operation.
      * @param array $customHeaders [String => String] A hash of custom headers
      * that will be added to the HTTP request.
      *
      * @return array, deserialized Jason array of the response body for
      * RoleAssignmentListResult operation results
      */
-    public function listOperation($filter = null, array $customHeaders = []) {
-
+    public function listOperation(array $filter, array $customHeaders = [])
+    {
         $response = $this->listOperationAsync($filter, $customHeaders);
 
         if ($response->getBody()) {
@@ -748,20 +707,19 @@ class RoleAssignments {
     /*
      * Gets role assignments of the subscription.
      *
-     * @param string $filter The filter to apply on the operation.
+     * @param array (RoleAssignmentFilter) $filter The filter to apply on the
+     * operation.
      * @param array $customHeaders [String => String] A hash of custom headers
      * that will be added to the HTTP request.
      *
      * @return Response, Response object from the http call
      */
-    public function listOperationAsync($filter = null, array $customHeaders = []) {
-
-        if ($this->_client->getApiVersion() == null)
-        {
+    public function listOperationAsync(array $filter, array $customHeaders = [])
+    {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
-        if ($this->_client->getSubscriptionId() == null)
-        {
+        if ($this->_client->getSubscriptionId() == null) {
             Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
@@ -770,14 +728,12 @@ class RoleAssignments {
         $method = 'GET';
 
         $path = strtr($path, ['{subscriptionId}' => $this->_client->getSubscriptionId()]);
-        $queryParams = ['$filter' => $filter,'api-version' => $this->_client->getApiVersion()];
+        $queryParams = ['$filter' => $filter, 'api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -801,15 +757,16 @@ class RoleAssignments {
      * Gets role assignments of the scope.
      *
      * @param string $scope Scope.
-     * @param string $filter The filter to apply on the operation.
+     * @param array (RoleAssignmentFilter) $filter The filter to apply on the
+     * operation.
      * @param array $customHeaders [String => String] A hash of custom headers
      * that will be added to the HTTP request.
      *
      * @return array, deserialized Jason array of the response body for
      * RoleAssignmentListResult operation results
      */
-    public function listForScope($scope, $filter = null, array $customHeaders = []) {
-
+    public function listForScope($scope, array $filter, array $customHeaders = [])
+    {
         $response = $this->listForScopeAsync($scope, $filter, $customHeaders);
 
         if ($response->getBody()) {
@@ -826,20 +783,19 @@ class RoleAssignments {
      * Gets role assignments of the scope.
      *
      * @param string $scope Scope.
-     * @param string $filter The filter to apply on the operation.
+     * @param array (RoleAssignmentFilter) $filter The filter to apply on the
+     * operation.
      * @param array $customHeaders [String => String] A hash of custom headers
      * that will be added to the HTTP request.
      *
      * @return Response, Response object from the http call
      */
-    public function listForScopeAsync($scope, $filter = null, array $customHeaders = []) {
-
-        if ($scope == null)
-        {
+    public function listForScopeAsync($scope, array $filter, array $customHeaders = [])
+    {
+        if ($scope == null) {
             Validate::notNullOrEmpty($scope, '$scope');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
@@ -848,14 +804,12 @@ class RoleAssignments {
         $method = 'GET';
 
         $path = strtr($path, []);
-        $queryParams = ['$filter' => $filter,'api-version' => $this->_client->getApiVersion()];
+        $queryParams = ['$filter' => $filter, 'api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -886,8 +840,8 @@ class RoleAssignments {
      * @return array, deserialized Jason array of the response body for
      * RoleAssignmentListResult operation results
      */
-    public function listForResourceNext($nextPageLink, array $customHeaders = []) {
-
+    public function listForResourceNext($nextPageLink, array $customHeaders = [])
+    {
         $response = $this->listForResourceNextAsync($nextPageLink, $customHeaders);
 
         if ($response->getBody()) {
@@ -910,10 +864,9 @@ class RoleAssignments {
      *
      * @return Response, Response object from the http call
      */
-    public function listForResourceNextAsync($nextPageLink, array $customHeaders = []) {
-
-        if ($nextPageLink == null)
-        {
+    public function listForResourceNextAsync($nextPageLink, array $customHeaders = [])
+    {
+        if ($nextPageLink == null) {
             Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
@@ -924,12 +877,10 @@ class RoleAssignments {
         $path = strtr($path, []);
         $queryParams = [];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -960,8 +911,8 @@ class RoleAssignments {
      * @return array, deserialized Jason array of the response body for
      * RoleAssignmentListResult operation results
      */
-    public function listForResourceGroupNext($nextPageLink, array $customHeaders = []) {
-
+    public function listForResourceGroupNext($nextPageLink, array $customHeaders = [])
+    {
         $response = $this->listForResourceGroupNextAsync($nextPageLink, $customHeaders);
 
         if ($response->getBody()) {
@@ -984,10 +935,9 @@ class RoleAssignments {
      *
      * @return Response, Response object from the http call
      */
-    public function listForResourceGroupNextAsync($nextPageLink, array $customHeaders = []) {
-
-        if ($nextPageLink == null)
-        {
+    public function listForResourceGroupNextAsync($nextPageLink, array $customHeaders = [])
+    {
+        if ($nextPageLink == null) {
             Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
@@ -998,12 +948,10 @@ class RoleAssignments {
         $path = strtr($path, []);
         $queryParams = [];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -1034,8 +982,8 @@ class RoleAssignments {
      * @return array, deserialized Jason array of the response body for
      * RoleAssignmentListResult operation results
      */
-    public function listNext($nextPageLink, array $customHeaders = []) {
-
+    public function listNext($nextPageLink, array $customHeaders = [])
+    {
         $response = $this->listNextAsync($nextPageLink, $customHeaders);
 
         if ($response->getBody()) {
@@ -1058,10 +1006,9 @@ class RoleAssignments {
      *
      * @return Response, Response object from the http call
      */
-    public function listNextAsync($nextPageLink, array $customHeaders = []) {
-
-        if ($nextPageLink == null)
-        {
+    public function listNextAsync($nextPageLink, array $customHeaders = [])
+    {
+        if ($nextPageLink == null) {
             Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
@@ -1072,12 +1019,10 @@ class RoleAssignments {
         $path = strtr($path, []);
         $queryParams = [];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -1108,8 +1053,8 @@ class RoleAssignments {
      * @return array, deserialized Jason array of the response body for
      * RoleAssignmentListResult operation results
      */
-    public function listForScopeNext($nextPageLink, array $customHeaders = []) {
-
+    public function listForScopeNext($nextPageLink, array $customHeaders = [])
+    {
         $response = $this->listForScopeNextAsync($nextPageLink, $customHeaders);
 
         if ($response->getBody()) {
@@ -1132,10 +1077,9 @@ class RoleAssignments {
      *
      * @return Response, Response object from the http call
      */
-    public function listForScopeNextAsync($nextPageLink, array $customHeaders = []) {
-
-        if ($nextPageLink == null)
-        {
+    public function listForScopeNextAsync($nextPageLink, array $customHeaders = [])
+    {
+        if ($nextPageLink == null) {
             Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
@@ -1146,12 +1090,10 @@ class RoleAssignments {
         $path = strtr($path, []);
         $queryParams = [];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 

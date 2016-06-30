@@ -8,10 +8,13 @@
  * PHP version: >=5.5
  *
  * @category    Microsoft
+ *
  * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
  * @copyright   2016 Microsoft Corporation
  * @license     http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
+ *
  * @link        https://github.com/Azure/azure-sdk-for-php
+ *
  * @version     Release: 0.10.0_2016-07, API Version: 2015-07-01
  */
 
@@ -24,20 +27,18 @@ use MicrosoftAzure\Common\Internal\OAuthRestProxy;
 use MicrosoftAzure\Common\Internal\Resources;
 use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer;
 use MicrosoftAzure\Common\Internal\ServiceRestProxy;
-use MicrosoftAzure\Common\Internal\Utilities;
 
 /**
  * 
  */
-class AuthorizationManagementClient extends ServiceRestProxy {
-
+class AuthorizationManagementClient extends ServiceRestProxy
+{
     /**
      * Gets Azure subscription credentials.
      *
      * @var OAuthSettings
      */
     private $_credentials;
-
     /**
      * Gets subscription credentials which uniquely identify Microsoft Azure
      * subscription. The subscription ID forms part of the URI for every
@@ -46,34 +47,30 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      * @var string
      */
     private $_subscriptionId;
-
     /**
      * Client Api Version.
      *
      * @var string
      */
     private $_apiVersion;
-
     /**
      * Gets or sets the preferred language for the response.
      *
      * @var string
      */
     private $_acceptLanguage;
-
     /**
      * Gets or sets the retry timeout in seconds for Long Running Operations.
      * Default value is 30.
      *
-     * @var integer
+     * @var int
      */
     private $_longRunningOperationRetryTimeout;
-
     /**
      * When set to true a unique x-ms-client-request-id value is generated and
      * included in each request. Default is true.
      *
-     * @var boolean
+     * @var bool
      */
     private $_generateClientRequestId;
 
@@ -129,7 +126,7 @@ class AuthorizationManagementClient extends ServiceRestProxy {
     /**
      * Retry intervals in number of seconds.
      *
-     * @var integer
+     * @var int
      */
     private $_retryInterval;
 
@@ -137,7 +134,6 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      * Constructor for the service client.
      *
      * @param OAuthSettings $oauthSettings OAuth settings for to access the APIs
-     *
      */
     public function __construct($oauthSettings)
     {
@@ -169,7 +165,8 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      *
      * @return OAuthSettings
      */
-    public function getCredentials() {
+    public function getCredentials()
+    {
         return $this->_credentials;
     }
 
@@ -180,7 +177,8 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      *
      * @return none
      */
-    private function setCredentials($credentials) {
+    private function setCredentials($credentials)
+    {
         $this->_credentials = $credentials;
     }
 
@@ -191,7 +189,8 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      *
      * @return string
      */
-    public function getSubscriptionId() {
+    public function getSubscriptionId()
+    {
         return $this->_subscriptionId;
     }
 
@@ -204,7 +203,8 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      *
      * @return none
      */
-    public function setSubscriptionId($subscriptionId) {
+    public function setSubscriptionId($subscriptionId)
+    {
         $this->_subscriptionId = $subscriptionId;
     }
 
@@ -213,7 +213,8 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      *
      * @return string
      */
-    public function getApiVersion() {
+    public function getApiVersion()
+    {
         return $this->_apiVersion;
     }
 
@@ -224,7 +225,8 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      *
      * @return none
      */
-    private function setApiVersion($apiVersion) {
+    private function setApiVersion($apiVersion)
+    {
         $this->_apiVersion = $apiVersion;
     }
 
@@ -233,7 +235,8 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      *
      * @return string
      */
-    public function getAcceptLanguage() {
+    public function getAcceptLanguage()
+    {
         return $this->_acceptLanguage;
     }
 
@@ -244,7 +247,8 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      *
      * @return none
      */
-    public function setAcceptLanguage($acceptLanguage) {
+    public function setAcceptLanguage($acceptLanguage)
+    {
         $this->_acceptLanguage = $acceptLanguage;
     }
 
@@ -252,9 +256,10 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      * Gets longRunningOperationRetryTimeout, the retry timeout in seconds for
      * Long Running Operations. Default value is 30.
      *
-     * @return integer
+     * @return int
      */
-    public function getLongRunningOperationRetryTimeout() {
+    public function getLongRunningOperationRetryTimeout()
+    {
         return $this->_longRunningOperationRetryTimeout;
     }
 
@@ -262,11 +267,12 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      * Sets longRunningOperationRetryTimeout, the retry timeout in seconds for
      * Long Running Operations. Default value is 30.
      *
-     * @param integer $longRunningOperationRetryTimeout
+     * @param int $longRunningOperationRetryTimeout
      *
      * @return none
      */
-    public function setLongRunningOperationRetryTimeout($longRunningOperationRetryTimeout) {
+    public function setLongRunningOperationRetryTimeout($longRunningOperationRetryTimeout)
+    {
         $this->_longRunningOperationRetryTimeout = $longRunningOperationRetryTimeout;
         set_time_limit($longRunningOperationRetryTimeout);
     }
@@ -276,9 +282,10 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      * x-ms-client-request-id value is generated and included in each
      * request. Default is true.
      *
-     * @return boolean
+     * @return bool
      */
-    public function getGenerateClientRequestId() {
+    public function getGenerateClientRequestId()
+    {
         return $this->_generateClientRequestId;
     }
 
@@ -287,11 +294,12 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      * x-ms-client-request-id value is generated and included in each
      * request. Default is true.
      *
-     * @param boolean $generateClientRequestId
+     * @param bool $generateClientRequestId
      *
      * @return none
      */
-    public function setGenerateClientRequestId($generateClientRequestId) {
+    public function setGenerateClientRequestId($generateClientRequestId)
+    {
         $this->_generateClientRequestId = $generateClientRequestId;
     }
 
@@ -300,7 +308,8 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      *
      * @return ClassicAdministrators
      */
-    public function getClassicAdministrators() {
+    public function getClassicAdministrators()
+    {
         return $this->_classicAdministrators;
     }
 
@@ -309,7 +318,8 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      *
      * @return Permissions
      */
-    public function getPermissions() {
+    public function getPermissions()
+    {
         return $this->_permissions;
     }
 
@@ -318,7 +328,8 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      *
      * @return ProviderOperationsMetadataOperations
      */
-    public function getProviderOperationsMetadataOperations() {
+    public function getProviderOperationsMetadataOperations()
+    {
         return $this->_providerOperationsMetadataOperations;
     }
 
@@ -327,7 +338,8 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      *
      * @return RoleAssignments
      */
-    public function getRoleAssignments() {
+    public function getRoleAssignments()
+    {
         return $this->_roleAssignments;
     }
 
@@ -336,7 +348,8 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      *
      * @return RoleDefinitions
      */
-    public function getRoleDefinitions() {
+    public function getRoleDefinitions()
+    {
         return $this->_roleDefinitions;
     }
 
@@ -369,13 +382,13 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      */
     public function getUrl($path)
     {
-        return $this->_baseUrl . $path;
+        return $this->_baseUrl.$path;
     }
 
     /**
      * Gets retry intervals in number of seconds.
      *
-     * @return integer, number of seconds
+     * @return int, number of seconds
      */
     public function getRetryInterval()
     {
@@ -385,11 +398,12 @@ class AuthorizationManagementClient extends ServiceRestProxy {
     /**
      * Sets retry intervals in number of seconds.
      *
-     * @param integer $retryInterval
+     * @param int $retryInterval
      *
      * @return none
      */
-    public function setRetryInterval($retryInterval) {
+    public function setRetryInterval($retryInterval)
+    {
         $this->_retryInterval = $retryInterval;
     }
 
@@ -397,7 +411,6 @@ class AuthorizationManagementClient extends ServiceRestProxy {
      * Poll for the async status of a request.
      *
      * @param string $path
-     *
      * @param string $requestId from x-ms-request-id in the header
      *
      * @return string, status code, 200 or 202

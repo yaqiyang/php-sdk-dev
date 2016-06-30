@@ -8,40 +8,37 @@
  * PHP version: >=5.5
  *
  * @category    Microsoft
+ *
  * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
  * @copyright   2016 Microsoft Corporation
  * @license     http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
+ *
  * @link        https://github.com/Azure/azure-sdk-for-php
+ *
  * @version     Release: 0.10.0_2016-07, API Version: 2015-07-01
  */
 
 namespace MicrosoftAzure\StorageResourceProvider;
 
-use MicrosoftAzure\Common\Internal\Authentication\OAuthScheme;
-use MicrosoftAzure\Common\Internal\Filters\OAuthFilter;
 use MicrosoftAzure\Common\Internal\Http\HttpClient;
-use MicrosoftAzure\Common\Internal\OAuthRestProxy;
 use MicrosoftAzure\Common\Internal\Resources;
-use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer;
-use MicrosoftAzure\Common\Internal\ServiceRestProxy;
 use MicrosoftAzure\Common\Internal\Utilities;
 use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * ProviderOperationsMetadataOperations
  */
-class ProviderOperationsMetadataOperations {
-
+class ProviderOperationsMetadataOperations
+{
     private $_client;
 
     /**
-    * Creates a new instance for ProviderOperationsMetadataOperations.
-    *
-    * @param AuthorizationManagementClient, Service client for ProviderOperationsMetadataOperations
-    *
-    */
-    public function __construct($client) {
-
+     * Creates a new instance for ProviderOperationsMetadataOperations.
+     *
+     * @param AuthorizationManagementClient, Service client for ProviderOperationsMetadataOperations
+     */
+    public function __construct($client)
+    {
         $this->_client = $client;
     }
 
@@ -57,8 +54,8 @@ class ProviderOperationsMetadataOperations {
      * @return array, deserialized Jason array of the response body for
      * ProviderOperationsMetadata operation results
      */
-    public function get($resourceProviderNamespace, $apiVersion, $expand = 'resourceTypes', array $customHeaders = []) {
-
+    public function get($resourceProviderNamespace, $apiVersion, $expand = 'resourceTypes', array $customHeaders = [])
+    {
         $response = $this->getAsync($resourceProviderNamespace, $apiVersion, $expand, $customHeaders);
 
         if ($response->getBody()) {
@@ -82,14 +79,12 @@ class ProviderOperationsMetadataOperations {
      *
      * @return Response, Response object from the http call
      */
-    public function getAsync($resourceProviderNamespace, $apiVersion, $expand = 'resourceTypes', array $customHeaders = []) {
-
-        if ($resourceProviderNamespace == null)
-        {
+    public function getAsync($resourceProviderNamespace, $apiVersion, $expand = 'resourceTypes', array $customHeaders = [])
+    {
+        if ($resourceProviderNamespace == null) {
             Validate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
         }
-        if ($apiVersion == null)
-        {
+        if ($apiVersion == null) {
             Validate::notNullOrEmpty($apiVersion, '$apiVersion');
         }
 
@@ -98,14 +93,12 @@ class ProviderOperationsMetadataOperations {
         $method = 'GET';
 
         $path = strtr($path, ['{resourceProviderNamespace}' => $resourceProviderNamespace]);
-        $queryParams = ['api-version' => $apiVersion,'$expand' => $expand];
+        $queryParams = ['api-version' => $apiVersion, '$expand' => $expand];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -136,8 +129,8 @@ class ProviderOperationsMetadataOperations {
      * @return array, deserialized Jason array of the response body for
      * ProviderOperationsMetadataListResult operation results
      */
-    public function listOperation($apiVersion, $expand = 'resourceTypes', array $customHeaders = []) {
-
+    public function listOperation($apiVersion, $expand = 'resourceTypes', array $customHeaders = [])
+    {
         $response = $this->listOperationAsync($apiVersion, $expand, $customHeaders);
 
         if ($response->getBody()) {
@@ -160,10 +153,9 @@ class ProviderOperationsMetadataOperations {
      *
      * @return Response, Response object from the http call
      */
-    public function listOperationAsync($apiVersion, $expand = 'resourceTypes', array $customHeaders = []) {
-
-        if ($apiVersion == null)
-        {
+    public function listOperationAsync($apiVersion, $expand = 'resourceTypes', array $customHeaders = [])
+    {
+        if ($apiVersion == null) {
             Validate::notNullOrEmpty($apiVersion, '$apiVersion');
         }
 
@@ -172,14 +164,12 @@ class ProviderOperationsMetadataOperations {
         $method = 'GET';
 
         $path = strtr($path, []);
-        $queryParams = ['api-version' => $apiVersion,'$expand' => $expand];
+        $queryParams = ['api-version' => $apiVersion, '$expand' => $expand];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -210,8 +200,8 @@ class ProviderOperationsMetadataOperations {
      * @return array, deserialized Jason array of the response body for
      * ProviderOperationsMetadataListResult operation results
      */
-    public function listNext($nextPageLink, array $customHeaders = []) {
-
+    public function listNext($nextPageLink, array $customHeaders = [])
+    {
         $response = $this->listNextAsync($nextPageLink, $customHeaders);
 
         if ($response->getBody()) {
@@ -234,10 +224,9 @@ class ProviderOperationsMetadataOperations {
      *
      * @return Response, Response object from the http call
      */
-    public function listNextAsync($nextPageLink, array $customHeaders = []) {
-
-        if ($nextPageLink == null)
-        {
+    public function listNextAsync($nextPageLink, array $customHeaders = [])
+    {
+        if ($nextPageLink == null) {
             Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
@@ -248,12 +237,10 @@ class ProviderOperationsMetadataOperations {
         $path = strtr($path, []);
         $queryParams = [];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 

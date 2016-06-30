@@ -8,10 +8,13 @@
  * PHP version: >=5.5
  *
  * @category    Microsoft
+ *
  * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
  * @copyright   2016 Microsoft Corporation
  * @license     http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
+ *
  * @link        https://github.com/Azure/azure-sdk-for-php
+ *
  * @version     Release: 0.10.0_2016-07, API Version: 2016-01-01
  */
 
@@ -24,20 +27,18 @@ use MicrosoftAzure\Common\Internal\OAuthRestProxy;
 use MicrosoftAzure\Common\Internal\Resources;
 use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer;
 use MicrosoftAzure\Common\Internal\ServiceRestProxy;
-use MicrosoftAzure\Common\Internal\Utilities;
 
 /**
  * The Storage Management Client.
  */
-class StorageManagementClient extends ServiceRestProxy {
-
+class StorageManagementClient extends ServiceRestProxy
+{
     /**
      * Gets Azure subscription credentials.
      *
      * @var OAuthSettings
      */
     private $_credentials;
-
     /**
      * Gets subscription credentials which uniquely identify Microsoft Azure
      * subscription. The subscription ID forms part of the URI for every
@@ -46,34 +47,30 @@ class StorageManagementClient extends ServiceRestProxy {
      * @var string
      */
     private $_subscriptionId;
-
     /**
      * Client Api Version.
      *
      * @var string
      */
     private $_apiVersion;
-
     /**
      * Gets or sets the preferred language for the response.
      *
      * @var string
      */
     private $_acceptLanguage;
-
     /**
      * Gets or sets the retry timeout in seconds for Long Running Operations.
      * Default value is 30.
      *
-     * @var integer
+     * @var int
      */
     private $_longRunningOperationRetryTimeout;
-
     /**
      * When set to true a unique x-ms-client-request-id value is generated and
      * included in each request. Default is true.
      *
-     * @var boolean
+     * @var bool
      */
     private $_generateClientRequestId;
 
@@ -108,7 +105,7 @@ class StorageManagementClient extends ServiceRestProxy {
     /**
      * Retry intervals in number of seconds.
      *
-     * @var integer
+     * @var int
      */
     private $_retryInterval;
 
@@ -116,7 +113,6 @@ class StorageManagementClient extends ServiceRestProxy {
      * Constructor for the service client.
      *
      * @param OAuthSettings $oauthSettings OAuth settings for to access the APIs
-     *
      */
     public function __construct($oauthSettings)
     {
@@ -145,7 +141,8 @@ class StorageManagementClient extends ServiceRestProxy {
      *
      * @return OAuthSettings
      */
-    public function getCredentials() {
+    public function getCredentials()
+    {
         return $this->_credentials;
     }
 
@@ -156,7 +153,8 @@ class StorageManagementClient extends ServiceRestProxy {
      *
      * @return none
      */
-    private function setCredentials($credentials) {
+    private function setCredentials($credentials)
+    {
         $this->_credentials = $credentials;
     }
 
@@ -167,7 +165,8 @@ class StorageManagementClient extends ServiceRestProxy {
      *
      * @return string
      */
-    public function getSubscriptionId() {
+    public function getSubscriptionId()
+    {
         return $this->_subscriptionId;
     }
 
@@ -180,7 +179,8 @@ class StorageManagementClient extends ServiceRestProxy {
      *
      * @return none
      */
-    public function setSubscriptionId($subscriptionId) {
+    public function setSubscriptionId($subscriptionId)
+    {
         $this->_subscriptionId = $subscriptionId;
     }
 
@@ -189,7 +189,8 @@ class StorageManagementClient extends ServiceRestProxy {
      *
      * @return string
      */
-    public function getApiVersion() {
+    public function getApiVersion()
+    {
         return $this->_apiVersion;
     }
 
@@ -200,7 +201,8 @@ class StorageManagementClient extends ServiceRestProxy {
      *
      * @return none
      */
-    private function setApiVersion($apiVersion) {
+    private function setApiVersion($apiVersion)
+    {
         $this->_apiVersion = $apiVersion;
     }
 
@@ -209,7 +211,8 @@ class StorageManagementClient extends ServiceRestProxy {
      *
      * @return string
      */
-    public function getAcceptLanguage() {
+    public function getAcceptLanguage()
+    {
         return $this->_acceptLanguage;
     }
 
@@ -220,7 +223,8 @@ class StorageManagementClient extends ServiceRestProxy {
      *
      * @return none
      */
-    public function setAcceptLanguage($acceptLanguage) {
+    public function setAcceptLanguage($acceptLanguage)
+    {
         $this->_acceptLanguage = $acceptLanguage;
     }
 
@@ -228,9 +232,10 @@ class StorageManagementClient extends ServiceRestProxy {
      * Gets longRunningOperationRetryTimeout, the retry timeout in seconds for
      * Long Running Operations. Default value is 30.
      *
-     * @return integer
+     * @return int
      */
-    public function getLongRunningOperationRetryTimeout() {
+    public function getLongRunningOperationRetryTimeout()
+    {
         return $this->_longRunningOperationRetryTimeout;
     }
 
@@ -238,11 +243,12 @@ class StorageManagementClient extends ServiceRestProxy {
      * Sets longRunningOperationRetryTimeout, the retry timeout in seconds for
      * Long Running Operations. Default value is 30.
      *
-     * @param integer $longRunningOperationRetryTimeout
+     * @param int $longRunningOperationRetryTimeout
      *
      * @return none
      */
-    public function setLongRunningOperationRetryTimeout($longRunningOperationRetryTimeout) {
+    public function setLongRunningOperationRetryTimeout($longRunningOperationRetryTimeout)
+    {
         $this->_longRunningOperationRetryTimeout = $longRunningOperationRetryTimeout;
         set_time_limit($longRunningOperationRetryTimeout);
     }
@@ -252,9 +258,10 @@ class StorageManagementClient extends ServiceRestProxy {
      * x-ms-client-request-id value is generated and included in each
      * request. Default is true.
      *
-     * @return boolean
+     * @return bool
      */
-    public function getGenerateClientRequestId() {
+    public function getGenerateClientRequestId()
+    {
         return $this->_generateClientRequestId;
     }
 
@@ -263,11 +270,12 @@ class StorageManagementClient extends ServiceRestProxy {
      * x-ms-client-request-id value is generated and included in each
      * request. Default is true.
      *
-     * @param boolean $generateClientRequestId
+     * @param bool $generateClientRequestId
      *
      * @return none
      */
-    public function setGenerateClientRequestId($generateClientRequestId) {
+    public function setGenerateClientRequestId($generateClientRequestId)
+    {
         $this->_generateClientRequestId = $generateClientRequestId;
     }
 
@@ -276,7 +284,8 @@ class StorageManagementClient extends ServiceRestProxy {
      *
      * @return StorageAccounts
      */
-    public function getStorageAccounts() {
+    public function getStorageAccounts()
+    {
         return $this->_storageAccounts;
     }
 
@@ -285,7 +294,8 @@ class StorageManagementClient extends ServiceRestProxy {
      *
      * @return UsageOperations
      */
-    public function getUsageOperations() {
+    public function getUsageOperations()
+    {
         return $this->_usageOperations;
     }
 
@@ -318,13 +328,13 @@ class StorageManagementClient extends ServiceRestProxy {
      */
     public function getUrl($path)
     {
-        return $this->_baseUrl . $path;
+        return $this->_baseUrl.$path;
     }
 
     /**
      * Gets retry intervals in number of seconds.
      *
-     * @return integer, number of seconds
+     * @return int, number of seconds
      */
     public function getRetryInterval()
     {
@@ -334,11 +344,12 @@ class StorageManagementClient extends ServiceRestProxy {
     /**
      * Sets retry intervals in number of seconds.
      *
-     * @param integer $retryInterval
+     * @param int $retryInterval
      *
      * @return none
      */
-    public function setRetryInterval($retryInterval) {
+    public function setRetryInterval($retryInterval)
+    {
         $this->_retryInterval = $retryInterval;
     }
 
@@ -346,7 +357,6 @@ class StorageManagementClient extends ServiceRestProxy {
      * Poll for the async status of a request.
      *
      * @param string $path
-     *
      * @param string $requestId from x-ms-request-id in the header
      *
      * @return string, status code, 200 or 202

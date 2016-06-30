@@ -8,40 +8,37 @@
  * PHP version: >=5.5
  *
  * @category    Microsoft
+ *
  * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
  * @copyright   2016 Microsoft Corporation
  * @license     http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
+ *
  * @link        https://github.com/Azure/azure-sdk-for-php
+ *
  * @version     Release: 0.10.0_2016-07, API Version: 2015-07-01
  */
 
 namespace MicrosoftAzure\StorageResourceProvider;
 
-use MicrosoftAzure\Common\Internal\Authentication\OAuthScheme;
-use MicrosoftAzure\Common\Internal\Filters\OAuthFilter;
 use MicrosoftAzure\Common\Internal\Http\HttpClient;
-use MicrosoftAzure\Common\Internal\OAuthRestProxy;
 use MicrosoftAzure\Common\Internal\Resources;
-use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer;
-use MicrosoftAzure\Common\Internal\ServiceRestProxy;
 use MicrosoftAzure\Common\Internal\Utilities;
 use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * RoleDefinitions
  */
-class RoleDefinitions {
-
+class RoleDefinitions
+{
     private $_client;
 
     /**
-    * Creates a new instance for RoleDefinitions.
-    *
-    * @param AuthorizationManagementClient, Service client for RoleDefinitions
-    *
-    */
-    public function __construct($client) {
-
+     * Creates a new instance for RoleDefinitions.
+     *
+     * @param AuthorizationManagementClient, Service client for RoleDefinitions
+     */
+    public function __construct($client)
+    {
         $this->_client = $client;
     }
 
@@ -56,8 +53,8 @@ class RoleDefinitions {
      * @return array, deserialized Jason array of the response body for
      * RoleDefinition operation results
      */
-    public function delete($scope, $roleDefinitionId, array $customHeaders = []) {
-
+    public function delete($scope, $roleDefinitionId, array $customHeaders = [])
+    {
         $response = $this->deleteAsync($scope, $roleDefinitionId, $customHeaders);
 
         if ($response->getBody()) {
@@ -80,18 +77,15 @@ class RoleDefinitions {
      *
      * @return Response, Response object from the http call
      */
-    public function deleteAsync($scope, $roleDefinitionId, array $customHeaders = []) {
-
-        if ($scope == null)
-        {
+    public function deleteAsync($scope, $roleDefinitionId, array $customHeaders = [])
+    {
+        if ($scope == null) {
             Validate::notNullOrEmpty($scope, '$scope');
         }
-        if ($roleDefinitionId == null)
-        {
+        if ($roleDefinitionId == null) {
             Validate::notNullOrEmpty($roleDefinitionId, '$roleDefinitionId');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
@@ -102,12 +96,10 @@ class RoleDefinitions {
         $path = strtr($path, ['{roleDefinitionId}' => $roleDefinitionId]);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -138,8 +130,8 @@ class RoleDefinitions {
      * @return array, deserialized Jason array of the response body for
      * RoleDefinition operation results
      */
-    public function get($scope, $roleDefinitionId, array $customHeaders = []) {
-
+    public function get($scope, $roleDefinitionId, array $customHeaders = [])
+    {
         $response = $this->getAsync($scope, $roleDefinitionId, $customHeaders);
 
         if ($response->getBody()) {
@@ -162,18 +154,15 @@ class RoleDefinitions {
      *
      * @return Response, Response object from the http call
      */
-    public function getAsync($scope, $roleDefinitionId, array $customHeaders = []) {
-
-        if ($scope == null)
-        {
+    public function getAsync($scope, $roleDefinitionId, array $customHeaders = [])
+    {
+        if ($scope == null) {
             Validate::notNullOrEmpty($scope, '$scope');
         }
-        if ($roleDefinitionId == null)
-        {
+        if ($roleDefinitionId == null) {
             Validate::notNullOrEmpty($roleDefinitionId, '$roleDefinitionId');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
@@ -184,12 +173,10 @@ class RoleDefinitions {
         $path = strtr($path, ['{roleDefinitionId}' => $roleDefinitionId]);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -221,8 +208,8 @@ class RoleDefinitions {
      * @return array, deserialized Jason array of the response body for
      * RoleDefinition operation results
      */
-    public function createOrUpdate($scope, $roleDefinitionId, array $roleDefinition, array $customHeaders = []) {
-
+    public function createOrUpdate($scope, $roleDefinitionId, array $roleDefinition, array $customHeaders = [])
+    {
         $response = $this->createOrUpdateAsync($scope, $roleDefinitionId, $roleDefinition, $customHeaders);
 
         if ($response->getBody()) {
@@ -246,22 +233,18 @@ class RoleDefinitions {
      *
      * @return Response, Response object from the http call
      */
-    public function createOrUpdateAsync($scope, $roleDefinitionId, array $roleDefinition, array $customHeaders = []) {
-
-        if ($scope == null)
-        {
+    public function createOrUpdateAsync($scope, $roleDefinitionId, array $roleDefinition, array $customHeaders = [])
+    {
+        if ($scope == null) {
             Validate::notNullOrEmpty($scope, '$scope');
         }
-        if ($roleDefinitionId == null)
-        {
+        if ($roleDefinitionId == null) {
             Validate::notNullOrEmpty($roleDefinitionId, '$roleDefinitionId');
         }
-        if ($roleDefinition == null)
-        {
+        if ($roleDefinition == null) {
             Validate::notNullOrEmpty($roleDefinition, '$roleDefinition');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
@@ -272,12 +255,10 @@ class RoleDefinitions {
         $path = strtr($path, ['{roleDefinitionId}' => $roleDefinitionId]);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -308,8 +289,8 @@ class RoleDefinitions {
      * @return array, deserialized Jason array of the response body for
      * RoleDefinition operation results
      */
-    public function getById($roleDefinitionId, array $customHeaders = []) {
-
+    public function getById($roleDefinitionId, array $customHeaders = [])
+    {
         $response = $this->getByIdAsync($roleDefinitionId, $customHeaders);
 
         if ($response->getBody()) {
@@ -331,14 +312,12 @@ class RoleDefinitions {
      *
      * @return Response, Response object from the http call
      */
-    public function getByIdAsync($roleDefinitionId, array $customHeaders = []) {
-
-        if ($roleDefinitionId == null)
-        {
+    public function getByIdAsync($roleDefinitionId, array $customHeaders = [])
+    {
+        if ($roleDefinitionId == null) {
             Validate::notNullOrEmpty($roleDefinitionId, '$roleDefinitionId');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
@@ -349,12 +328,10 @@ class RoleDefinitions {
         $path = strtr($path, []);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -379,15 +356,16 @@ class RoleDefinitions {
      * atScopeAndBelow filter to search below the given scope as well
      *
      * @param string $scope Scope
-     * @param string $filter The filter to apply on the operation.
+     * @param array (RoleDefinitionFilter) $filter The filter to apply on the
+     * operation.
      * @param array $customHeaders [String => String] A hash of custom headers
      * that will be added to the HTTP request.
      *
      * @return array, deserialized Jason array of the response body for
      * RoleDefinitionListResult operation results
      */
-    public function listOperation($scope, $filter = null, array $customHeaders = []) {
-
+    public function listOperation($scope, array $filter, array $customHeaders = [])
+    {
         $response = $this->listOperationAsync($scope, $filter, $customHeaders);
 
         if ($response->getBody()) {
@@ -405,20 +383,19 @@ class RoleDefinitions {
      * atScopeAndBelow filter to search below the given scope as well
      *
      * @param string $scope Scope
-     * @param string $filter The filter to apply on the operation.
+     * @param array (RoleDefinitionFilter) $filter The filter to apply on the
+     * operation.
      * @param array $customHeaders [String => String] A hash of custom headers
      * that will be added to the HTTP request.
      *
      * @return Response, Response object from the http call
      */
-    public function listOperationAsync($scope, $filter = null, array $customHeaders = []) {
-
-        if ($scope == null)
-        {
+    public function listOperationAsync($scope, array $filter, array $customHeaders = [])
+    {
+        if ($scope == null) {
             Validate::notNullOrEmpty($scope, '$scope');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
@@ -427,14 +404,12 @@ class RoleDefinitions {
         $method = 'GET';
 
         $path = strtr($path, []);
-        $queryParams = ['$filter' => $filter,'api-version' => $this->_client->getApiVersion()];
+        $queryParams = ['$filter' => $filter, 'api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -466,8 +441,8 @@ class RoleDefinitions {
      * @return array, deserialized Jason array of the response body for
      * RoleDefinitionListResult operation results
      */
-    public function listNext($nextPageLink, array $customHeaders = []) {
-
+    public function listNext($nextPageLink, array $customHeaders = [])
+    {
         $response = $this->listNextAsync($nextPageLink, $customHeaders);
 
         if ($response->getBody()) {
@@ -491,10 +466,9 @@ class RoleDefinitions {
      *
      * @return Response, Response object from the http call
      */
-    public function listNextAsync($nextPageLink, array $customHeaders = []) {
-
-        if ($nextPageLink == null)
-        {
+    public function listNextAsync($nextPageLink, array $customHeaders = [])
+    {
+        if ($nextPageLink == null) {
             Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
@@ -505,12 +479,10 @@ class RoleDefinitions {
         $path = strtr($path, []);
         $queryParams = [];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 

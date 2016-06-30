@@ -8,40 +8,37 @@
  * PHP version: >=5.5
  *
  * @category    Microsoft
+ *
  * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
  * @copyright   2016 Microsoft Corporation
  * @license     http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
+ *
  * @link        https://github.com/Azure/azure-sdk-for-php
+ *
  * @version     Release: 0.10.0_2016-07, API Version: 2016-01-01
  */
 
 namespace MicrosoftAzure\StorageResourceProvider;
 
-use MicrosoftAzure\Common\Internal\Authentication\OAuthScheme;
-use MicrosoftAzure\Common\Internal\Filters\OAuthFilter;
 use MicrosoftAzure\Common\Internal\Http\HttpClient;
-use MicrosoftAzure\Common\Internal\OAuthRestProxy;
 use MicrosoftAzure\Common\Internal\Resources;
-use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer;
-use MicrosoftAzure\Common\Internal\ServiceRestProxy;
 use MicrosoftAzure\Common\Internal\Utilities;
 use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * StorageAccounts for The Storage Management Client.
  */
-class StorageAccounts {
-
+class StorageAccounts
+{
     private $_client;
 
     /**
-    * Creates a new instance for StorageAccounts.
-    *
-    * @param StorageManagementClient, Service client for StorageAccounts
-    *
-    */
-    public function __construct($client) {
-
+     * Creates a new instance for StorageAccounts.
+     *
+     * @param StorageManagementClient, Service client for StorageAccounts
+     */
+    public function __construct($client)
+    {
         $this->_client = $client;
     }
 
@@ -58,8 +55,8 @@ class StorageAccounts {
      * @return array, deserialized Jason array of the response body for
      * CheckNameAvailabilityResult operation results
      */
-    public function checkNameAvailability(array $accountName, array $customHeaders = []) {
-
+    public function checkNameAvailability(array $accountName, array $customHeaders = [])
+    {
         $response = $this->checkNameAvailabilityAsync($accountName, $customHeaders);
 
         if ($response->getBody()) {
@@ -84,18 +81,15 @@ class StorageAccounts {
      *
      * @return Response, Response object from the http call
      */
-    public function checkNameAvailabilityAsync(array $accountName, array $customHeaders = []) {
-
-        if ($accountName == null)
-        {
+    public function checkNameAvailabilityAsync(array $accountName, array $customHeaders = [])
+    {
+        if ($accountName == null) {
             Validate::notNullOrEmpty($accountName, '$accountName');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
-        if ($this->_client->getSubscriptionId() == null)
-        {
+        if ($this->_client->getSubscriptionId() == null) {
             Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
@@ -106,12 +100,10 @@ class StorageAccounts {
         $path = strtr($path, ['{subscriptionId}' => $this->_client->getSubscriptionId()]);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -149,12 +141,12 @@ class StorageAccounts {
      *
      * @return array, deserialized Jason array of the response body
     */
-    public function create($resourceGroupName, $accountName, array $parameters, array $customHeaders = []) {
-
+    public function create($resourceGroupName, $accountName, array $parameters, array $customHeaders = [])
+    {
         $response = $this->begincreateAsync($resourceGroupName, $accountName, $parameters, $customHeaders);
         $status = $response->getStatusCode();
 
-        if ( $response->getStatusCode() !== Resources::STATUS_OK) {
+        if ($response->getStatusCode() !== Resources::STATUS_OK) {
             $status = $this->_client->awaitAsync($response);
         }
 
@@ -188,8 +180,8 @@ class StorageAccounts {
      * @return array, deserialized Jason array of the response body for
      * StorageAccount operation results
      */
-    public function beginCreate($resourceGroupName, $accountName, array $parameters, array $customHeaders = []) {
-
+    public function beginCreate($resourceGroupName, $accountName, array $parameters, array $customHeaders = [])
+    {
         $response = $this->beginCreateAsync($resourceGroupName, $accountName, $parameters, $customHeaders);
 
         if ($response->getBody()) {
@@ -221,26 +213,21 @@ class StorageAccounts {
      *
      * @return Response, Response object from the http call
      */
-    public function beginCreateAsync($resourceGroupName, $accountName, array $parameters, array $customHeaders = []) {
-
-        if ($resourceGroupName == null)
-        {
+    public function beginCreateAsync($resourceGroupName, $accountName, array $parameters, array $customHeaders = [])
+    {
+        if ($resourceGroupName == null) {
             Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
-        if ($accountName == null)
-        {
+        if ($accountName == null) {
             Validate::notNullOrEmpty($accountName, '$accountName');
         }
-        if ($parameters == null)
-        {
+        if ($parameters == null) {
             Validate::notNullOrEmpty($parameters, '$parameters');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
-        if ($this->_client->getSubscriptionId() == null)
-        {
+        if ($this->_client->getSubscriptionId() == null) {
             Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
@@ -248,15 +235,13 @@ class StorageAccounts {
         $statusCodes = [202, 200];
         $method = 'PUT';
 
-        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName,'{accountName}' => $accountName,'{subscriptionId}' => $this->_client->getSubscriptionId()]);
+        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName, '{accountName}' => $accountName, '{subscriptionId}' => $this->_client->getSubscriptionId()]);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -289,8 +274,8 @@ class StorageAccounts {
      * that will be added to the HTTP request.
      *
      */
-    public function delete($resourceGroupName, $accountName, array $customHeaders = []) {
-
+    public function delete($resourceGroupName, $accountName, array $customHeaders = [])
+    {
         $response = $this->deleteAsync($resourceGroupName, $accountName, $customHeaders);
 
         if ($response->getBody()) {
@@ -316,22 +301,18 @@ class StorageAccounts {
      *
      * @return Response, Response object from the http call
      */
-    public function deleteAsync($resourceGroupName, $accountName, array $customHeaders = []) {
-
-        if ($resourceGroupName == null)
-        {
+    public function deleteAsync($resourceGroupName, $accountName, array $customHeaders = [])
+    {
+        if ($resourceGroupName == null) {
             Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
-        if ($accountName == null)
-        {
+        if ($accountName == null) {
             Validate::notNullOrEmpty($accountName, '$accountName');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
-        if ($this->_client->getSubscriptionId() == null)
-        {
+        if ($this->_client->getSubscriptionId() == null) {
             Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
@@ -339,15 +320,13 @@ class StorageAccounts {
         $statusCodes = [200, 204];
         $method = 'DELETE';
 
-        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName,'{accountName}' => $accountName,'{subscriptionId}' => $this->_client->getSubscriptionId()]);
+        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName, '{accountName}' => $accountName, '{subscriptionId}' => $this->_client->getSubscriptionId()]);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -383,8 +362,8 @@ class StorageAccounts {
      * @return array, deserialized Jason array of the response body for
      * StorageAccount operation results
      */
-    public function getProperties($resourceGroupName, $accountName, array $customHeaders = []) {
-
+    public function getProperties($resourceGroupName, $accountName, array $customHeaders = [])
+    {
         $response = $this->getPropertiesAsync($resourceGroupName, $accountName, $customHeaders);
 
         if ($response->getBody()) {
@@ -412,22 +391,18 @@ class StorageAccounts {
      *
      * @return Response, Response object from the http call
      */
-    public function getPropertiesAsync($resourceGroupName, $accountName, array $customHeaders = []) {
-
-        if ($resourceGroupName == null)
-        {
+    public function getPropertiesAsync($resourceGroupName, $accountName, array $customHeaders = [])
+    {
+        if ($resourceGroupName == null) {
             Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
-        if ($accountName == null)
-        {
+        if ($accountName == null) {
             Validate::notNullOrEmpty($accountName, '$accountName');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
-        if ($this->_client->getSubscriptionId() == null)
-        {
+        if ($this->_client->getSubscriptionId() == null) {
             Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
@@ -435,15 +410,13 @@ class StorageAccounts {
         $statusCodes = [200];
         $method = 'GET';
 
-        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName,'{accountName}' => $accountName,'{subscriptionId}' => $this->_client->getSubscriptionId()]);
+        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName, '{accountName}' => $accountName, '{subscriptionId}' => $this->_client->getSubscriptionId()]);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -487,8 +460,8 @@ class StorageAccounts {
      * @return array, deserialized Jason array of the response body for
      * StorageAccount operation results
      */
-    public function update($resourceGroupName, $accountName, array $parameters, array $customHeaders = []) {
-
+    public function update($resourceGroupName, $accountName, array $parameters, array $customHeaders = [])
+    {
         $response = $this->updateAsync($resourceGroupName, $accountName, $parameters, $customHeaders);
 
         if ($response->getBody()) {
@@ -524,26 +497,21 @@ class StorageAccounts {
      *
      * @return Response, Response object from the http call
      */
-    public function updateAsync($resourceGroupName, $accountName, array $parameters, array $customHeaders = []) {
-
-        if ($resourceGroupName == null)
-        {
+    public function updateAsync($resourceGroupName, $accountName, array $parameters, array $customHeaders = [])
+    {
+        if ($resourceGroupName == null) {
             Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
-        if ($accountName == null)
-        {
+        if ($accountName == null) {
             Validate::notNullOrEmpty($accountName, '$accountName');
         }
-        if ($parameters == null)
-        {
+        if ($parameters == null) {
             Validate::notNullOrEmpty($parameters, '$parameters');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
-        if ($this->_client->getSubscriptionId() == null)
-        {
+        if ($this->_client->getSubscriptionId() == null) {
             Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
@@ -551,15 +519,13 @@ class StorageAccounts {
         $statusCodes = [200];
         $method = 'PATCH';
 
-        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName,'{accountName}' => $accountName,'{subscriptionId}' => $this->_client->getSubscriptionId()]);
+        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName, '{accountName}' => $accountName, '{subscriptionId}' => $this->_client->getSubscriptionId()]);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -590,8 +556,8 @@ class StorageAccounts {
      * @return array, deserialized Jason array of the response body for
      * StorageAccountListResult operation results
      */
-    public function listOperation(array $customHeaders = []) {
-
+    public function listOperation(array $customHeaders = [])
+    {
         $response = $this->listOperationAsync($customHeaders);
 
         if ($response->getBody()) {
@@ -613,14 +579,12 @@ class StorageAccounts {
      *
      * @return Response, Response object from the http call
      */
-    public function listOperationAsync(array $customHeaders = []) {
-
-        if ($this->_client->getApiVersion() == null)
-        {
+    public function listOperationAsync(array $customHeaders = [])
+    {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
-        if ($this->_client->getSubscriptionId() == null)
-        {
+        if ($this->_client->getSubscriptionId() == null) {
             Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
@@ -631,12 +595,10 @@ class StorageAccounts {
         $path = strtr($path, ['{subscriptionId}' => $this->_client->getSubscriptionId()]);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -669,8 +631,8 @@ class StorageAccounts {
      * @return array, deserialized Jason array of the response body for
      * StorageAccountListResult operation results
      */
-    public function listByResourceGroup($resourceGroupName, array $customHeaders = []) {
-
+    public function listByResourceGroup($resourceGroupName, array $customHeaders = [])
+    {
         $response = $this->listByResourceGroupAsync($resourceGroupName, $customHeaders);
 
         if ($response->getBody()) {
@@ -695,18 +657,15 @@ class StorageAccounts {
      *
      * @return Response, Response object from the http call
      */
-    public function listByResourceGroupAsync($resourceGroupName, array $customHeaders = []) {
-
-        if ($resourceGroupName == null)
-        {
+    public function listByResourceGroupAsync($resourceGroupName, array $customHeaders = [])
+    {
+        if ($resourceGroupName == null) {
             Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
-        if ($this->_client->getSubscriptionId() == null)
-        {
+        if ($this->_client->getSubscriptionId() == null) {
             Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
@@ -714,15 +673,13 @@ class StorageAccounts {
         $statusCodes = [200];
         $method = 'GET';
 
-        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName,'{subscriptionId}' => $this->_client->getSubscriptionId()]);
+        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName, '{subscriptionId}' => $this->_client->getSubscriptionId()]);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -753,8 +710,8 @@ class StorageAccounts {
      * @return array, deserialized Jason array of the response body for
      * StorageAccountListKeysResult operation results
      */
-    public function listKeys($resourceGroupName, $accountName, array $customHeaders = []) {
-
+    public function listKeys($resourceGroupName, $accountName, array $customHeaders = [])
+    {
         $response = $this->listKeysAsync($resourceGroupName, $accountName, $customHeaders);
 
         if ($response->getBody()) {
@@ -777,22 +734,18 @@ class StorageAccounts {
      *
      * @return Response, Response object from the http call
      */
-    public function listKeysAsync($resourceGroupName, $accountName, array $customHeaders = []) {
-
-        if ($resourceGroupName == null)
-        {
+    public function listKeysAsync($resourceGroupName, $accountName, array $customHeaders = [])
+    {
+        if ($resourceGroupName == null) {
             Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
-        if ($accountName == null)
-        {
+        if ($accountName == null) {
             Validate::notNullOrEmpty($accountName, '$accountName');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
-        if ($this->_client->getSubscriptionId() == null)
-        {
+        if ($this->_client->getSubscriptionId() == null) {
             Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
@@ -800,15 +753,13 @@ class StorageAccounts {
         $statusCodes = [200];
         $method = 'POST';
 
-        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName,'{accountName}' => $accountName,'{subscriptionId}' => $this->_client->getSubscriptionId()]);
+        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName, '{accountName}' => $accountName, '{subscriptionId}' => $this->_client->getSubscriptionId()]);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -845,8 +796,8 @@ class StorageAccounts {
      * @return array, deserialized Jason array of the response body for
      * StorageAccountListKeysResult operation results
      */
-    public function regenerateKey($resourceGroupName, $accountName, array $regenerateKey, array $customHeaders = []) {
-
+    public function regenerateKey($resourceGroupName, $accountName, array $regenerateKey, array $customHeaders = [])
+    {
         $response = $this->regenerateKeyAsync($resourceGroupName, $accountName, $regenerateKey, $customHeaders);
 
         if ($response->getBody()) {
@@ -875,26 +826,21 @@ class StorageAccounts {
      *
      * @return Response, Response object from the http call
      */
-    public function regenerateKeyAsync($resourceGroupName, $accountName, array $regenerateKey, array $customHeaders = []) {
-
-        if ($resourceGroupName == null)
-        {
+    public function regenerateKeyAsync($resourceGroupName, $accountName, array $regenerateKey, array $customHeaders = [])
+    {
+        if ($resourceGroupName == null) {
             Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
-        if ($accountName == null)
-        {
+        if ($accountName == null) {
             Validate::notNullOrEmpty($accountName, '$accountName');
         }
-        if ($regenerateKey == null)
-        {
+        if ($regenerateKey == null) {
             Validate::notNullOrEmpty($regenerateKey, '$regenerateKey');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
-        if ($this->_client->getSubscriptionId() == null)
-        {
+        if ($this->_client->getSubscriptionId() == null) {
             Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
@@ -902,15 +848,13 @@ class StorageAccounts {
         $statusCodes = [200];
         $method = 'POST';
 
-        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName,'{accountName}' => $accountName,'{subscriptionId}' => $this->_client->getSubscriptionId()]);
+        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName, '{accountName}' => $accountName, '{subscriptionId}' => $this->_client->getSubscriptionId()]);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 

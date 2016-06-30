@@ -8,40 +8,37 @@
  * PHP version: >=5.5
  *
  * @category    Microsoft
+ *
  * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
  * @copyright   2016 Microsoft Corporation
  * @license     http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
+ *
  * @link        https://github.com/Azure/azure-sdk-for-php
+ *
  * @version     Release: 0.10.0_2016-07, API Version: 2015-07-01
  */
 
 namespace MicrosoftAzure\StorageResourceProvider;
 
-use MicrosoftAzure\Common\Internal\Authentication\OAuthScheme;
-use MicrosoftAzure\Common\Internal\Filters\OAuthFilter;
 use MicrosoftAzure\Common\Internal\Http\HttpClient;
-use MicrosoftAzure\Common\Internal\OAuthRestProxy;
 use MicrosoftAzure\Common\Internal\Resources;
-use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer;
-use MicrosoftAzure\Common\Internal\ServiceRestProxy;
 use MicrosoftAzure\Common\Internal\Utilities;
 use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * Permissions
  */
-class Permissions {
-
+class Permissions
+{
     private $_client;
 
     /**
-    * Creates a new instance for Permissions.
-    *
-    * @param AuthorizationManagementClient, Service client for Permissions
-    *
-    */
-    public function __construct($client) {
-
+     * Creates a new instance for Permissions.
+     *
+     * @param AuthorizationManagementClient, Service client for Permissions
+     */
+    public function __construct($client)
+    {
         $this->_client = $client;
     }
 
@@ -56,8 +53,8 @@ class Permissions {
      * @return array, deserialized Jason array of the response body for
      * PermissionGetResult operation results
      */
-    public function listForResourceGroup($resourceGroupName, array $customHeaders = []) {
-
+    public function listForResourceGroup($resourceGroupName, array $customHeaders = [])
+    {
         $response = $this->listForResourceGroupAsync($resourceGroupName, $customHeaders);
 
         if ($response->getBody()) {
@@ -80,18 +77,15 @@ class Permissions {
      *
      * @return Response, Response object from the http call
      */
-    public function listForResourceGroupAsync($resourceGroupName, array $customHeaders = []) {
-
-        if ($resourceGroupName == null)
-        {
+    public function listForResourceGroupAsync($resourceGroupName, array $customHeaders = [])
+    {
+        if ($resourceGroupName == null) {
             Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
-        if ($this->_client->getSubscriptionId() == null)
-        {
+        if ($this->_client->getSubscriptionId() == null) {
             Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
@@ -99,15 +93,13 @@ class Permissions {
         $statusCodes = [200];
         $method = 'GET';
 
-        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName,'{subscriptionId}' => $this->_client->getSubscriptionId()]);
+        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName, '{subscriptionId}' => $this->_client->getSubscriptionId()]);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -142,8 +134,8 @@ class Permissions {
      * @return array, deserialized Jason array of the response body for
      * PermissionGetResult operation results
      */
-    public function listForResource($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, array $customHeaders = []) {
-
+    public function listForResource($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, array $customHeaders = [])
+    {
         $response = $this->listForResourceAsync($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, $customHeaders);
 
         if ($response->getBody()) {
@@ -170,34 +162,27 @@ class Permissions {
      *
      * @return Response, Response object from the http call
      */
-    public function listForResourceAsync($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, array $customHeaders = []) {
-
-        if ($resourceGroupName == null)
-        {
+    public function listForResourceAsync($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, array $customHeaders = [])
+    {
+        if ($resourceGroupName == null) {
             Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
-        if ($resourceProviderNamespace == null)
-        {
+        if ($resourceProviderNamespace == null) {
             Validate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
         }
-        if ($parentResourcePath == null)
-        {
+        if ($parentResourcePath == null) {
             Validate::notNullOrEmpty($parentResourcePath, '$parentResourcePath');
         }
-        if ($resourceType == null)
-        {
+        if ($resourceType == null) {
             Validate::notNullOrEmpty($resourceType, '$resourceType');
         }
-        if ($resourceName == null)
-        {
+        if ($resourceName == null) {
             Validate::notNullOrEmpty($resourceName, '$resourceName');
         }
-        if ($this->_client->getApiVersion() == null)
-        {
+        if ($this->_client->getApiVersion() == null) {
             Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
-        if ($this->_client->getSubscriptionId() == null)
-        {
+        if ($this->_client->getSubscriptionId() == null) {
             Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
@@ -205,15 +190,13 @@ class Permissions {
         $statusCodes = [200];
         $method = 'GET';
 
-        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName,'{resourceProviderNamespace}' => $resourceProviderNamespace,'{resourceName}' => $resourceName,'{subscriptionId}' => $this->_client->getSubscriptionId()]);
+        $path = strtr($path, ['{resourceGroupName}' => $resourceGroupName, '{resourceProviderNamespace}' => $resourceProviderNamespace, '{resourceName}' => $resourceName, '{subscriptionId}' => $this->_client->getSubscriptionId()]);
         $queryParams = ['api-version' => $this->_client->getApiVersion()];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -244,8 +227,8 @@ class Permissions {
      * @return array, deserialized Jason array of the response body for
      * PermissionGetResult operation results
      */
-    public function listForResourceGroupNext($nextPageLink, array $customHeaders = []) {
-
+    public function listForResourceGroupNext($nextPageLink, array $customHeaders = [])
+    {
         $response = $this->listForResourceGroupNextAsync($nextPageLink, $customHeaders);
 
         if ($response->getBody()) {
@@ -268,10 +251,9 @@ class Permissions {
      *
      * @return Response, Response object from the http call
      */
-    public function listForResourceGroupNextAsync($nextPageLink, array $customHeaders = []) {
-
-        if ($nextPageLink == null)
-        {
+    public function listForResourceGroupNextAsync($nextPageLink, array $customHeaders = [])
+    {
+        if ($nextPageLink == null) {
             Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
@@ -282,12 +264,10 @@ class Permissions {
         $path = strtr($path, []);
         $queryParams = [];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -318,8 +298,8 @@ class Permissions {
      * @return array, deserialized Jason array of the response body for
      * PermissionGetResult operation results
      */
-    public function listForResourceNext($nextPageLink, array $customHeaders = []) {
-
+    public function listForResourceNext($nextPageLink, array $customHeaders = [])
+    {
         $response = $this->listForResourceNextAsync($nextPageLink, $customHeaders);
 
         if ($response->getBody()) {
@@ -342,10 +322,9 @@ class Permissions {
      *
      * @return Response, Response object from the http call
      */
-    public function listForResourceNextAsync($nextPageLink, array $customHeaders = []) {
-
-        if ($nextPageLink == null)
-        {
+    public function listForResourceNextAsync($nextPageLink, array $customHeaders = [])
+    {
+        if ($nextPageLink == null) {
             Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
@@ -356,12 +335,10 @@ class Permissions {
         $path = strtr($path, []);
         $queryParams = [];
         $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null)
-        {
+        if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId())
-        {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
