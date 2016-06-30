@@ -26,7 +26,7 @@ use MicrosoftAzure\Common\Internal\Utilities;
 use MicrosoftAzure\Common\Internal\Validate;
 
 /**
- * ClassicAdministrators
+ * ClassicAdministrators.
  */
 class ClassicAdministrators
 {
