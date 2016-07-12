@@ -18,7 +18,7 @@
  * @version     Release: 0.10.0_2016-07, API Version: 2015-07-01
  */
 
-namespace MicrosoftAzure\StorageResourceProvider;
+namespace MicrosoftAzure\Authorization;
 
 use MicrosoftAzure\Common\Internal\Http\HttpClient;
 use MicrosoftAzure\Common\Internal\Resources;
@@ -46,11 +46,13 @@ class ClassicAdministrators
      * Gets a list of classic administrators for the subscription.
      *
      * @param string $apiVersion
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * ClassicAdministratorListResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => ''
+     * ];
      */
     public function listOperation($apiVersion, array $customHeaders = [])
     {
@@ -70,10 +72,10 @@ class ClassicAdministrators
      * Gets a list of classic administrators for the subscription.
      *
      * @param string $apiVersion
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listOperationAsync($apiVersion, array $customHeaders = [])
     {
@@ -119,11 +121,13 @@ class ClassicAdministrators
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * ClassicAdministratorListResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => ''
+     * ];
      */
     public function listNext($nextPageLink, array $customHeaders = [])
     {
@@ -144,10 +148,10 @@ class ClassicAdministrators
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listNextAsync($nextPageLink, array $customHeaders = [])
     {

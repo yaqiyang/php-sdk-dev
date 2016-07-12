@@ -72,8 +72,9 @@
         {
             $updateParams = [];
             $updateParams['tags'] = ['key1' => time(), 'key2' => date('F Y h:i:s A')];  //sample changes
-            $client->getStorageAccounts()->update($resourceGroup, $accountName, $updateParams);
+            $result = $client->getStorageAccounts()->update($resourceGroup, $accountName, $updateParams);
             echo "\nStorage Account $accountName updated.\n";
+            var_dump($result);
         }
         else if (strtolower($action ) == 'g')
         {
@@ -105,19 +106,36 @@
 
         if (strtolower($action ) == 'y') {
             echo "Creating Storage Account $accountName ...";
-            $createParams = [];
-            $createParams['location'] = 'eastus';
-            $createParams['tags'] = ['key1' => 'value1', 'key2' => 'value2'];
-
-            $customDomain = ['name' => '', 'useSubDomainName' => 'false'];
-            $encrypotioin = ['services' => ['blob' => ['enabled' => 'false']], 'keySource' => 'Microsoft.Storage'];
-
-            $createParams['properties'] = ['customDomain' => $customDomain, 'encryption' => $encrypotioin, ];
-            $createParams['sku'] = ['name' => 'Standard_LRS'];
-            $createParams['kind'] = 'Storage';
+            $createParams =
+            [
+                'sku' => [
+                    'name' => 'Standard_LRS',
+                    'tier' => 'Standard'
+                ],
+                'kind' => 'Storage',
+                'location' => 'eastus',
+                'tags' => '',
+                'properties' => [
+                    'customDomain' => [
+                    'name' => '',
+                    'useSubDomain' => 'false'
+                    ],
+                    'encryption' => [
+                    'services' => [
+                        'blob' => [
+                            'enabled' => 'false',
+                            'lastEnabledTime' => ''
+                        ]
+                    ],
+                    'keySource' => 'Microsoft.Storage'
+                    ],
+                    /*'accessTier' => 'Hot|Cool'*/
+                ]
+            ];
 
             $result = $client->getStorageAccounts()->create($resourceGroup, $accountName, $createParams);
             echo "\nStorage Account $accountName has been successfully created.\n";
+            var_dump($result);
         }
     }
 

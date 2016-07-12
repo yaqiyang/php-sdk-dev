@@ -18,7 +18,7 @@
  * @version     Release: 0.10.0_2016-07, API Version: 2015-07-01
  */
 
-namespace MicrosoftAzure\StorageResourceProvider;
+namespace MicrosoftAzure\Authorization;
 
 use MicrosoftAzure\Common\Internal\Http\HttpClient;
 use MicrosoftAzure\Common\Internal\Resources;
@@ -50,13 +50,18 @@ class RoleAssignments
      * @param string $parentResourcePath Resource identity.
      * @param string $resourceType Resource identity.
      * @param string $resourceName Resource identity.
-     * @param array (RoleAssignmentFilter) $filter The filter to apply on the
-     * operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $filter The filter to apply on the operation. 
+     * [
+     *    'principalId' => ''
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleAssignmentListResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => '',
+     *    'nextLink' => ''
+     * ];
      */
     public function listForResource($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, array $filter, array $customHeaders = [])
     {
@@ -80,12 +85,14 @@ class RoleAssignments
      * @param string $parentResourcePath Resource identity.
      * @param string $resourceType Resource identity.
      * @param string $resourceName Resource identity.
-     * @param array (RoleAssignmentFilter) $filter The filter to apply on the
-     * operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $filter The filter to apply on the operation. 
+     * [
+     *    'principalId' => ''
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listForResourceAsync($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, array $filter, array $customHeaders = [])
     {
@@ -145,13 +152,18 @@ class RoleAssignments
      * Gets role assignments of the resource group.
      *
      * @param string $resourceGroupName Resource group name.
-     * @param array (RoleAssignmentFilter) $filter The filter to apply on the
-     * operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $filter The filter to apply on the operation. 
+     * [
+     *    'principalId' => ''
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleAssignmentListResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => '',
+     *    'nextLink' => ''
+     * ];
      */
     public function listForResourceGroup($resourceGroupName, array $filter, array $customHeaders = [])
     {
@@ -171,12 +183,14 @@ class RoleAssignments
      * Gets role assignments of the resource group.
      *
      * @param string $resourceGroupName Resource group name.
-     * @param array (RoleAssignmentFilter) $filter The filter to apply on the
-     * operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $filter The filter to apply on the operation. 
+     * [
+     *    'principalId' => ''
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listForResourceGroupAsync($resourceGroupName, array $filter, array $customHeaders = [])
     {
@@ -225,11 +239,20 @@ class RoleAssignments
      *
      * @param string $scope Scope.
      * @param string $roleAssignmentName Role assignment name.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleAssignment operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'id' => '',
+     *    'name' => '',
+     *    'type' => '',
+     *    'properties' => [
+     *       'scope' => '',
+     *       'roleDefinitionId' => '',
+     *       'principalId' => ''
+     *    ]
+     * ];
      */
     public function delete($scope, $roleAssignmentName, array $customHeaders = [])
     {
@@ -250,10 +273,10 @@ class RoleAssignments
      *
      * @param string $scope Scope.
      * @param string $roleAssignmentName Role assignment name.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function deleteAsync($scope, $roleAssignmentName, array $customHeaders = [])
     {
@@ -302,12 +325,27 @@ class RoleAssignments
      *
      * @param string $scope Scope.
      * @param string $roleAssignmentName Role assignment name.
-     * @param array (RoleAssignmentCreateParameters) $parameters Role assignment.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $parameters Role assignment. 
+     * [
+     *    'properties' => [
+     *       'roleDefinitionId' => '',
+     *       'principalId' => ''
+     *    ]
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleAssignment operation results
+     * @return array when the resposne status is Created 
+     * [
+     *    'id' => '',
+     *    'name' => '',
+     *    'type' => '',
+     *    'properties' => [
+     *       'scope' => '',
+     *       'roleDefinitionId' => '',
+     *       'principalId' => ''
+     *    ]
+     * ];
      */
     public function create($scope, $roleAssignmentName, array $parameters, array $customHeaders = [])
     {
@@ -328,11 +366,17 @@ class RoleAssignments
      *
      * @param string $scope Scope.
      * @param string $roleAssignmentName Role assignment name.
-     * @param array (RoleAssignmentCreateParameters) $parameters Role assignment.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $parameters Role assignment. 
+     * [
+     *    'properties' => [
+     *       'roleDefinitionId' => '',
+     *       'principalId' => ''
+     *    ]
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function createAsync($scope, $roleAssignmentName, array $parameters, array $customHeaders = [])
     {
@@ -385,11 +429,20 @@ class RoleAssignments
      *
      * @param string $scope Scope.
      * @param string $roleAssignmentName Role assignment name.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleAssignment operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'id' => '',
+     *    'name' => '',
+     *    'type' => '',
+     *    'properties' => [
+     *       'scope' => '',
+     *       'roleDefinitionId' => '',
+     *       'principalId' => ''
+     *    ]
+     * ];
      */
     public function get($scope, $roleAssignmentName, array $customHeaders = [])
     {
@@ -410,10 +463,10 @@ class RoleAssignments
      *
      * @param string $scope Scope.
      * @param string $roleAssignmentName Role assignment name.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function getAsync($scope, $roleAssignmentName, array $customHeaders = [])
     {
@@ -461,11 +514,20 @@ class RoleAssignments
      * Delete role assignment.
      *
      * @param string $roleAssignmentId Role assignment Id
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleAssignment operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'id' => '',
+     *    'name' => '',
+     *    'type' => '',
+     *    'properties' => [
+     *       'scope' => '',
+     *       'roleDefinitionId' => '',
+     *       'principalId' => ''
+     *    ]
+     * ];
      */
     public function deleteById($roleAssignmentId, array $customHeaders = [])
     {
@@ -485,10 +547,10 @@ class RoleAssignments
      * Delete role assignment.
      *
      * @param string $roleAssignmentId Role assignment Id
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function deleteByIdAsync($roleAssignmentId, array $customHeaders = [])
     {
@@ -533,12 +595,27 @@ class RoleAssignments
      * Create role assignment by Id.
      *
      * @param string $roleAssignmentId Role assignment Id
-     * @param array (RoleAssignmentCreateParameters) $parameters Role assignment.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $parameters Role assignment. 
+     * [
+     *    'properties' => [
+     *       'roleDefinitionId' => '',
+     *       'principalId' => ''
+     *    ]
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleAssignment operation results
+     * @return array when the resposne status is Created 
+     * [
+     *    'id' => '',
+     *    'name' => '',
+     *    'type' => '',
+     *    'properties' => [
+     *       'scope' => '',
+     *       'roleDefinitionId' => '',
+     *       'principalId' => ''
+     *    ]
+     * ];
      */
     public function createById($roleAssignmentId, array $parameters, array $customHeaders = [])
     {
@@ -558,11 +635,17 @@ class RoleAssignments
      * Create role assignment by Id.
      *
      * @param string $roleAssignmentId Role assignment Id
-     * @param array (RoleAssignmentCreateParameters) $parameters Role assignment.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $parameters Role assignment. 
+     * [
+     *    'properties' => [
+     *       'roleDefinitionId' => '',
+     *       'principalId' => ''
+     *    ]
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function createByIdAsync($roleAssignmentId, array $parameters, array $customHeaders = [])
     {
@@ -611,11 +694,20 @@ class RoleAssignments
      * Get single role assignment.
      *
      * @param string $roleAssignmentId Role assignment Id
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleAssignment operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'id' => '',
+     *    'name' => '',
+     *    'type' => '',
+     *    'properties' => [
+     *       'scope' => '',
+     *       'roleDefinitionId' => '',
+     *       'principalId' => ''
+     *    ]
+     * ];
      */
     public function getById($roleAssignmentId, array $customHeaders = [])
     {
@@ -635,10 +727,10 @@ class RoleAssignments
      * Get single role assignment.
      *
      * @param string $roleAssignmentId Role assignment Id
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function getByIdAsync($roleAssignmentId, array $customHeaders = [])
     {
@@ -682,13 +774,18 @@ class RoleAssignments
     /*
      * Gets role assignments of the subscription.
      *
-     * @param array (RoleAssignmentFilter) $filter The filter to apply on the
-     * operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $filter The filter to apply on the operation. 
+     * [
+     *    'principalId' => ''
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleAssignmentListResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => '',
+     *    'nextLink' => ''
+     * ];
      */
     public function listOperation(array $filter, array $customHeaders = [])
     {
@@ -707,12 +804,14 @@ class RoleAssignments
     /*
      * Gets role assignments of the subscription.
      *
-     * @param array (RoleAssignmentFilter) $filter The filter to apply on the
-     * operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $filter The filter to apply on the operation. 
+     * [
+     *    'principalId' => ''
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listOperationAsync(array $filter, array $customHeaders = [])
     {
@@ -757,13 +856,18 @@ class RoleAssignments
      * Gets role assignments of the scope.
      *
      * @param string $scope Scope.
-     * @param array (RoleAssignmentFilter) $filter The filter to apply on the
-     * operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $filter The filter to apply on the operation. 
+     * [
+     *    'principalId' => ''
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleAssignmentListResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => '',
+     *    'nextLink' => ''
+     * ];
      */
     public function listForScope($scope, array $filter, array $customHeaders = [])
     {
@@ -783,12 +887,14 @@ class RoleAssignments
      * Gets role assignments of the scope.
      *
      * @param string $scope Scope.
-     * @param array (RoleAssignmentFilter) $filter The filter to apply on the
-     * operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $filter The filter to apply on the operation. 
+     * [
+     *    'principalId' => ''
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listForScopeAsync($scope, array $filter, array $customHeaders = [])
     {
@@ -834,11 +940,14 @@ class RoleAssignments
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleAssignmentListResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => '',
+     *    'nextLink' => ''
+     * ];
      */
     public function listForResourceNext($nextPageLink, array $customHeaders = [])
     {
@@ -859,10 +968,10 @@ class RoleAssignments
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listForResourceNextAsync($nextPageLink, array $customHeaders = [])
     {
@@ -905,11 +1014,14 @@ class RoleAssignments
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleAssignmentListResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => '',
+     *    'nextLink' => ''
+     * ];
      */
     public function listForResourceGroupNext($nextPageLink, array $customHeaders = [])
     {
@@ -930,10 +1042,10 @@ class RoleAssignments
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listForResourceGroupNextAsync($nextPageLink, array $customHeaders = [])
     {
@@ -976,11 +1088,14 @@ class RoleAssignments
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleAssignmentListResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => '',
+     *    'nextLink' => ''
+     * ];
      */
     public function listNext($nextPageLink, array $customHeaders = [])
     {
@@ -1001,10 +1116,10 @@ class RoleAssignments
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listNextAsync($nextPageLink, array $customHeaders = [])
     {
@@ -1047,11 +1162,14 @@ class RoleAssignments
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleAssignmentListResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => '',
+     *    'nextLink' => ''
+     * ];
      */
     public function listForScopeNext($nextPageLink, array $customHeaders = [])
     {
@@ -1072,10 +1190,10 @@ class RoleAssignments
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listForScopeNextAsync($nextPageLink, array $customHeaders = [])
     {

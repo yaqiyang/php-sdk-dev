@@ -45,15 +45,22 @@ class StorageAccounts
     /*
      * Checks that account name is valid and is not in use.
      *
-     * @param array (StorageAccountCheckNameAvailabilityParameters) $accountName
-     * The name of the storage account within the specified resource group.
-     * Storage account names must be between 3 and 24 characters in length and
-     * use numbers and lower-case letters only.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $accountName The name of the storage account within the specified resource group.
+     *  Storage account names must be between 3 and 24 characters in length and use numbers and
+     *  lower-case letters only. 
+     * [
+     *    'name' => 'requiredName',
+     *    'type' => 'Microsoft.Storage/storageAccounts'
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * CheckNameAvailabilityResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'nameAvailable' => 'false',
+     *    'reason' => 'AccountNameInvalid|AlreadyExists',
+     *    'message' => ''
+     * ];
      */
     public function checkNameAvailability(array $accountName, array $customHeaders = [])
     {
@@ -72,14 +79,17 @@ class StorageAccounts
     /*
      * Checks that account name is valid and is not in use.
      *
-     * @param array (StorageAccountCheckNameAvailabilityParameters) $accountName
-     * The name of the storage account within the specified resource group.
-     * Storage account names must be between 3 and 24 characters in length and
-     * use numbers and lower-case letters only.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $accountName The name of the storage account within the specified resource group.
+     *  Storage account names must be between 3 and 24 characters in length and use numbers and
+     *  lower-case letters only. 
+     * [
+     *    'name' => 'requiredName',
+     *    'type' => 'Microsoft.Storage/storageAccounts'
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function checkNameAvailabilityAsync(array $accountName, array $customHeaders = [])
     {
@@ -136,18 +146,84 @@ class StorageAccounts
      * @param string $accountName The name of the storage account within the
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
-     * @param array (StorageAccountCreateParameters) $parameters The parameters to
-     * provide for the created account.
+     * @param array $parameters The parameters to provide for the created account. 
+     * [
+     *    'sku' => [
+     *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
+     *       'tier' => 'Standard|Premium'
+     *    ],
+     *    'kind' => 'Storage|BlobStorage',
+     *    'location' => 'requiredLocation',
+     *    'tags' => '',
+     *    'properties' => [
+     *       'customDomain' => [
+     *          'name' => '',
+     *          'useSubDomain' => 'false'
+     *       ],
+     *       'encryption' => [
+     *          'services' => [
+     *             'blob' => [
+     *                'enabled' => 'false',
+     *                'lastEnabledTime' => ''
+     *             ]
+     *          ],
+     *          'keySource' => 'Microsoft.Storage'
+     *       ],
+     *       'accessTier' => 'Hot|Cool'
+     *    ]
+     * ];
      *
-     * @return array, deserialized Jason array of the response body
-    */
+     * @return empty array when the response status is Accepted
+     * @return array when the response status is OK 
+     * [
+     *    'sku' => [
+     *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
+     *       'tier' => 'Standard|Premium'
+     *    ],
+     *    'kind' => 'Storage|BlobStorage',
+     *    'properties' => [
+     *       'provisioningState' => 'Creating|ResolvingDNS|Succeeded',
+     *       'primaryEndpoints' => [
+     *          'blob' => '',
+     *          'queue' => '',
+     *          'table' => '',
+     *          'file' => ''
+     *       ],
+     *       'primaryLocation' => '',
+     *       'statusOfPrimary' => 'Available|Unavailable',
+     *       'lastGeoFailoverTime' => '',
+     *       'secondaryLocation' => '',
+     *       'statusOfSecondary' => 'Available|Unavailable',
+     *       'creationTime' => '',
+     *       'customDomain' => [
+     *          'name' => '',
+     *          'useSubDomain' => 'false'
+     *       ],
+     *       'secondaryEndpoints' => [
+     *          'blob' => '',
+     *          'queue' => '',
+     *          'table' => '',
+     *          'file' => ''
+     *       ],
+     *       'encryption' => [
+     *          'services' => [
+     *             'blob' => [
+     *                'enabled' => 'false',
+     *                'lastEnabledTime' => ''
+     *             ]
+     *          ],
+     *          'keySource' => 'Microsoft.Storage'
+     *       ],
+     *       'accessTier' => 'Hot|Cool'
+     *    ]
+     * ];
+     */
     public function create($resourceGroupName, $accountName, array $parameters, array $customHeaders = [])
     {
         $response = $this->begincreateAsync($resourceGroupName, $accountName, $parameters, $customHeaders);
-        $status = $response->getStatusCode();
 
         if ($response->getStatusCode() !== Resources::STATUS_OK) {
-            $status = $this->_client->awaitAsync($response);
+            $this->_client->awaitAsync($response);
         }
 
         if ($response->getBody()) {
@@ -172,13 +248,79 @@ class StorageAccounts
      * @param string $accountName The name of the storage account within the
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
-     * @param array (StorageAccountCreateParameters) $parameters The parameters to
-     * provide for the created account.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $parameters The parameters to provide for the created account. 
+     * [
+     *    'sku' => [
+     *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
+     *       'tier' => 'Standard|Premium'
+     *    ],
+     *    'kind' => 'Storage|BlobStorage',
+     *    'location' => 'requiredLocation',
+     *    'tags' => '',
+     *    'properties' => [
+     *       'customDomain' => [
+     *          'name' => '',
+     *          'useSubDomain' => 'false'
+     *       ],
+     *       'encryption' => [
+     *          'services' => [
+     *             'blob' => [
+     *                'enabled' => 'false',
+     *                'lastEnabledTime' => ''
+     *             ]
+     *          ],
+     *          'keySource' => 'Microsoft.Storage'
+     *       ],
+     *       'accessTier' => 'Hot|Cool'
+     *    ]
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * StorageAccount operation results
+     * @return empty array when the resposne status is Accepted
+     * @return array when the resposne status is OK 
+     * [
+     *    'sku' => [
+     *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
+     *       'tier' => 'Standard|Premium'
+     *    ],
+     *    'kind' => 'Storage|BlobStorage',
+     *    'properties' => [
+     *       'provisioningState' => 'Creating|ResolvingDNS|Succeeded',
+     *       'primaryEndpoints' => [
+     *          'blob' => '',
+     *          'queue' => '',
+     *          'table' => '',
+     *          'file' => ''
+     *       ],
+     *       'primaryLocation' => '',
+     *       'statusOfPrimary' => 'Available|Unavailable',
+     *       'lastGeoFailoverTime' => '',
+     *       'secondaryLocation' => '',
+     *       'statusOfSecondary' => 'Available|Unavailable',
+     *       'creationTime' => '',
+     *       'customDomain' => [
+     *          'name' => '',
+     *          'useSubDomain' => 'false'
+     *       ],
+     *       'secondaryEndpoints' => [
+     *          'blob' => '',
+     *          'queue' => '',
+     *          'table' => '',
+     *          'file' => ''
+     *       ],
+     *       'encryption' => [
+     *          'services' => [
+     *             'blob' => [
+     *                'enabled' => 'false',
+     *                'lastEnabledTime' => ''
+     *             ]
+     *          ],
+     *          'keySource' => 'Microsoft.Storage'
+     *       ],
+     *       'accessTier' => 'Hot|Cool'
+     *    ]
+     * ];
      */
     public function beginCreate($resourceGroupName, $accountName, array $parameters, array $customHeaders = [])
     {
@@ -206,12 +348,36 @@ class StorageAccounts
      * @param string $accountName The name of the storage account within the
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
-     * @param array (StorageAccountCreateParameters) $parameters The parameters to
-     * provide for the created account.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $parameters The parameters to provide for the created account. 
+     * [
+     *    'sku' => [
+     *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
+     *       'tier' => 'Standard|Premium'
+     *    ],
+     *    'kind' => 'Storage|BlobStorage',
+     *    'location' => 'requiredLocation',
+     *    'tags' => '',
+     *    'properties' => [
+     *       'customDomain' => [
+     *          'name' => '',
+     *          'useSubDomain' => 'false'
+     *       ],
+     *       'encryption' => [
+     *          'services' => [
+     *             'blob' => [
+     *                'enabled' => 'false',
+     *                'lastEnabledTime' => ''
+     *             ]
+     *          ],
+     *          'keySource' => 'Microsoft.Storage'
+     *       ],
+     *       'accessTier' => 'Hot|Cool'
+     *    ]
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function beginCreateAsync($resourceGroupName, $accountName, array $parameters, array $customHeaders = [])
     {
@@ -270,9 +436,11 @@ class StorageAccounts
      * @param string $accountName The name of the storage account within the
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
+     * @return empty array when the resposne status is OK
+     * @return empty array when the resposne status is NoContent
      */
     public function delete($resourceGroupName, $accountName, array $customHeaders = [])
     {
@@ -296,10 +464,10 @@ class StorageAccounts
      * @param string $accountName The name of the storage account within the
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function deleteAsync($resourceGroupName, $accountName, array $customHeaders = [])
     {
@@ -356,11 +524,52 @@ class StorageAccounts
      * @param string $accountName The name of the storage account within the
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * StorageAccount operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'sku' => [
+     *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
+     *       'tier' => 'Standard|Premium'
+     *    ],
+     *    'kind' => 'Storage|BlobStorage',
+     *    'properties' => [
+     *       'provisioningState' => 'Creating|ResolvingDNS|Succeeded',
+     *       'primaryEndpoints' => [
+     *          'blob' => '',
+     *          'queue' => '',
+     *          'table' => '',
+     *          'file' => ''
+     *       ],
+     *       'primaryLocation' => '',
+     *       'statusOfPrimary' => 'Available|Unavailable',
+     *       'lastGeoFailoverTime' => '',
+     *       'secondaryLocation' => '',
+     *       'statusOfSecondary' => 'Available|Unavailable',
+     *       'creationTime' => '',
+     *       'customDomain' => [
+     *          'name' => '',
+     *          'useSubDomain' => 'false'
+     *       ],
+     *       'secondaryEndpoints' => [
+     *          'blob' => '',
+     *          'queue' => '',
+     *          'table' => '',
+     *          'file' => ''
+     *       ],
+     *       'encryption' => [
+     *          'services' => [
+     *             'blob' => [
+     *                'enabled' => 'false',
+     *                'lastEnabledTime' => ''
+     *             ]
+     *          ],
+     *          'keySource' => 'Microsoft.Storage'
+     *       ],
+     *       'accessTier' => 'Hot|Cool'
+     *    ]
+     * ];
      */
     public function getProperties($resourceGroupName, $accountName, array $customHeaders = [])
     {
@@ -386,10 +595,10 @@ class StorageAccounts
      * @param string $accountName The name of the storage account within the
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function getPropertiesAsync($resourceGroupName, $accountName, array $customHeaders = [])
     {
@@ -452,13 +661,76 @@ class StorageAccounts
      * @param string $accountName The name of the storage account within the
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
-     * @param array (StorageAccountUpdateParameters) $parameters The parameters to
-     * provide for the updated account.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $parameters The parameters to provide for the updated account. 
+     * [
+     *    'sku' => [
+     *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
+     *       'tier' => 'Standard|Premium'
+     *    ],
+     *    'tags' => '',
+     *    'properties' => [
+     *       'customDomain' => [
+     *          'name' => '',
+     *          'useSubDomain' => 'false'
+     *       ],
+     *       'encryption' => [
+     *          'services' => [
+     *             'blob' => [
+     *                'enabled' => 'false',
+     *                'lastEnabledTime' => ''
+     *             ]
+     *          ],
+     *          'keySource' => 'Microsoft.Storage'
+     *       ],
+     *       'accessTier' => 'Hot|Cool'
+     *    ]
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * StorageAccount operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'sku' => [
+     *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
+     *       'tier' => 'Standard|Premium'
+     *    ],
+     *    'kind' => 'Storage|BlobStorage',
+     *    'properties' => [
+     *       'provisioningState' => 'Creating|ResolvingDNS|Succeeded',
+     *       'primaryEndpoints' => [
+     *          'blob' => '',
+     *          'queue' => '',
+     *          'table' => '',
+     *          'file' => ''
+     *       ],
+     *       'primaryLocation' => '',
+     *       'statusOfPrimary' => 'Available|Unavailable',
+     *       'lastGeoFailoverTime' => '',
+     *       'secondaryLocation' => '',
+     *       'statusOfSecondary' => 'Available|Unavailable',
+     *       'creationTime' => '',
+     *       'customDomain' => [
+     *          'name' => '',
+     *          'useSubDomain' => 'false'
+     *       ],
+     *       'secondaryEndpoints' => [
+     *          'blob' => '',
+     *          'queue' => '',
+     *          'table' => '',
+     *          'file' => ''
+     *       ],
+     *       'encryption' => [
+     *          'services' => [
+     *             'blob' => [
+     *                'enabled' => 'false',
+     *                'lastEnabledTime' => ''
+     *             ]
+     *          ],
+     *          'keySource' => 'Microsoft.Storage'
+     *       ],
+     *       'accessTier' => 'Hot|Cool'
+     *    ]
+     * ];
      */
     public function update($resourceGroupName, $accountName, array $parameters, array $customHeaders = [])
     {
@@ -490,12 +762,34 @@ class StorageAccounts
      * @param string $accountName The name of the storage account within the
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
-     * @param array (StorageAccountUpdateParameters) $parameters The parameters to
-     * provide for the updated account.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $parameters The parameters to provide for the updated account. 
+     * [
+     *    'sku' => [
+     *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
+     *       'tier' => 'Standard|Premium'
+     *    ],
+     *    'tags' => '',
+     *    'properties' => [
+     *       'customDomain' => [
+     *          'name' => '',
+     *          'useSubDomain' => 'false'
+     *       ],
+     *       'encryption' => [
+     *          'services' => [
+     *             'blob' => [
+     *                'enabled' => 'false',
+     *                'lastEnabledTime' => ''
+     *             ]
+     *          ],
+     *          'keySource' => 'Microsoft.Storage'
+     *       ],
+     *       'accessTier' => 'Hot|Cool'
+     *    ]
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function updateAsync($resourceGroupName, $accountName, array $parameters, array $customHeaders = [])
     {
@@ -550,11 +844,13 @@ class StorageAccounts
      * Lists all the storage accounts available under the subscription. Note that
      * storage keys are not returned; use the ListKeys operation for this.
      *
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * StorageAccountListResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => ''
+     * ];
      */
     public function listOperation(array $customHeaders = [])
     {
@@ -574,10 +870,10 @@ class StorageAccounts
      * Lists all the storage accounts available under the subscription. Note that
      * storage keys are not returned; use the ListKeys operation for this.
      *
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listOperationAsync(array $customHeaders = [])
     {
@@ -625,11 +921,13 @@ class StorageAccounts
      *
      * @param string $resourceGroupName The name of the resource group within the
      * user's subscription.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * StorageAccountListResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => ''
+     * ];
      */
     public function listByResourceGroup($resourceGroupName, array $customHeaders = [])
     {
@@ -652,10 +950,10 @@ class StorageAccounts
      *
      * @param string $resourceGroupName The name of the resource group within the
      * user's subscription.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listByResourceGroupAsync($resourceGroupName, array $customHeaders = [])
     {
@@ -704,11 +1002,13 @@ class StorageAccounts
      *
      * @param string $resourceGroupName The name of the resource group.
      * @param string $accountName The name of the storage account.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * StorageAccountListKeysResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'keys' => ''
+     * ];
      */
     public function listKeys($resourceGroupName, $accountName, array $customHeaders = [])
     {
@@ -729,10 +1029,10 @@ class StorageAccounts
      *
      * @param string $resourceGroupName The name of the resource group.
      * @param string $accountName The name of the storage account.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listKeysAsync($resourceGroupName, $accountName, array $customHeaders = [])
     {
@@ -787,14 +1087,18 @@ class StorageAccounts
      * @param string $accountName The name of the storage account within the
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
-     * @param array (StorageAccountRegenerateKeyParameters) $regenerateKey
-     * Specifies name of the key which should be regenerated. key1 or key2 for
-     * the default keys
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $regenerateKey Specifies name of the key which should be regenerated. key1 or key2
+     *  for the default keys 
+     * [
+     *    'keyName' => 'requiredKeyName'
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * StorageAccountListKeysResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'keys' => ''
+     * ];
      */
     public function regenerateKey($resourceGroupName, $accountName, array $regenerateKey, array $customHeaders = [])
     {
@@ -818,13 +1122,15 @@ class StorageAccounts
      * @param string $accountName The name of the storage account within the
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
-     * @param array (StorageAccountRegenerateKeyParameters) $regenerateKey
-     * Specifies name of the key which should be regenerated. key1 or key2 for
-     * the default keys
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $regenerateKey Specifies name of the key which should be regenerated. key1 or key2
+     *  for the default keys 
+     * [
+     *    'keyName' => 'requiredKeyName'
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function regenerateKeyAsync($resourceGroupName, $accountName, array $regenerateKey, array $customHeaders = [])
     {

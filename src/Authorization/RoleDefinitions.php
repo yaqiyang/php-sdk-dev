@@ -18,7 +18,7 @@
  * @version     Release: 0.10.0_2016-07, API Version: 2015-07-01
  */
 
-namespace MicrosoftAzure\StorageResourceProvider;
+namespace MicrosoftAzure\Authorization;
 
 use MicrosoftAzure\Common\Internal\Http\HttpClient;
 use MicrosoftAzure\Common\Internal\Resources;
@@ -47,11 +47,22 @@ class RoleDefinitions
      *
      * @param string $scope Scope
      * @param string $roleDefinitionId Role definition id.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleDefinition operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'id' => '',
+     *    'name' => '',
+     *    'type' => '',
+     *    'properties' => [
+     *       'roleName' => '',
+     *       'description' => '',
+     *       'type' => '',
+     *       'permissions' => '',
+     *       'assignableScopes' => ''
+     *    ]
+     * ];
      */
     public function delete($scope, $roleDefinitionId, array $customHeaders = [])
     {
@@ -72,10 +83,10 @@ class RoleDefinitions
      *
      * @param string $scope Scope
      * @param string $roleDefinitionId Role definition id.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function deleteAsync($scope, $roleDefinitionId, array $customHeaders = [])
     {
@@ -124,11 +135,22 @@ class RoleDefinitions
      *
      * @param string $scope Scope
      * @param string $roleDefinitionId Role definition Id
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleDefinition operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'id' => '',
+     *    'name' => '',
+     *    'type' => '',
+     *    'properties' => [
+     *       'roleName' => '',
+     *       'description' => '',
+     *       'type' => '',
+     *       'permissions' => '',
+     *       'assignableScopes' => ''
+     *    ]
+     * ];
      */
     public function get($scope, $roleDefinitionId, array $customHeaders = [])
     {
@@ -149,10 +171,10 @@ class RoleDefinitions
      *
      * @param string $scope Scope
      * @param string $roleDefinitionId Role definition Id
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function getAsync($scope, $roleDefinitionId, array $customHeaders = [])
     {
@@ -201,12 +223,35 @@ class RoleDefinitions
      *
      * @param string $scope Scope
      * @param string $roleDefinitionId Role definition id.
-     * @param array (RoleDefinition) $roleDefinition Role definition.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $roleDefinition Role definition. 
+     * [
+     *    'id' => '',
+     *    'name' => '',
+     *    'type' => '',
+     *    'properties' => [
+     *       'roleName' => '',
+     *       'description' => '',
+     *       'type' => '',
+     *       'permissions' => '',
+     *       'assignableScopes' => ''
+     *    ]
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleDefinition operation results
+     * @return array when the resposne status is Created 
+     * [
+     *    'id' => '',
+     *    'name' => '',
+     *    'type' => '',
+     *    'properties' => [
+     *       'roleName' => '',
+     *       'description' => '',
+     *       'type' => '',
+     *       'permissions' => '',
+     *       'assignableScopes' => ''
+     *    ]
+     * ];
      */
     public function createOrUpdate($scope, $roleDefinitionId, array $roleDefinition, array $customHeaders = [])
     {
@@ -227,11 +272,23 @@ class RoleDefinitions
      *
      * @param string $scope Scope
      * @param string $roleDefinitionId Role definition id.
-     * @param array (RoleDefinition) $roleDefinition Role definition.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $roleDefinition Role definition. 
+     * [
+     *    'id' => '',
+     *    'name' => '',
+     *    'type' => '',
+     *    'properties' => [
+     *       'roleName' => '',
+     *       'description' => '',
+     *       'type' => '',
+     *       'permissions' => '',
+     *       'assignableScopes' => ''
+     *    ]
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function createOrUpdateAsync($scope, $roleDefinitionId, array $roleDefinition, array $customHeaders = [])
     {
@@ -283,11 +340,22 @@ class RoleDefinitions
      * Get role definition by name (GUID).
      *
      * @param string $roleDefinitionId Fully qualified role definition Id
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleDefinition operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'id' => '',
+     *    'name' => '',
+     *    'type' => '',
+     *    'properties' => [
+     *       'roleName' => '',
+     *       'description' => '',
+     *       'type' => '',
+     *       'permissions' => '',
+     *       'assignableScopes' => ''
+     *    ]
+     * ];
      */
     public function getById($roleDefinitionId, array $customHeaders = [])
     {
@@ -307,10 +375,10 @@ class RoleDefinitions
      * Get role definition by name (GUID).
      *
      * @param string $roleDefinitionId Fully qualified role definition Id
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function getByIdAsync($roleDefinitionId, array $customHeaders = [])
     {
@@ -356,13 +424,17 @@ class RoleDefinitions
      * atScopeAndBelow filter to search below the given scope as well
      *
      * @param string $scope Scope
-     * @param array (RoleDefinitionFilter) $filter The filter to apply on the
-     * operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $filter The filter to apply on the operation. 
+     * [
+     *    'roleName' => ''
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleDefinitionListResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => ''
+     * ];
      */
     public function listOperation($scope, array $filter, array $customHeaders = [])
     {
@@ -383,12 +455,14 @@ class RoleDefinitions
      * atScopeAndBelow filter to search below the given scope as well
      *
      * @param string $scope Scope
-     * @param array (RoleDefinitionFilter) $filter The filter to apply on the
-     * operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $filter The filter to apply on the operation. 
+     * [
+     *    'roleName' => ''
+     * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listOperationAsync($scope, array $filter, array $customHeaders = [])
     {
@@ -435,11 +509,13 @@ class RoleDefinitions
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * RoleDefinitionListResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => ''
+     * ];
      */
     public function listNext($nextPageLink, array $customHeaders = [])
     {
@@ -461,10 +537,10 @@ class RoleDefinitions
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listNextAsync($nextPageLink, array $customHeaders = [])
     {

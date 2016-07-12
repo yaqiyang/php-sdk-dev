@@ -141,17 +141,32 @@ class StorageResourceProviderProxy extends ServiceRestProxy
 
         if (count($createParams) == 0)
         {
-            $createParams['location'] = 'eastus';
-            $createParams['tags'] = ['key1' => 'value1', 'key2' => 'value2'];
-
-            $customDomain = ['name' => '', 'useSubDomainName' => 'false'];
-            $encrypotioin = ['services' => ['blob' => ['enabled' => 'false']], 'keySource' => 'Microsoft.Storage'];
-
-            $createParams['properties'] = ['customDomain' => $customDomain, 'encryption' => $encrypotioin, ];
-            $createParams['sku'] = ['name' => 'Standard_LRS'];
-            $createParams['kind'] = 'Storage';
-
-            // "accessTier": "Cool" not valid?
+            $createParams =
+                [
+                    'sku' => [
+                        'name' => 'Standard_LRS',
+                        'tier' => 'Standard'
+                    ],
+                    'kind' => 'Storage',
+                    'location' => 'eastus',
+                    'tags' => '',
+                    'properties' => [
+                        'customDomain' => [
+                        'name' => '',
+                        'useSubDomain' => 'false'
+                        ],
+                        'encryption' => [
+                        'services' => [
+                            'blob' => [
+                                'enabled' => 'false',
+                                'lastEnabledTime' => ''
+                            ]
+                        ],
+                        'keySource' => 'Microsoft.Storage'
+                        ],
+                        /*'accessTier' => 'Hot|Cool'*/  // only applicable when kind = BlobStorage
+                    ]
+                ];
         }
 
         $body = $this->dataSerializer->serialize($createParams);
@@ -382,17 +397,37 @@ class StorageResourceProviderProxy extends ServiceRestProxy
         // default values for body params
         if (count($bodyParams) == 0)
         {
-            $bodyParams['location'] = 'eastus';
-            $bodyParams['tags'] = ['key1' => 'value1', 'key2' => 'value2'];
-
-            $customDomain = ['name' => '', 'useSubDomainName' => 'false'];
-            $encrypotioin = ['services' => ['blob' => ['enabled' => 'false']], 'keySource' => 'Microsoft.Storage'];
-
-            $bodyParams['properties'] = ['customDomain' => $customDomain, 'encryption' => $encrypotioin, ];
-            $bodyParams['sku'] = ['name' => 'Standard_LRS'];
-            $bodyParams['kind'] = 'Storage';
-
-            // "accessTier": "Cool" not valid?
+        $bodyParams =
+         [
+         'sku' =>
+            [
+            'name' => 'Standard_LRS',
+            'tier' => 'Standard'
+            ],
+         'kind' => 'Storage',
+         'location' => 'eastus',
+         'tags' => '',
+         'properties' =>
+            [
+            'customDomain' =>
+               [
+               'name' => '',
+               'useSubDomain' => 'false'
+               ],
+            'encryption' =>
+               [
+               'services' =>
+                  [
+                  'blob' =>
+                     [
+                     'enabled' => 'false',
+                     'lastEnabledTime' => ''
+                     ]
+                  ],
+               'keySource' => 'Microsoft.Storage'
+               ],
+            ]
+         ];
         }
 
         $body = $this->dataSerializer->serialize($bodyParams);

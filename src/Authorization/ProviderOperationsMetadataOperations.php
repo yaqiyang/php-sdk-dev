@@ -18,7 +18,7 @@
  * @version     Release: 0.10.0_2016-07, API Version: 2015-07-01
  */
 
-namespace MicrosoftAzure\StorageResourceProvider;
+namespace MicrosoftAzure\Authorization;
 
 use MicrosoftAzure\Common\Internal\Http\HttpClient;
 use MicrosoftAzure\Common\Internal\Resources;
@@ -48,11 +48,18 @@ class ProviderOperationsMetadataOperations
      * @param string $resourceProviderNamespace Namespace of the resource provider.
      * @param string $apiVersion
      * @param string $expand
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * ProviderOperationsMetadata operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'id' => '',
+     *    'name' => '',
+     *    'type' => '',
+     *    'displayName' => '',
+     *    'resourceTypes' => '',
+     *    'operations' => ''
+     * ];
      */
     public function get($resourceProviderNamespace, $apiVersion, $expand = 'resourceTypes', array $customHeaders = [])
     {
@@ -74,10 +81,10 @@ class ProviderOperationsMetadataOperations
      * @param string $resourceProviderNamespace Namespace of the resource provider.
      * @param string $apiVersion
      * @param string $expand
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function getAsync($resourceProviderNamespace, $apiVersion, $expand = 'resourceTypes', array $customHeaders = [])
     {
@@ -123,11 +130,13 @@ class ProviderOperationsMetadataOperations
      *
      * @param string $apiVersion
      * @param string $expand
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * ProviderOperationsMetadataListResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => ''
+     * ];
      */
     public function listOperation($apiVersion, $expand = 'resourceTypes', array $customHeaders = [])
     {
@@ -148,10 +157,10 @@ class ProviderOperationsMetadataOperations
      *
      * @param string $apiVersion
      * @param string $expand
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listOperationAsync($apiVersion, $expand = 'resourceTypes', array $customHeaders = [])
     {
@@ -194,11 +203,13 @@ class ProviderOperationsMetadataOperations
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * ProviderOperationsMetadataListResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => ''
+     * ];
      */
     public function listNext($nextPageLink, array $customHeaders = [])
     {
@@ -219,10 +230,10 @@ class ProviderOperationsMetadataOperations
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listNextAsync($nextPageLink, array $customHeaders = [])
     {

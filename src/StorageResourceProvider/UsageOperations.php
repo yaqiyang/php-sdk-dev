@@ -46,11 +46,13 @@ class UsageOperations
      * Gets the current usage count and the limit for the resources under the
      * subscription.
      *
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * UsageListResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => ''
+     * ];
      */
     public function listOperation(array $customHeaders = [])
     {
@@ -70,10 +72,10 @@ class UsageOperations
      * Gets the current usage count and the limit for the resources under the
      * subscription.
      *
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listOperationAsync(array $customHeaders = [])
     {

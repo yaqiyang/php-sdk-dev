@@ -18,7 +18,7 @@
  * @version     Release: 0.10.0_2016-07, API Version: 2015-07-01
  */
 
-namespace MicrosoftAzure\StorageResourceProvider;
+namespace MicrosoftAzure\Authorization;
 
 use MicrosoftAzure\Common\Internal\Http\HttpClient;
 use MicrosoftAzure\Common\Internal\Resources;
@@ -47,11 +47,13 @@ class Permissions
      *
      * @param string $resourceGroupName Name of the resource group to get the
      * permissions for.The name is case insensitive.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * PermissionGetResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => ''
+     * ];
      */
     public function listForResourceGroup($resourceGroupName, array $customHeaders = [])
     {
@@ -72,10 +74,10 @@ class Permissions
      *
      * @param string $resourceGroupName Name of the resource group to get the
      * permissions for.The name is case insensitive.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listForResourceGroupAsync($resourceGroupName, array $customHeaders = [])
     {
@@ -128,11 +130,13 @@ class Permissions
      * @param string $parentResourcePath Resource
      * @param string $resourceType Resource
      * @param string $resourceName Resource
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * PermissionGetResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => ''
+     * ];
      */
     public function listForResource($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, array $customHeaders = [])
     {
@@ -157,10 +161,10 @@ class Permissions
      * @param string $parentResourcePath Resource
      * @param string $resourceType Resource
      * @param string $resourceName Resource
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listForResourceAsync($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, array $customHeaders = [])
     {
@@ -221,11 +225,13 @@ class Permissions
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * PermissionGetResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => ''
+     * ];
      */
     public function listForResourceGroupNext($nextPageLink, array $customHeaders = [])
     {
@@ -246,10 +252,10 @@ class Permissions
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listForResourceGroupNextAsync($nextPageLink, array $customHeaders = [])
     {
@@ -292,11 +298,13 @@ class Permissions
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
-     * that will be added to the HTTP request.
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
-     * @return array, deserialized Jason array of the response body for
-     * PermissionGetResult operation results
+     * @return array when the resposne status is OK 
+     * [
+     *    'value' => ''
+     * ];
      */
     public function listForResourceNext($nextPageLink, array $customHeaders = [])
     {
@@ -317,10 +325,10 @@ class Permissions
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders [String => String] A hash of custom headers
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Response, Response object from the http call
+     * @return Guzzle Response object
      */
     public function listForResourceNextAsync($nextPageLink, array $customHeaders = [])
     {
