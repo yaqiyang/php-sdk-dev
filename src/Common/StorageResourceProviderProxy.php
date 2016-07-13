@@ -19,7 +19,6 @@ use MicrosoftAzure\Common\Internal\Utilities;
  * This class constructs HTTP requests and receive HTTP responses for StorageResourceProvider.
  *
  * @category  Microsoft: to add details
- *
  */
 class StorageResourceProviderProxy extends ServiceRestProxy
 {
@@ -35,8 +34,7 @@ class StorageResourceProviderProxy extends ServiceRestProxy
     private $filters;
 
     /**
-     * To add details
-     *
+     * To add details.
      */
     public function __construct($oauthSettings)
     {
@@ -48,36 +46,33 @@ class StorageResourceProviderProxy extends ServiceRestProxy
 
         $this->oauthSettings = $oauthSettings;
         $oauthService = new OAuthRestProxy($oauthSettings);
-        $authentification = new OAuthScheme($oauthService );
+        $authentification = new OAuthScheme($oauthService);
         $this->filters = [new OAuthFilter($authentification)];
     }
 
     /**
-     * To add details
-     *
+     * To add details.
      */
     private function getUrl($path)
     {
         // this needs to be more robust
-        return $this->schemes[0] . '://' . $this->host . $path;
+        return $this->schemes[0].'://'.$this->host.$path;
     }
 
     /**
-     * To add details
-     *
+     * To add details.
      */
     private function replaceParams($target, $class, $function, $values)
     {
         $method = new \ReflectionMethod($class, $function);
         $params = array();
 
-        foreach ($method->getParameters() as  $index => $param)
-        {
-            if (array_key_exists($index, $values))
-            {
-                if (!is_array($values[$index])) //don't replace array parameters
-                {
-                    $params['{' . $param->name . '}'] = $values[$index];
+        foreach ($method->getParameters() as  $index => $param) {
+            if (array_key_exists($index, $values)) {
+                if (!is_array($values[$index])) {
+                    //don't replace array parameters
+
+                    $params['{'.$param->name.'}'] = $values[$index];
                 }
             }
         }
@@ -86,8 +81,7 @@ class StorageResourceProviderProxy extends ServiceRestProxy
     }
 
     /**
-     * To add details
-     *
+     * To add details.
      */
     public function checkNameAvailability($subscriptionId, $accountName)
     {
@@ -100,7 +94,7 @@ class StorageResourceProviderProxy extends ServiceRestProxy
         $method = Resources::HTTP_POST;
         $statusCode = Resources::STATUS_OK;
 
-        $headers =array();
+        $headers = array();
         $headers['Content-Type'] = $this->consumes[0];
 
         $params = [];
@@ -120,12 +114,12 @@ class StorageResourceProviderProxy extends ServiceRestProxy
         );
 
         $parsed = $this->dataSerializer->unserialize($response->getBody()->getContents());
+
         return $parsed['nameAvailable'];
     }
 
     /**
-     * To add details
-     *
+     * To add details.
      */
     public function CreateStorageAccount($subscriptionId, $resourceGroupName, $accountName, array $createParams = [])
     {
@@ -133,19 +127,18 @@ class StorageResourceProviderProxy extends ServiceRestProxy
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}';
 
         $path = $this->getUrl($this->replaceParams($path, __CLASS__, __FUNCTION__, func_get_args()));
-        $headers =array();
+        $headers = array();
         $queryParams = [Resources::API_VERSION => $this->api_version];
         $postParams = array();
         $method = Resources::HTTP_PUT;
         $statusCodes = [Resources::STATUS_ACCEPTED, Resources::STATUS_OK];
 
-        if (count($createParams) == 0)
-        {
+        if (count($createParams) == 0) {
             $createParams =
                 [
                     'sku' => [
                         'name' => 'Standard_LRS',
-                        'tier' => 'Standard'
+                        'tier' => 'Standard',
                     ],
                     'kind' => 'Storage',
                     'location' => 'eastus',
@@ -153,19 +146,19 @@ class StorageResourceProviderProxy extends ServiceRestProxy
                     'properties' => [
                         'customDomain' => [
                         'name' => '',
-                        'useSubDomain' => 'false'
+                        'useSubDomain' => 'false',
                         ],
                         'encryption' => [
                         'services' => [
                             'blob' => [
                                 'enabled' => 'false',
-                                'lastEnabledTime' => ''
-                            ]
+                                'lastEnabledTime' => '',
+                            ],
                         ],
-                        'keySource' => 'Microsoft.Storage'
+                        'keySource' => 'Microsoft.Storage',
                         ],
                         /*'accessTier' => 'Hot|Cool'*/  // only applicable when kind = BlobStorage
-                    ]
+                    ],
                 ];
         }
 
@@ -184,21 +177,18 @@ class StorageResourceProviderProxy extends ServiceRestProxy
             $this->filters
         );
 
-        if ($response->getStatusCode() == Resources::STATUS_OK)
-        {
+        if ($response->getStatusCode() == Resources::STATUS_OK) {
             return Resources::STATUS_OK; // storage account already created
-        }
-        else
-        {
+        } else {
             $locations = $response->getHeaders()['Location'];
             $requestIds = $response->getHeaders()[Resources::X_MS_REQUEST_ID];
+
             return [$locations[0], $requestIds[0]];
         }
     }
 
     /**
-     * To add details
-     *
+     * To add details.
      */
     public function DeleteStorageAccount($subscriptionId, $resourceGroupName, $accountName)
     {
@@ -206,7 +196,7 @@ class StorageResourceProviderProxy extends ServiceRestProxy
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}';
 
         $path = $this->getUrl($this->replaceParams($path, __CLASS__, __FUNCTION__, func_get_args()));
-        $headers =array();
+        $headers = array();
         $queryParams = [Resources::API_VERSION => $this->api_version];
 
         $postParams = array();
@@ -229,8 +219,7 @@ class StorageResourceProviderProxy extends ServiceRestProxy
     }
 
     /**
-     * To add details
-     *
+     * To add details.
      */
     public function pollAsyncStorageOperation($path, $requestId)
     {
@@ -239,7 +228,7 @@ class StorageResourceProviderProxy extends ServiceRestProxy
         $method = Resources::HTTP_GET;
         $statusCodes = [Resources::STATUS_OK, Resources::STATUS_ACCEPTED];
 
-        $headers =array();
+        $headers = array();
         $headers[Resources::X_MS_REQUEST_ID] = $requestId;
         $body = '';
 
@@ -258,8 +247,7 @@ class StorageResourceProviderProxy extends ServiceRestProxy
     }
 
     /**
-     * To add details
-     *
+     * To add details.
      */
     public function UpdateStorageAccount($subscriptionId, $resourceGroupName, $accountName, array $updateParams = [])
     {
@@ -267,21 +255,22 @@ class StorageResourceProviderProxy extends ServiceRestProxy
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}';
 
         $path = $this->getUrl($this->replaceParams($path, __CLASS__, __FUNCTION__, func_get_args()));
-        $headers =array();
+        $headers = array();
         $queryParams = [Resources::API_VERSION => $this->api_version];
         $postParams = array();
         $method = 'PATCH';
         $statusCodes = [Resources::STATUS_OK];
 
-        if (count($updateParams) == 0) // sample changes
-        {
+        if (count($updateParams) == 0) {
+            // sample changes
+
             $updateParams['location'] = 'eastus';
             $updateParams['tags'] = ['key1' => 'value123', 'key2' => 'value321'];
 
             $customDomain = ['name' => '', 'useSubDomainName' => 'false'];
             $encrypotioin = ['services' => ['blob' => ['enabled' => 'false']], 'keySource' => 'Microsoft.Storage'];
 
-            $updateParams['properties'] = ['customDomain' => $customDomain, 'encryption' => $encrypotioin, ];
+            $updateParams['properties'] = ['customDomain' => $customDomain, 'encryption' => $encrypotioin];
             $updateParams['sku'] = ['name' => 'Standard_LRS'];
             $updateParams['kind'] = 'Storage';
 
@@ -306,8 +295,7 @@ class StorageResourceProviderProxy extends ServiceRestProxy
         return $response->getStatusCode();
     }
     /**
-     * To add details
-     *
+     * To add details.
      */
     public function GetStorageAccountProperties($subscriptionId, $resourceGroupName, $accountName)
     {
@@ -315,7 +303,7 @@ class StorageResourceProviderProxy extends ServiceRestProxy
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}';
 
         $path = $this->getUrl($this->replaceParams($path, __CLASS__, __FUNCTION__, func_get_args()));
-        $headers =array();
+        $headers = array();
         $queryParams = [Resources::API_VERSION => $this->api_version];
         $postParams = array();
         $method = 'GET';
@@ -341,7 +329,6 @@ class StorageResourceProviderProxy extends ServiceRestProxy
     /**
      * Lists all the storage accounts available under the given resource group. Note that storage keys are not returned;
      * use the ListKeys operation for this.
-     *
      */
     public function StorageAccounts_ListByResourceGroup($subscriptionId, $resourceGroupName)
     {
@@ -395,38 +382,31 @@ class StorageResourceProviderProxy extends ServiceRestProxy
         $headers['Content-Type'] = 'application/json'; // need to set this if body is Json object
 
         // default values for body params
-        if (count($bodyParams) == 0)
-        {
-        $bodyParams =
+        if (count($bodyParams) == 0) {
+            $bodyParams =
          [
-         'sku' =>
-            [
+         'sku' => [
             'name' => 'Standard_LRS',
-            'tier' => 'Standard'
+            'tier' => 'Standard',
             ],
          'kind' => 'Storage',
          'location' => 'eastus',
          'tags' => '',
-         'properties' =>
-            [
-            'customDomain' =>
-               [
+         'properties' => [
+            'customDomain' => [
                'name' => '',
-               'useSubDomain' => 'false'
+               'useSubDomain' => 'false',
                ],
-            'encryption' =>
-               [
-               'services' =>
-                  [
-                  'blob' =>
-                     [
+            'encryption' => [
+               'services' => [
+                  'blob' => [
                      'enabled' => 'false',
-                     'lastEnabledTime' => ''
-                     ]
+                     'lastEnabledTime' => '',
+                     ],
                   ],
-               'keySource' => 'Microsoft.Storage'
+               'keySource' => 'Microsoft.Storage',
                ],
-            ]
+            ],
          ];
         }
 
@@ -444,14 +424,12 @@ class StorageResourceProviderProxy extends ServiceRestProxy
         );
 
         // x-ms-long-running-operation = true
-        if ($response->getStatusCode() == Resources::STATUS_OK)
-        {
+        if ($response->getStatusCode() == Resources::STATUS_OK) {
             return Resources::STATUS_OK; // storage account already created
-        }
-        else
-        {
+        } else {
             $locations = $response->getHeaders()['Location'];
             $requestIds = $response->getHeaders()[Resources::X_MS_REQUEST_ID];
+
             return [$locations[0], $requestIds[0]];   // what is a better return structure?
         }
     }

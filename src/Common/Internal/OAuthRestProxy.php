@@ -7,7 +7,6 @@
 namespace MicrosoftAzure\Common\Internal;
 
 use MicrosoftAzure\Common\Internal\Http\HttpClient;
-use MicrosoftAzure\Common\Internal\OAuthSettings;
 use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer;
 use MicrosoftAzure\Common\Models\OAuthAccessToken;
 
@@ -26,7 +25,7 @@ class OAuthRestProxy extends ServiceRestProxy
     /**
      * Initializes new OAuthRestProxy object.
      *
-     * @param MicrosoftAzure\Common\Internal\OAuthSettings  $oauthSettings  oauthSettings.
+     * @param MicrosoftAzure\Common\Internal\OAuthSettings $oauthSettings oauthSettings.
      */
     public function __construct($oauthSettings)
     {
@@ -63,6 +62,7 @@ class OAuthRestProxy extends ServiceRestProxy
         );
 
         $parsed = $this->dataSerializer->unserialize($response->getBody()->getContents());
+
         return OAuthAccessToken::create($parsed);
     }
 }

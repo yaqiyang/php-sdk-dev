@@ -47,14 +47,14 @@ class OAuthSettings extends ServiceSettings
     /**
      * Creates new media services settings instance.
      *
-     * @param string $tenant_id        tenant id for the user account
-     * @param string $client_id        client id
-     * @param string $client_secret    client secret
-     * @param string $grant_type       grant type
-     * @param string $azure_resource   resource for the token
+     * @param string $tenant_id      tenant id for the user account
+     * @param string $client_id      client id
+     * @param string $client_secret  client secret
+     * @param string $grant_type     grant type
+     * @param string $azure_resource resource for the token
      */
     public function __construct($tenant_id, $client_id, $client_secret,
-        $grant_type = 'client_credentials', $azure_resource = 'https://management.core.windows.net/' )
+        $grant_type = 'client_credentials', $azure_resource = 'https://management.core.windows.net/')
     {
         Validate::notNullOrEmpty($tenant_id, 'tenant_id');
         Validate::notNullOrEmpty($client_id, 'client_id');
@@ -76,7 +76,7 @@ class OAuthSettings extends ServiceSettings
      */
     public function getOAuthParams()
     {
-       return [
+        return [
              'grant_type' => $this->_grant_type,
              'client_id' => $this->_client_id,
              'client_secret' => $this->_client_secret,
@@ -85,7 +85,7 @@ class OAuthSettings extends ServiceSettings
     }
 
     /**
-     * Gets tenant id
+     * Gets tenant id.
      *
      * @return string
      */

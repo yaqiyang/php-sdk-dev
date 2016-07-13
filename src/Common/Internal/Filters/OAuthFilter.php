@@ -7,7 +7,6 @@
 namespace MicrosoftAzure\Common\Internal\Filters;
 
 use MicrosoftAzure\Common\Internal\Resources;
-use MicrosoftAzure\Common\Internal\Filters\IServiceFilter;
 
 /**
  * Adds authentication header to the http request object.
@@ -40,7 +39,7 @@ class OAuthFilter implements IServiceFilter
      */
     public function handleRequest($request)
     {
-        $signedKey = $this->_authenticationScheme->getAuthorizationHeader([], '',  '', '' );
+        $signedKey = $this->_authenticationScheme->getAuthorizationHeader([], '',  '', '');
         $request = $request->withHeader(Resources::AUTHENTICATION, $signedKey);
 
         return $request;

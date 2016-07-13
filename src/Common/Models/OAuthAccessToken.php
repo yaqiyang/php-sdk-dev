@@ -50,8 +50,7 @@ class OAuthAccessToken
         $result->setAccessToken($parsedResponse[Resources::OAUTH_ACCESS_TOKEN]);
         $result->setExpiresOn($parsedResponse[Resources::OAUTH_EXPIRES_ON]);
 
-        if (array_key_exists(Resources::OAUTH_SCOPE, $parsedResponse))
-        {
+        if (array_key_exists(Resources::OAUTH_SCOPE, $parsedResponse)) {
             $result->setScope($parsedResponse[Resources::OAUTH_SCOPE]);
         }
 

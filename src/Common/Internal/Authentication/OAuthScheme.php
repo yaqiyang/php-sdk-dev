@@ -29,8 +29,7 @@ class OAuthScheme implements IAuthScheme
     /**
      * Constructor.
      *
-    * @param WindowsAzure\Common\Internal\OAuthRestProxy $oauthService oauthService
-     *
+     * @param WindowsAzure\Common\Internal\OAuthRestProxy $oauthService oauthService
      */
     public function __construct($oauthService)
     {
@@ -50,11 +49,10 @@ class OAuthScheme implements IAuthScheme
      */
     public function getAuthorizationHeader($headers, $url, $queryParams, $httpMethod)
     {
-        if (($this->oauthAccessToken == null) || (time() > $this->oauthAccessToken->getExpiresOn()))
-        {
+        if (($this->oauthAccessToken == null) || (time() > $this->oauthAccessToken->getExpiresOn())) {
             $this->oauthAccessToken = $this->oauthService->getOAuthAccessToken();
         }
 
-        return Resources::OAUTH_ACCESS_TOKEN_PREFIX . $this->oauthAccessToken->getAccessToken();
+        return Resources::OAUTH_ACCESS_TOKEN_PREFIX.$this->oauthAccessToken->getAccessToken();
     }
 }

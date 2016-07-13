@@ -7,11 +7,9 @@
 namespace MicrosoftAzure\Common;
 
 use MicrosoftAzure\Common\Internal\Resources;
-use MicrosoftAzure\Common\Internal\Utilities;
 use MicrosoftAzure\Common\Internal\OAuthSettings;
 use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer;
 use MicrosoftAzure\Common\Internal\Serialization\XmlSerializer;
-use MicrosoftAzure\Common\StorageResourceProviderProxy;
 
 /**
  * Builds azure service objects.
@@ -46,7 +44,7 @@ class ServicesBuilder
     }
 
     /**
-     * Gets the StorageResourceProviderProxy
+     * Gets the StorageResourceProviderProxy.
      *
      * @return MicrosoftAzure\StorageResourceProvider\StorageResourceProviderProxy
      */

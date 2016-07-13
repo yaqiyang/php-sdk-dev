@@ -77,7 +77,7 @@ class RestProxy
      * Adds new filter to new service rest proxy object and returns that object back.
      *
      * @param MicrosoftAzure\Common\Internal\Filters\IServiceFilter $filter Filter to add for
-     *                                                              the pipeline.
+     *                                                                      the pipeline.
      *
      * @return RestProxy.
      */
