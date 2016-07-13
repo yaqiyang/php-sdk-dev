@@ -30,6 +30,11 @@ use MicrosoftAzure\Common\Internal\Validate;
  */
 class UsageOperations
 {
+    /**
+     * The service client object for the operations.
+     *
+     * @var StorageManagementClient
+     */
     private $_client;
 
     /**
@@ -38,11 +43,11 @@ class UsageOperations
      * @param StorageManagementClient, Service client for UsageOperations
      */
     public function __construct($client)
-    {
+     {
         $this->_client = $client;
-    }
+     }
 
-    /*
+    /**
      * Gets the current usage count and the limit for the resources under the
      * subscription.
      *
@@ -68,7 +73,7 @@ class UsageOperations
         return [];
     }
 
-    /*
+    /**
      * Gets the current usage count and the limit for the resources under the
      * subscription.
      *

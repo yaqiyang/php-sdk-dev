@@ -16,7 +16,7 @@ use MicrosoftAzure\Common\Internal\Resources;
 class OAuthFilter implements IServiceFilter
 {
     /**
-     * @var WindowsAzure\Common\Internal\Authentication\OAuthScheme
+     * @var MicrosoftAzure\Common\Internal\Authentication\OAuthScheme The authentication scheme.
      */
     private $_authenticationScheme;
 

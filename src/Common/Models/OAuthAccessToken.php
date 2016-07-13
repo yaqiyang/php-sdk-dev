@@ -41,7 +41,7 @@ class OAuthAccessToken
      *
      * @param array $parsedResponse JSON response parsed into array.
      *
-     * @return WindowsAzure\Common\Models\OAuthAccessToken
+     * @return MicrosoftAzure\Common\Models\OAuthAccessToken
      */
     public static function create($parsedResponse)
     {

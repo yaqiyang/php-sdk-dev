@@ -41,7 +41,7 @@ class OAuthRestProxy extends ServiceRestProxy
     /**
      * Get OAuth access token.
      *
-     * @return WindowsAzure\Common\Internal\Models\OAuthAccessToken
+     * @return MicrosoftAzure\Common\Internal\Models\OAuthAccessToken
      */
     public function getOAuthAccessToken()
     {

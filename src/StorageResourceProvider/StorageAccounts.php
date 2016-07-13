@@ -30,6 +30,11 @@ use MicrosoftAzure\Common\Internal\Validate;
  */
 class StorageAccounts
 {
+    /**
+     * The service client object for the operations.
+     *
+     * @var StorageManagementClient
+     */
     private $_client;
 
     /**
@@ -38,11 +43,11 @@ class StorageAccounts
      * @param StorageManagementClient, Service client for StorageAccounts
      */
     public function __construct($client)
-    {
+     {
         $this->_client = $client;
-    }
+     }
 
-    /*
+    /**
      * Checks that account name is valid and is not in use.
      *
      * @param array $accountName The name of the storage account within the specified resource group.
@@ -76,7 +81,7 @@ class StorageAccounts
         return [];
     }
 
-    /*
+    /**
      * Checks that account name is valid and is not in use.
      *
      * @param array $accountName The name of the storage account within the specified resource group.
@@ -134,7 +139,7 @@ class StorageAccounts
         return $response;
     }
 
-    /*
+    /**
      * Asynchronously creates a new storage account with the specified parameters.
      * If an account is already created and subsequent create request is issued
      * with different properties, the account properties will be updated. If an
@@ -172,6 +177,8 @@ class StorageAccounts
      *       'accessTier' => 'Hot|Cool'
      *    ]
      * ];
+     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     *  the HTTP request.
      *
      * @return empty array when the response status is Accepted
      * @return array when the response status is OK 
@@ -236,7 +243,7 @@ class StorageAccounts
         return [];
     }
 
-    /*
+    /**
      * Asynchronously creates a new storage account with the specified parameters.
      * If an account is already created and subsequent create request is issued
      * with different properties, the account properties will be updated. If an
@@ -336,7 +343,7 @@ class StorageAccounts
         return [];
     }
 
-    /*
+    /**
      * Asynchronously creates a new storage account with the specified parameters.
      * If an account is already created and subsequent create request is issued
      * with different properties, the account properties will be updated. If an
@@ -428,7 +435,7 @@ class StorageAccounts
         return $response;
     }
 
-    /*
+    /**
      * Deletes a storage account in Microsoft Azure.
      *
      * @param string $resourceGroupName The name of the resource group within the
@@ -456,7 +463,7 @@ class StorageAccounts
         return [];
     }
 
-    /*
+    /**
      * Deletes a storage account in Microsoft Azure.
      *
      * @param string $resourceGroupName The name of the resource group within the
@@ -514,7 +521,7 @@ class StorageAccounts
         return $response;
     }
 
-    /*
+    /**
      * Returns the properties for the specified storage account including but not
      * limited to name, account type, location, and account status. The ListKeys
      * operation should be used to retrieve storage keys.
@@ -585,7 +592,7 @@ class StorageAccounts
         return [];
     }
 
-    /*
+    /**
      * Returns the properties for the specified storage account including but not
      * limited to name, account type, location, and account status. The ListKeys
      * operation should be used to retrieve storage keys.
@@ -645,7 +652,7 @@ class StorageAccounts
         return $response;
     }
 
-    /*
+    /**
      * The update operation can be used to update the account type, encryption, or
      * tags for a storage account. It can also be used to map the account to a
      * custom domain. Only one custom domain is supported per storage account
@@ -746,7 +753,7 @@ class StorageAccounts
         return [];
     }
 
-    /*
+    /**
      * The update operation can be used to update the account type, encryption, or
      * tags for a storage account. It can also be used to map the account to a
      * custom domain. Only one custom domain is supported per storage account
@@ -840,7 +847,7 @@ class StorageAccounts
         return $response;
     }
 
-    /*
+    /**
      * Lists all the storage accounts available under the subscription. Note that
      * storage keys are not returned; use the ListKeys operation for this.
      *
@@ -866,7 +873,7 @@ class StorageAccounts
         return [];
     }
 
-    /*
+    /**
      * Lists all the storage accounts available under the subscription. Note that
      * storage keys are not returned; use the ListKeys operation for this.
      *
@@ -914,7 +921,7 @@ class StorageAccounts
         return $response;
     }
 
-    /*
+    /**
      * Lists all the storage accounts available under the given resource group.
      * Note that storage keys are not returned; use the ListKeys operation for
      * this.
@@ -943,7 +950,7 @@ class StorageAccounts
         return [];
     }
 
-    /*
+    /**
      * Lists all the storage accounts available under the given resource group.
      * Note that storage keys are not returned; use the ListKeys operation for
      * this.
@@ -997,7 +1004,7 @@ class StorageAccounts
         return $response;
     }
 
-    /*
+    /**
      * Lists the access keys for the specified storage account.
      *
      * @param string $resourceGroupName The name of the resource group.
@@ -1024,7 +1031,7 @@ class StorageAccounts
         return [];
     }
 
-    /*
+    /**
      * Lists the access keys for the specified storage account.
      *
      * @param string $resourceGroupName The name of the resource group.
@@ -1079,7 +1086,7 @@ class StorageAccounts
         return $response;
     }
 
-    /*
+    /**
      * Regenerates the access keys for the specified storage account.
      *
      * @param string $resourceGroupName The name of the resource group within the
@@ -1114,7 +1121,7 @@ class StorageAccounts
         return [];
     }
 
-    /*
+    /**
      * Regenerates the access keys for the specified storage account.
      *
      * @param string $resourceGroupName The name of the resource group within the

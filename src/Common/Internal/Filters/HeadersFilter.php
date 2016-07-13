@@ -4,9 +4,9 @@
  * LICENSE: To add details.
  */
 
-namespace WindowsAzure\Common\Internal\Filters;
+namespace MicrosoftAzure\Common\Internal\Filters;
 
-use WindowsAzure\Common\Internal\IServiceFilter;
+use MicrosoftAzure\Common\Internal\IServiceFilter;
 
 /**
  * Adds all passed headers to the HTTP request headers.
@@ -16,7 +16,7 @@ use WindowsAzure\Common\Internal\IServiceFilter;
 class HeadersFilter implements IServiceFilter
 {
     /**
-     * @var array
+     * @var array The array of headers
      */
     private $_headers;
 

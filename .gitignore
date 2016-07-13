@@ -7,3 +7,5 @@ composer.phar
 .vscode
 .settings
 privatesettings.php
+doc/
+phpdoc.dist.xml

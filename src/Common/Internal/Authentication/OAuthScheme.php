@@ -17,19 +17,19 @@ use MicrosoftAzure\Common\Internal\Validate;
 class OAuthScheme implements IAuthScheme
 {
     /**
-     * @var MicrosoftAzure\Common\Internal\OAuthRestProxy
+     * @var MicrosoftAzure\Common\Internal\OAuthRestProxy The OAuth service to call the API and get the tokens.
      */
     protected $oauthService;
 
     /**
-     * @var MicrosoftAzure\Common\Models\OAuthAccessToken
+     * @var MicrosoftAzure\Common\Models\OAuthAccessToken The OAuth access token.
      */
     protected $oauthAccessToken;
 
     /**
      * Constructor.
      *
-     * @param WindowsAzure\Common\Internal\OAuthRestProxy $oauthService oauthService
+     * @param MicrosoftAzure\Common\Internal\OAuthRestProxy $oauthService oauthService
      */
     public function __construct($oauthService)
     {
