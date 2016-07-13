@@ -54,10 +54,13 @@ class UsageOperations
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK, 
+     * <pre>
      * [
      *    'value' => ''
      * ];
+     * </pre>
      */
     public function listOperation(array $customHeaders = [])
     {
@@ -80,7 +83,7 @@ class UsageOperations
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listOperationAsync(array $customHeaders = [])
     {
@@ -101,7 +104,7 @@ class UsageOperations
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 

@@ -53,19 +53,24 @@ class StorageAccounts
      * @param array $accountName The name of the storage account within the specified resource group.
      *  Storage account names must be between 3 and 24 characters in length and use numbers and
      *  lower-case letters only. 
+     * <pre>
      * [
      *    'name' => 'requiredName',
      *    'type' => 'Microsoft.Storage/storageAccounts'
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK, 
+     * <pre>
      * [
      *    'nameAvailable' => 'false',
      *    'reason' => 'AccountNameInvalid|AlreadyExists',
      *    'message' => ''
      * ];
+     * </pre>
      */
     public function checkNameAvailability(array $accountName, array $customHeaders = [])
     {
@@ -87,14 +92,16 @@ class StorageAccounts
      * @param array $accountName The name of the storage account within the specified resource group.
      *  Storage account names must be between 3 and 24 characters in length and use numbers and
      *  lower-case letters only. 
+     * <pre>
      * [
      *    'name' => 'requiredName',
      *    'type' => 'Microsoft.Storage/storageAccounts'
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function checkNameAvailabilityAsync(array $accountName, array $customHeaders = [])
     {
@@ -118,7 +125,7 @@ class StorageAccounts
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -152,6 +159,7 @@ class StorageAccounts
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
      * @param array $parameters The parameters to provide for the created account. 
+     * <pre>
      * [
      *    'sku' => [
      *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
@@ -177,11 +185,14 @@ class StorageAccounts
      *       'accessTier' => 'Hot|Cool'
      *    ]
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return empty array when the response status is Accepted
-     * @return array when the response status is OK 
+     * @return array
+     * Empty array when the resposne status is Accepted.<br>
+     * When the resposne status is OK, 
+     * <pre>
      * [
      *    'sku' => [
      *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
@@ -224,6 +235,7 @@ class StorageAccounts
      *       'accessTier' => 'Hot|Cool'
      *    ]
      * ];
+     * </pre>
      */
     public function create($resourceGroupName, $accountName, array $parameters, array $customHeaders = [])
     {
@@ -256,6 +268,7 @@ class StorageAccounts
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
      * @param array $parameters The parameters to provide for the created account. 
+     * <pre>
      * [
      *    'sku' => [
      *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
@@ -281,11 +294,14 @@ class StorageAccounts
      *       'accessTier' => 'Hot|Cool'
      *    ]
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return empty array when the resposne status is Accepted
-     * @return array when the resposne status is OK 
+     * @return array
+     * Empty array when the resposne status is Accepted.<br>
+     * When the resposne status is OK, 
+     * <pre>
      * [
      *    'sku' => [
      *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
@@ -328,6 +344,7 @@ class StorageAccounts
      *       'accessTier' => 'Hot|Cool'
      *    ]
      * ];
+     * </pre>
      */
     public function beginCreate($resourceGroupName, $accountName, array $parameters, array $customHeaders = [])
     {
@@ -356,6 +373,7 @@ class StorageAccounts
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
      * @param array $parameters The parameters to provide for the created account. 
+     * <pre>
      * [
      *    'sku' => [
      *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
@@ -381,10 +399,11 @@ class StorageAccounts
      *       'accessTier' => 'Hot|Cool'
      *    ]
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function beginCreateAsync($resourceGroupName, $accountName, array $parameters, array $customHeaders = [])
     {
@@ -414,7 +433,7 @@ class StorageAccounts
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -446,8 +465,9 @@ class StorageAccounts
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return empty array when the resposne status is OK
-     * @return empty array when the resposne status is NoContent
+     * @return array
+     * Empty array when the resposne status is OK.<br>
+     * Empty array when the resposne status is NoContent.<br>
      */
     public function delete($resourceGroupName, $accountName, array $customHeaders = [])
     {
@@ -474,7 +494,7 @@ class StorageAccounts
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function deleteAsync($resourceGroupName, $accountName, array $customHeaders = [])
     {
@@ -501,7 +521,7 @@ class StorageAccounts
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -534,7 +554,9 @@ class StorageAccounts
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK, 
+     * <pre>
      * [
      *    'sku' => [
      *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
@@ -577,6 +599,7 @@ class StorageAccounts
      *       'accessTier' => 'Hot|Cool'
      *    ]
      * ];
+     * </pre>
      */
     public function getProperties($resourceGroupName, $accountName, array $customHeaders = [])
     {
@@ -605,7 +628,7 @@ class StorageAccounts
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function getPropertiesAsync($resourceGroupName, $accountName, array $customHeaders = [])
     {
@@ -632,7 +655,7 @@ class StorageAccounts
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -669,6 +692,7 @@ class StorageAccounts
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
      * @param array $parameters The parameters to provide for the updated account. 
+     * <pre>
      * [
      *    'sku' => [
      *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
@@ -692,10 +716,13 @@ class StorageAccounts
      *       'accessTier' => 'Hot|Cool'
      *    ]
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK, 
+     * <pre>
      * [
      *    'sku' => [
      *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
@@ -738,6 +765,7 @@ class StorageAccounts
      *       'accessTier' => 'Hot|Cool'
      *    ]
      * ];
+     * </pre>
      */
     public function update($resourceGroupName, $accountName, array $parameters, array $customHeaders = [])
     {
@@ -770,6 +798,7 @@ class StorageAccounts
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
      * @param array $parameters The parameters to provide for the updated account. 
+     * <pre>
      * [
      *    'sku' => [
      *       'name' => 'Standard_LRS|Standard_GRS|Standard_RAGRS|Standard_ZRS|Premium_LRS',
@@ -793,10 +822,11 @@ class StorageAccounts
      *       'accessTier' => 'Hot|Cool'
      *    ]
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function updateAsync($resourceGroupName, $accountName, array $parameters, array $customHeaders = [])
     {
@@ -826,7 +856,7 @@ class StorageAccounts
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -854,10 +884,13 @@ class StorageAccounts
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK, 
+     * <pre>
      * [
      *    'value' => ''
      * ];
+     * </pre>
      */
     public function listOperation(array $customHeaders = [])
     {
@@ -880,7 +913,7 @@ class StorageAccounts
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listOperationAsync(array $customHeaders = [])
     {
@@ -901,7 +934,7 @@ class StorageAccounts
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -931,10 +964,13 @@ class StorageAccounts
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK, 
+     * <pre>
      * [
      *    'value' => ''
      * ];
+     * </pre>
      */
     public function listByResourceGroup($resourceGroupName, array $customHeaders = [])
     {
@@ -960,7 +996,7 @@ class StorageAccounts
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listByResourceGroupAsync($resourceGroupName, array $customHeaders = [])
     {
@@ -984,7 +1020,7 @@ class StorageAccounts
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -1012,10 +1048,13 @@ class StorageAccounts
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK, 
+     * <pre>
      * [
      *    'keys' => ''
      * ];
+     * </pre>
      */
     public function listKeys($resourceGroupName, $accountName, array $customHeaders = [])
     {
@@ -1039,7 +1078,7 @@ class StorageAccounts
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listKeysAsync($resourceGroupName, $accountName, array $customHeaders = [])
     {
@@ -1066,7 +1105,7 @@ class StorageAccounts
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -1096,16 +1135,21 @@ class StorageAccounts
      * characters in length and use numbers and lower-case letters only.
      * @param array $regenerateKey Specifies name of the key which should be regenerated. key1 or key2
      *  for the default keys 
+     * <pre>
      * [
      *    'keyName' => 'requiredKeyName'
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK, 
+     * <pre>
      * [
      *    'keys' => ''
      * ];
+     * </pre>
      */
     public function regenerateKey($resourceGroupName, $accountName, array $regenerateKey, array $customHeaders = [])
     {
@@ -1131,13 +1175,15 @@ class StorageAccounts
      * characters in length and use numbers and lower-case letters only.
      * @param array $regenerateKey Specifies name of the key which should be regenerated. key1 or key2
      *  for the default keys 
+     * <pre>
      * [
      *    'keyName' => 'requiredKeyName'
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function regenerateKeyAsync($resourceGroupName, $accountName, array $regenerateKey, array $customHeaders = [])
     {
@@ -1167,7 +1213,7 @@ class StorageAccounts
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
