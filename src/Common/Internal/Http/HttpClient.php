@@ -1,7 +1,15 @@
 <?php
 
 /**
- * LICENSE: To add details.
+ * @category    Microsoft
+ *
+ * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
+ * @copyright   2016 Microsoft Corporation
+ * @license     https://github.com/yaqiyang/php-sdk-dev/blob/master/LICENSE
+ *
+ * @link        https://github.com/Azure/azure-sdk-for-php
+ *
+ * @version     Release: 0.10.0_2016
  */
 
 namespace MicrosoftAzure\Common\Internal\Http;
@@ -15,9 +23,6 @@ use GuzzleHttp\Psr7\Response;
 /**
  * Holds basic elements for making HTTP calls. This is a wrapper for Guzzle. To change to a new external Http
  * client in the future, change this file should be sufficient.
- * TODO: need to wrap Request and Response also.
- *
- * @category  Microsoft: to add details
  */
 class HttpClient
 {

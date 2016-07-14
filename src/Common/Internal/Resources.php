@@ -1,47 +1,25 @@
 <?php
 
 /**
- * LICENSE: To add details.
+ * @category    Microsoft
+ *
+ * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
+ * @copyright   2016 Microsoft Corporation
+ * @license     https://github.com/yaqiyang/php-sdk-dev/blob/master/LICENSE
+ *
+ * @link        https://github.com/Azure/azure-sdk-for-php
+ *
+ * @version     Release: 0.10.0_2016
  */
 
 namespace MicrosoftAzure\Common\Internal;
 
 /**
  * Project resources.
- *
- * @category  Microsoft: to add details
  */
 class Resources
 {
     // @codingStandardsIgnoreStart
-
-    // Connection strings
-    const USE_DEVELOPMENT_STORAGE_NAME = 'UseDevelopmentStorage';
-    const DEVELOPMENT_STORAGE_PROXY_URI_NAME = 'DevelopmentStorageProxyUri';
-    const DEFAULT_ENDPOINTS_PROTOCOL_NAME = 'DefaultEndpointsProtocol';
-    const ACCOUNT_NAME_NAME = 'AccountName';
-    const ACCOUNT_KEY_NAME = 'AccountKey';
-    const BLOB_ENDPOINT_NAME = 'BlobEndpoint';
-    const QUEUE_ENDPOINT_NAME = 'QueueEndpoint';
-    const TABLE_ENDPOINT_NAME = 'TableEndpoint';
-    const SHARED_ACCESS_SIGNATURE_NAME = 'SharedAccessSignature';
-    const DEV_STORE_NAME = 'devstoreaccount1';
-    const DEV_STORE_KEY = 'Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==';
-    const BLOB_BASE_DNS_NAME = 'blob.core.windows.net';
-    const QUEUE_BASE_DNS_NAME = 'queue.core.windows.net';
-    const TABLE_BASE_DNS_NAME = 'table.core.windows.net';
-    const DEV_STORE_CONNECTION_STRING = 'BlobEndpoint=127.0.0.1:10000;QueueEndpoint=127.0.0.1:10001;TableEndpoint=127.0.0.1:10002;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==';
-    const SUBSCRIPTION_ID_NAME = 'SubscriptionID';
-    const CERTIFICATE_PATH_NAME = 'CertificatePath';
-    const SERVICE_MANAGEMENT_ENDPOINT_NAME = 'ServiceManagementEndpoint';
-    const SERVICE_BUS_ENDPOINT_NAME = 'Endpoint';
-    const SHARED_SECRET_ISSUER_NAME = 'SharedSecretIssuer';
-    const SHARED_SECRET_VALUE_NAME = 'SharedSecretValue';
-    const STS_ENDPOINT_NAME = 'StsEndpoint';
-    const MEDIA_SERVICES_ENDPOINT_URI_NAME = 'MediaServicesEndpoint';
-    const MEDIA_SERVICES_ACCOUNT_NAME = 'AccountName';
-    const MEDIA_SERVICES_ACCESS_KEY = 'AccessKey';
-    const MEDIA_SERVICES_OAUTH_ENDPOINT_URI_NAME = 'OAuthEndpoint';
 
     // Messages
     const INVALID_TYPE_MSG = 'The provided variable should be of type: ';
@@ -161,21 +139,6 @@ class Resources
     const ACCEPT_CHARSET = 'accept-charset';
     const USER_AGENT = 'User-Agent';
 
-    // Type
-    const QUEUE_TYPE_NAME = 'IQueue';
-    const BLOB_TYPE_NAME = 'IBlob';
-    const TABLE_TYPE_NAME = 'ITable';
-    const SERVICE_MANAGEMENT_TYPE_NAME = 'IServiceManagement';
-    const SERVICE_BUS_TYPE_NAME = 'IServiceBus';
-    const WRAP_TYPE_NAME = 'IWrap';
-
-    // WRAP
-    const WRAP_ACCESS_TOKEN = 'wrap_access_token';
-    const WRAP_ACCESS_TOKEN_EXPIRES_IN = 'wrap_access_token_expires_in';
-    const WRAP_NAME = 'wrap_name';
-    const WRAP_PASSWORD = 'wrap_password';
-    const WRAP_SCOPE = 'wrap_scope';
-
     // OAuth
     const OAUTH_GRANT_TYPE = 'grant_type';
     const OAUTH_CLIENT_ID = 'client_id';
@@ -237,45 +200,6 @@ class Resources
     const MEDIA_SERVICES_API_LATEST_VERSION = '2.11';
     const MEDIA_SERVICES_DATA_SERVICE_VERSION_VALUE = '3.0;NetFx';
     const MEDIA_SERVICES_MAX_DATA_SERVICE_VERSION_VALUE = '3.0;NetFx';
-
-    // Query parameter names
-    const QP_PREFIX = 'Prefix';
-    const QP_MAX_RESULTS = 'MaxResults';
-    const QP_METADATA = 'Metadata';
-    const QP_MARKER = 'Marker';
-    const QP_NEXT_MARKER = 'NextMarker';
-    const QP_COMP = 'comp';
-    const QP_VISIBILITY_TIMEOUT = 'visibilitytimeout';
-    const QP_POPRECEIPT = 'popreceipt';
-    const QP_NUM_OF_MESSAGES = 'numofmessages';
-    const QP_PEEK_ONLY = 'peekonly';
-    const QP_MESSAGE_TTL = 'messagettl';
-    const QP_INCLUDE = 'include';
-    const QP_TIMEOUT = 'timeout';
-    const QP_DELIMITER = 'Delimiter';
-    const QP_REST_TYPE = 'restype';
-    const QP_SNAPSHOT = 'snapshot';
-    const QP_BLOCKID = 'blockid';
-    const QP_BLOCK_LIST_TYPE = 'blocklisttype';
-    const QP_SELECT = '$select';
-    const QP_TOP = '$top';
-    const QP_SKIP = '$skip';
-    const QP_FILTER = '$filter';
-    const QP_NEXT_TABLE_NAME = 'NextTableName';
-    const QP_NEXT_PK = 'NextPartitionKey';
-    const QP_NEXT_RK = 'NextRowKey';
-    const QP_ACTION = 'action';
-    const QP_EMBED_DETAIL = 'embed-detail';
-
-    // Query parameter values
-    const QPV_REGENERATE = 'regenerate';
-    const QPV_CONFIG = 'config';
-    const QPV_STATUS = 'status';
-    const QPV_UPGRADE = 'upgrade';
-    const QPV_WALK_UPGRADE_DOMAIN = 'walkupgradedomain';
-    const QPV_REBOOT = 'reboot';
-    const QPV_REIMAGE = 'reimage';
-    const QPV_ROLLBACK = 'rollback';
 
     // Request body content types
     const URL_ENCODED_CONTENT_TYPE = 'application/x-www-form-urlencoded';
@@ -371,34 +295,6 @@ class Resources
     const XTAG_CONTAINER_NAME = 'ContainerName';
     const XTAG_ACCOUNT_NAME = 'AccountName';
 
-    // Service Bus
-    const LIST_TOPICS_PATH = '$Resources/Topics';
-    const LIST_QUEUES_PATH = '$Resources/Queues';
-    const LIST_RULES_PATH = '%s/subscriptions/%s/rules';
-    const LIST_SUBSCRIPTIONS_PATH = '%s/subscriptions';
-    const RECEIVE_MESSAGE_PATH = '%s/messages/head';
-    const RECEIVE_SUBSCRIPTION_MESSAGE_PATH = '%s/subscriptions/%s/messages/head';
-    const SEND_MESSAGE_PATH = '%s/messages';
-    const RULE_PATH = '%s/subscriptions/%s/rules/%s';
-    const SUBSCRIPTION_PATH = '%s/subscriptions/%s';
-    const DEFAULT_RULE_NAME = '$Default';
-    const UNIQUE_ID_PREFIX = 'urn:uuid:';
-    const SERVICE_BUS_NAMESPACE = 'http://schemas.microsoft.com/netservices/2010/10/servicebus/connect';
-    const BROKER_PROPERTIES = 'BrokerProperties';
-    const XMLNS_ATOM = 'xmlns:atom';
-    const XMLNS = 'xmlns';
-    const ATOM_NAMESPACE = 'http://www.w3.org/2005/Atom';
-    const AUTHORITY_FORMAT = 'grant_type=client_credentials&client_id={0}&client_secret={1}';
-
-    // ATOM string
-    const AUTHOR = 'author';
-    const CATEGORY = 'category';
-    const CONTRIBUTOR = 'contributor';
-    const ENTRY = 'entry';
-    const LINK = 'link';
-    const PROPERTIES = 'properties';
-    const ELEMENT = 'element';
-
     // PHP URL Keys
     const PHP_URL_SCHEME = 'scheme';
     const PHP_URL_HOST = 'host';
@@ -424,14 +320,6 @@ class Resources
     const SSL_LOCAL_CERT = 'ssl_local_cert';
     const SSL_CAFILE = 'ssl_cafile';
     const CONNECT_TIMEOUT = 'connect_timeout';
-
-    // Media services
-    const MEDIA_SERVICES_URL = 'https://media.windows.net/API/';
-    const MEDIA_SERVICES_OAUTH_URL = 'https://wamsprodglobal001acs.accesscontrol.windows.net/v2/OAuth2-13';
-    const MEDIA_SERVICES_OAUTH_SCOPE = 'urn:WindowsAzureMediaServices';
-    const MEDIA_SERVICES_INPUT_ASSETS_REL = 'http://schemas.microsoft.com/ado/2007/08/dataservices/related/InputMediaAssets';
-    const MEDIA_SERVICES_ASSET_REL = 'http://schemas.microsoft.com/ado/2007/08/dataservices/related/Asset';
-    const MEDIA_SERVICES_ENCRYPTION_VERSION = '1.0';
 
     // Access Tokens
     const ACCESS_TOKEN_URL = 'https://login.microsoftonline.com/%s/oauth2/token';

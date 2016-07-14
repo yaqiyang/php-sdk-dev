@@ -15,7 +15,7 @@
  *
  * @link        https://github.com/Azure/azure-sdk-for-php
  *
- * @version     Release: 0.10.0_2016-07, API Version: 2015-07-01
+ * @version     Release: 0.10.0_2016, API Version: 2015-07-01
  */
 
 namespace MicrosoftAzure\Authorization;

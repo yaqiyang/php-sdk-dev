@@ -125,6 +125,7 @@
                     ],
                     'keySource' => 'Microsoft.Storage'
                     ],
+                    /* accessTier cannot be present when kind = Storage, but must present when kind = BlobStorage*/
                     /*'accessTier' => 'Hot|Cool'*/
                 ]
             ];

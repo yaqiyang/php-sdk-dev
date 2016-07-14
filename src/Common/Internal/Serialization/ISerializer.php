@@ -1,15 +1,21 @@
 <?php
 
 /**
- * LICENSE: To add details.
+ * @category    Microsoft
+ *
+ * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
+ * @copyright   2016 Microsoft Corporation
+ * @license     https://github.com/yaqiyang/php-sdk-dev/blob/master/LICENSE
+ *
+ * @link        https://github.com/Azure/azure-sdk-for-php
+ *
+ * @version     Release: 0.10.0_2016
  */
 
 namespace MicrosoftAzure\Common\Internal\Serialization;
 
 /**
  * The serialization interface.
- *
- * @category  Microsoft: to add details
  */
 interface ISerializer
 {

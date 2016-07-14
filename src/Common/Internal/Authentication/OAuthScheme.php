@@ -1,7 +1,15 @@
 <?php
 
 /**
- * LICENSE: To add details.
+ * @category    Microsoft
+ *
+ * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
+ * @copyright   2016 Microsoft Corporation
+ * @license     https://github.com/yaqiyang/php-sdk-dev/blob/master/LICENSE
+ *
+ * @link        https://github.com/Azure/azure-sdk-for-php
+ *
+ * @version     Release: 0.10.0_2016
  */
 
 namespace MicrosoftAzure\Common\Internal\Authentication;
@@ -10,9 +18,7 @@ use MicrosoftAzure\Common\Internal\Resources;
 use MicrosoftAzure\Common\Internal\Validate;
 
 /**
- * Provides OAth authentication scheme.
- *
- * @category  Microsoft: to add details
+ * OAth authentication scheme.
  */
 class OAuthScheme implements IAuthScheme
 {
@@ -38,7 +44,7 @@ class OAuthScheme implements IAuthScheme
     }
 
     /**
-     * Returns authorization header to be included in a request.
+     * Gets authorization header for http requests.
      *
      * @param array  $headers     request headers.
      * @param string $url         reuqest url.

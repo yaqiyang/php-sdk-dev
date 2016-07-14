@@ -1,15 +1,21 @@
 <?php
 
 /**
- * LICENSE: To add details.
+ * @category    Microsoft
+ *
+ * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
+ * @copyright   2016 Microsoft Corporation
+ * @license     https://github.com/yaqiyang/php-sdk-dev/blob/master/LICENSE
+ *
+ * @link        https://github.com/Azure/azure-sdk-for-php
+ *
+ * @version     Release: 0.10.0_2016
  */
 
 namespace MicrosoftAzure\Common\Internal\Filters;
 
 /**
- * ServceFilter is called when the sending the request and after receiving the response.
- *
- * @category  Microsoft: to add details
+ * ServiceFilter is used when sending requests and after receiving responses.
  */
 interface IServiceFilter
 {
