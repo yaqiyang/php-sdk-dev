@@ -5,13 +5,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is
  * regenerated.
  *
- * PHP version: >=5.5
+ * PHP version: 5.5
  *
  * @category    Microsoft
  *
  * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
  * @copyright   2016 Microsoft Corporation
- * @license     http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
+ * @license     https://github.com/yaqiyang/php-sdk-dev/blob/master/LICENSE
  *
  * @link        https://github.com/Azure/azure-sdk-for-php
  *
@@ -30,6 +30,11 @@ use MicrosoftAzure\Common\Internal\Validate;
  */
 class ClassicAdministrators
 {
+    /**
+     * The service client object for the operations.
+     *
+     * @var AuthorizationManagementClient
+     */
     private $_client;
 
     /**
@@ -38,21 +43,24 @@ class ClassicAdministrators
      * @param AuthorizationManagementClient, Service client for ClassicAdministrators
      */
     public function __construct($client)
-    {
+     {
         $this->_client = $client;
-    }
+     }
 
-    /*
+    /**
      * Gets a list of classic administrators for the subscription.
      *
      * @param string $apiVersion
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => ''
      * ];
+     * </pre>
      */
     public function listOperation($apiVersion, array $customHeaders = [])
     {
@@ -68,14 +76,14 @@ class ClassicAdministrators
         return [];
     }
 
-    /*
+    /**
      * Gets a list of classic administrators for the subscription.
      *
      * @param string $apiVersion
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listOperationAsync($apiVersion, array $customHeaders = [])
     {
@@ -96,7 +104,7 @@ class ClassicAdministrators
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -116,7 +124,7 @@ class ClassicAdministrators
         return $response;
     }
 
-    /*
+    /**
      * Gets a list of classic administrators for the subscription.
      *
      * @param string $nextPageLink The NextLink from the previous successful call
@@ -124,10 +132,13 @@ class ClassicAdministrators
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => ''
      * ];
+     * </pre>
      */
     public function listNext($nextPageLink, array $customHeaders = [])
     {
@@ -143,7 +154,7 @@ class ClassicAdministrators
         return [];
     }
 
-    /*
+    /**
      * Gets a list of classic administrators for the subscription.
      *
      * @param string $nextPageLink The NextLink from the previous successful call
@@ -151,7 +162,7 @@ class ClassicAdministrators
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listNextAsync($nextPageLink, array $customHeaders = [])
     {
@@ -169,7 +180,7 @@ class ClassicAdministrators
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 

@@ -5,13 +5,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is
  * regenerated.
  *
- * PHP version: >=5.5
+ * PHP version: 5.5
  *
  * @category    Microsoft
  *
  * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
  * @copyright   2016 Microsoft Corporation
- * @license     http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
+ * @license     https://github.com/yaqiyang/php-sdk-dev/blob/master/LICENSE
  *
  * @link        https://github.com/Azure/azure-sdk-for-php
  *
@@ -30,6 +30,11 @@ use MicrosoftAzure\Common\Internal\Validate;
  */
 class Permissions
 {
+    /**
+     * The service client object for the operations.
+     *
+     * @var AuthorizationManagementClient
+     */
     private $_client;
 
     /**
@@ -38,11 +43,11 @@ class Permissions
      * @param AuthorizationManagementClient, Service client for Permissions
      */
     public function __construct($client)
-    {
+     {
         $this->_client = $client;
-    }
+     }
 
-    /*
+    /**
      * Gets a resource group permissions.
      *
      * @param string $resourceGroupName Name of the resource group to get the
@@ -50,10 +55,13 @@ class Permissions
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => ''
      * ];
+     * </pre>
      */
     public function listForResourceGroup($resourceGroupName, array $customHeaders = [])
     {
@@ -69,7 +77,7 @@ class Permissions
         return [];
     }
 
-    /*
+    /**
      * Gets a resource group permissions.
      *
      * @param string $resourceGroupName Name of the resource group to get the
@@ -77,7 +85,7 @@ class Permissions
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listForResourceGroupAsync($resourceGroupName, array $customHeaders = [])
     {
@@ -101,7 +109,7 @@ class Permissions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -121,7 +129,7 @@ class Permissions
         return $response;
     }
 
-    /*
+    /**
      * Gets a resource permissions.
      *
      * @param string $resourceGroupName The name of the resource group. The name
@@ -133,10 +141,13 @@ class Permissions
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => ''
      * ];
+     * </pre>
      */
     public function listForResource($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, array $customHeaders = [])
     {
@@ -152,7 +163,7 @@ class Permissions
         return [];
     }
 
-    /*
+    /**
      * Gets a resource permissions.
      *
      * @param string $resourceGroupName The name of the resource group. The name
@@ -164,7 +175,7 @@ class Permissions
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listForResourceAsync($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, array $customHeaders = [])
     {
@@ -200,7 +211,7 @@ class Permissions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -220,7 +231,7 @@ class Permissions
         return $response;
     }
 
-    /*
+    /**
      * Gets a resource group permissions.
      *
      * @param string $nextPageLink The NextLink from the previous successful call
@@ -228,10 +239,13 @@ class Permissions
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => ''
      * ];
+     * </pre>
      */
     public function listForResourceGroupNext($nextPageLink, array $customHeaders = [])
     {
@@ -247,7 +261,7 @@ class Permissions
         return [];
     }
 
-    /*
+    /**
      * Gets a resource group permissions.
      *
      * @param string $nextPageLink The NextLink from the previous successful call
@@ -255,7 +269,7 @@ class Permissions
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listForResourceGroupNextAsync($nextPageLink, array $customHeaders = [])
     {
@@ -273,7 +287,7 @@ class Permissions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -293,7 +307,7 @@ class Permissions
         return $response;
     }
 
-    /*
+    /**
      * Gets a resource permissions.
      *
      * @param string $nextPageLink The NextLink from the previous successful call
@@ -301,10 +315,13 @@ class Permissions
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => ''
      * ];
+     * </pre>
      */
     public function listForResourceNext($nextPageLink, array $customHeaders = [])
     {
@@ -320,7 +337,7 @@ class Permissions
         return [];
     }
 
-    /*
+    /**
      * Gets a resource permissions.
      *
      * @param string $nextPageLink The NextLink from the previous successful call
@@ -328,7 +345,7 @@ class Permissions
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listForResourceNextAsync($nextPageLink, array $customHeaders = [])
     {
@@ -346,7 +363,7 @@ class Permissions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 

@@ -5,13 +5,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is
  * regenerated.
  *
- * PHP version: >=5.5
+ * PHP version: 5.5
  *
  * @category    Microsoft
  *
  * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
  * @copyright   2016 Microsoft Corporation
- * @license     http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
+ * @license     https://github.com/yaqiyang/php-sdk-dev/blob/master/LICENSE
  *
  * @link        https://github.com/Azure/azure-sdk-for-php
  *
@@ -63,7 +63,7 @@ class StorageAccounts
      *  the HTTP request.
      *
      * @return array
-     * When the resposne status is OK, 
+     * When the resposne status is OK(200), 
      * <pre>
      * [
      *    'nameAvailable' => 'false',
@@ -190,8 +190,8 @@ class StorageAccounts
      *  the HTTP request.
      *
      * @return array
-     * Empty array when the resposne status is Accepted.<br>
-     * When the resposne status is OK, 
+     * Empty array with resposne status Accepted(202).<br>
+     * When the resposne status is OK(200), 
      * <pre>
      * [
      *    'sku' => [
@@ -299,8 +299,8 @@ class StorageAccounts
      *  the HTTP request.
      *
      * @return array
-     * Empty array when the resposne status is Accepted.<br>
-     * When the resposne status is OK, 
+     * Empty array with resposne status Accepted(202).<br>
+     * When the resposne status is OK(200), 
      * <pre>
      * [
      *    'sku' => [
@@ -466,8 +466,8 @@ class StorageAccounts
      *  the HTTP request.
      *
      * @return array
-     * Empty array when the resposne status is OK.<br>
-     * Empty array when the resposne status is NoContent.<br>
+     * Empty array with resposne status OK(200).<br>
+     * Empty array with resposne status NoContent(204).<br>
      */
     public function delete($resourceGroupName, $accountName, array $customHeaders = [])
     {
@@ -555,7 +555,7 @@ class StorageAccounts
      *  the HTTP request.
      *
      * @return array
-     * When the resposne status is OK, 
+     * When the resposne status is OK(200), 
      * <pre>
      * [
      *    'sku' => [
@@ -721,7 +721,7 @@ class StorageAccounts
      *  the HTTP request.
      *
      * @return array
-     * When the resposne status is OK, 
+     * When the resposne status is OK(200), 
      * <pre>
      * [
      *    'sku' => [
@@ -885,7 +885,7 @@ class StorageAccounts
      *  the HTTP request.
      *
      * @return array
-     * When the resposne status is OK, 
+     * When the resposne status is OK(200), 
      * <pre>
      * [
      *    'value' => ''
@@ -965,7 +965,7 @@ class StorageAccounts
      *  the HTTP request.
      *
      * @return array
-     * When the resposne status is OK, 
+     * When the resposne status is OK(200), 
      * <pre>
      * [
      *    'value' => ''
@@ -1049,7 +1049,7 @@ class StorageAccounts
      *  the HTTP request.
      *
      * @return array
-     * When the resposne status is OK, 
+     * When the resposne status is OK(200), 
      * <pre>
      * [
      *    'keys' => ''
@@ -1144,7 +1144,7 @@ class StorageAccounts
      *  the HTTP request.
      *
      * @return array
-     * When the resposne status is OK, 
+     * When the resposne status is OK(200), 
      * <pre>
      * [
      *    'keys' => ''

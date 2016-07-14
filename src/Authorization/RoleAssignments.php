@@ -5,13 +5,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is
  * regenerated.
  *
- * PHP version: >=5.5
+ * PHP version: 5.5
  *
  * @category    Microsoft
  *
  * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
  * @copyright   2016 Microsoft Corporation
- * @license     http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
+ * @license     https://github.com/yaqiyang/php-sdk-dev/blob/master/LICENSE
  *
  * @link        https://github.com/Azure/azure-sdk-for-php
  *
@@ -30,6 +30,11 @@ use MicrosoftAzure\Common\Internal\Validate;
  */
 class RoleAssignments
 {
+    /**
+     * The service client object for the operations.
+     *
+     * @var AuthorizationManagementClient
+     */
     private $_client;
 
     /**
@@ -38,11 +43,11 @@ class RoleAssignments
      * @param AuthorizationManagementClient, Service client for RoleAssignments
      */
     public function __construct($client)
-    {
+     {
         $this->_client = $client;
-    }
+     }
 
-    /*
+    /**
      * Gets role assignments of the resource.
      *
      * @param string $resourceGroupName The name of the resource group.
@@ -51,17 +56,22 @@ class RoleAssignments
      * @param string $resourceType Resource identity.
      * @param string $resourceName Resource identity.
      * @param array $filter The filter to apply on the operation. 
+     * <pre>
      * [
      *    'principalId' => ''
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => '',
      *    'nextLink' => ''
      * ];
+     * </pre>
      */
     public function listForResource($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, array $filter, array $customHeaders = [])
     {
@@ -77,7 +87,7 @@ class RoleAssignments
         return [];
     }
 
-    /*
+    /**
      * Gets role assignments of the resource.
      *
      * @param string $resourceGroupName The name of the resource group.
@@ -86,13 +96,15 @@ class RoleAssignments
      * @param string $resourceType Resource identity.
      * @param string $resourceName Resource identity.
      * @param array $filter The filter to apply on the operation. 
+     * <pre>
      * [
      *    'principalId' => ''
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listForResourceAsync($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, array $filter, array $customHeaders = [])
     {
@@ -128,7 +140,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -148,22 +160,27 @@ class RoleAssignments
         return $response;
     }
 
-    /*
+    /**
      * Gets role assignments of the resource group.
      *
      * @param string $resourceGroupName Resource group name.
      * @param array $filter The filter to apply on the operation. 
+     * <pre>
      * [
      *    'principalId' => ''
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => '',
      *    'nextLink' => ''
      * ];
+     * </pre>
      */
     public function listForResourceGroup($resourceGroupName, array $filter, array $customHeaders = [])
     {
@@ -179,18 +196,20 @@ class RoleAssignments
         return [];
     }
 
-    /*
+    /**
      * Gets role assignments of the resource group.
      *
      * @param string $resourceGroupName Resource group name.
      * @param array $filter The filter to apply on the operation. 
+     * <pre>
      * [
      *    'principalId' => ''
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listForResourceGroupAsync($resourceGroupName, array $filter, array $customHeaders = [])
     {
@@ -214,7 +233,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -234,7 +253,7 @@ class RoleAssignments
         return $response;
     }
 
-    /*
+    /**
      * Delete role assignment.
      *
      * @param string $scope Scope.
@@ -242,7 +261,9 @@ class RoleAssignments
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'id' => '',
      *    'name' => '',
@@ -253,6 +274,7 @@ class RoleAssignments
      *       'principalId' => ''
      *    ]
      * ];
+     * </pre>
      */
     public function delete($scope, $roleAssignmentName, array $customHeaders = [])
     {
@@ -268,7 +290,7 @@ class RoleAssignments
         return [];
     }
 
-    /*
+    /**
      * Delete role assignment.
      *
      * @param string $scope Scope.
@@ -276,7 +298,7 @@ class RoleAssignments
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function deleteAsync($scope, $roleAssignmentName, array $customHeaders = [])
     {
@@ -300,7 +322,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -320,22 +342,26 @@ class RoleAssignments
         return $response;
     }
 
-    /*
+    /**
      * Create role assignment.
      *
      * @param string $scope Scope.
      * @param string $roleAssignmentName Role assignment name.
      * @param array $parameters Role assignment. 
+     * <pre>
      * [
      *    'properties' => [
      *       'roleDefinitionId' => '',
      *       'principalId' => ''
      *    ]
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is Created 
+     * @return array
+     * When the resposne status is Created(201), 
+     * <pre>
      * [
      *    'id' => '',
      *    'name' => '',
@@ -346,6 +372,7 @@ class RoleAssignments
      *       'principalId' => ''
      *    ]
      * ];
+     * </pre>
      */
     public function create($scope, $roleAssignmentName, array $parameters, array $customHeaders = [])
     {
@@ -361,22 +388,24 @@ class RoleAssignments
         return [];
     }
 
-    /*
+    /**
      * Create role assignment.
      *
      * @param string $scope Scope.
      * @param string $roleAssignmentName Role assignment name.
      * @param array $parameters Role assignment. 
+     * <pre>
      * [
      *    'properties' => [
      *       'roleDefinitionId' => '',
      *       'principalId' => ''
      *    ]
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function createAsync($scope, $roleAssignmentName, array $parameters, array $customHeaders = [])
     {
@@ -403,7 +432,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -424,7 +453,7 @@ class RoleAssignments
         return $response;
     }
 
-    /*
+    /**
      * Get single role assignment.
      *
      * @param string $scope Scope.
@@ -432,7 +461,9 @@ class RoleAssignments
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'id' => '',
      *    'name' => '',
@@ -443,6 +474,7 @@ class RoleAssignments
      *       'principalId' => ''
      *    ]
      * ];
+     * </pre>
      */
     public function get($scope, $roleAssignmentName, array $customHeaders = [])
     {
@@ -458,7 +490,7 @@ class RoleAssignments
         return [];
     }
 
-    /*
+    /**
      * Get single role assignment.
      *
      * @param string $scope Scope.
@@ -466,7 +498,7 @@ class RoleAssignments
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function getAsync($scope, $roleAssignmentName, array $customHeaders = [])
     {
@@ -490,7 +522,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -510,14 +542,16 @@ class RoleAssignments
         return $response;
     }
 
-    /*
+    /**
      * Delete role assignment.
      *
      * @param string $roleAssignmentId Role assignment Id
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'id' => '',
      *    'name' => '',
@@ -528,6 +562,7 @@ class RoleAssignments
      *       'principalId' => ''
      *    ]
      * ];
+     * </pre>
      */
     public function deleteById($roleAssignmentId, array $customHeaders = [])
     {
@@ -543,14 +578,14 @@ class RoleAssignments
         return [];
     }
 
-    /*
+    /**
      * Delete role assignment.
      *
      * @param string $roleAssignmentId Role assignment Id
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function deleteByIdAsync($roleAssignmentId, array $customHeaders = [])
     {
@@ -571,7 +606,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -591,21 +626,25 @@ class RoleAssignments
         return $response;
     }
 
-    /*
+    /**
      * Create role assignment by Id.
      *
      * @param string $roleAssignmentId Role assignment Id
      * @param array $parameters Role assignment. 
+     * <pre>
      * [
      *    'properties' => [
      *       'roleDefinitionId' => '',
      *       'principalId' => ''
      *    ]
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is Created 
+     * @return array
+     * When the resposne status is Created(201), 
+     * <pre>
      * [
      *    'id' => '',
      *    'name' => '',
@@ -616,6 +655,7 @@ class RoleAssignments
      *       'principalId' => ''
      *    ]
      * ];
+     * </pre>
      */
     public function createById($roleAssignmentId, array $parameters, array $customHeaders = [])
     {
@@ -631,21 +671,23 @@ class RoleAssignments
         return [];
     }
 
-    /*
+    /**
      * Create role assignment by Id.
      *
      * @param string $roleAssignmentId Role assignment Id
      * @param array $parameters Role assignment. 
+     * <pre>
      * [
      *    'properties' => [
      *       'roleDefinitionId' => '',
      *       'principalId' => ''
      *    ]
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function createByIdAsync($roleAssignmentId, array $parameters, array $customHeaders = [])
     {
@@ -669,7 +711,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -690,14 +732,16 @@ class RoleAssignments
         return $response;
     }
 
-    /*
+    /**
      * Get single role assignment.
      *
      * @param string $roleAssignmentId Role assignment Id
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'id' => '',
      *    'name' => '',
@@ -708,6 +752,7 @@ class RoleAssignments
      *       'principalId' => ''
      *    ]
      * ];
+     * </pre>
      */
     public function getById($roleAssignmentId, array $customHeaders = [])
     {
@@ -723,14 +768,14 @@ class RoleAssignments
         return [];
     }
 
-    /*
+    /**
      * Get single role assignment.
      *
      * @param string $roleAssignmentId Role assignment Id
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function getByIdAsync($roleAssignmentId, array $customHeaders = [])
     {
@@ -751,7 +796,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -771,21 +816,26 @@ class RoleAssignments
         return $response;
     }
 
-    /*
+    /**
      * Gets role assignments of the subscription.
      *
      * @param array $filter The filter to apply on the operation. 
+     * <pre>
      * [
      *    'principalId' => ''
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => '',
      *    'nextLink' => ''
      * ];
+     * </pre>
      */
     public function listOperation(array $filter, array $customHeaders = [])
     {
@@ -801,17 +851,19 @@ class RoleAssignments
         return [];
     }
 
-    /*
+    /**
      * Gets role assignments of the subscription.
      *
      * @param array $filter The filter to apply on the operation. 
+     * <pre>
      * [
      *    'principalId' => ''
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listOperationAsync(array $filter, array $customHeaders = [])
     {
@@ -832,7 +884,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -852,22 +904,27 @@ class RoleAssignments
         return $response;
     }
 
-    /*
+    /**
      * Gets role assignments of the scope.
      *
      * @param string $scope Scope.
      * @param array $filter The filter to apply on the operation. 
+     * <pre>
      * [
      *    'principalId' => ''
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => '',
      *    'nextLink' => ''
      * ];
+     * </pre>
      */
     public function listForScope($scope, array $filter, array $customHeaders = [])
     {
@@ -883,18 +940,20 @@ class RoleAssignments
         return [];
     }
 
-    /*
+    /**
      * Gets role assignments of the scope.
      *
      * @param string $scope Scope.
      * @param array $filter The filter to apply on the operation. 
+     * <pre>
      * [
      *    'principalId' => ''
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listForScopeAsync($scope, array $filter, array $customHeaders = [])
     {
@@ -915,7 +974,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -935,7 +994,7 @@ class RoleAssignments
         return $response;
     }
 
-    /*
+    /**
      * Gets role assignments of the resource.
      *
      * @param string $nextPageLink The NextLink from the previous successful call
@@ -943,11 +1002,14 @@ class RoleAssignments
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => '',
      *    'nextLink' => ''
      * ];
+     * </pre>
      */
     public function listForResourceNext($nextPageLink, array $customHeaders = [])
     {
@@ -963,7 +1025,7 @@ class RoleAssignments
         return [];
     }
 
-    /*
+    /**
      * Gets role assignments of the resource.
      *
      * @param string $nextPageLink The NextLink from the previous successful call
@@ -971,7 +1033,7 @@ class RoleAssignments
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listForResourceNextAsync($nextPageLink, array $customHeaders = [])
     {
@@ -989,7 +1051,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -1009,7 +1071,7 @@ class RoleAssignments
         return $response;
     }
 
-    /*
+    /**
      * Gets role assignments of the resource group.
      *
      * @param string $nextPageLink The NextLink from the previous successful call
@@ -1017,11 +1079,14 @@ class RoleAssignments
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => '',
      *    'nextLink' => ''
      * ];
+     * </pre>
      */
     public function listForResourceGroupNext($nextPageLink, array $customHeaders = [])
     {
@@ -1037,7 +1102,7 @@ class RoleAssignments
         return [];
     }
 
-    /*
+    /**
      * Gets role assignments of the resource group.
      *
      * @param string $nextPageLink The NextLink from the previous successful call
@@ -1045,7 +1110,7 @@ class RoleAssignments
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listForResourceGroupNextAsync($nextPageLink, array $customHeaders = [])
     {
@@ -1063,7 +1128,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -1083,7 +1148,7 @@ class RoleAssignments
         return $response;
     }
 
-    /*
+    /**
      * Gets role assignments of the subscription.
      *
      * @param string $nextPageLink The NextLink from the previous successful call
@@ -1091,11 +1156,14 @@ class RoleAssignments
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => '',
      *    'nextLink' => ''
      * ];
+     * </pre>
      */
     public function listNext($nextPageLink, array $customHeaders = [])
     {
@@ -1111,7 +1179,7 @@ class RoleAssignments
         return [];
     }
 
-    /*
+    /**
      * Gets role assignments of the subscription.
      *
      * @param string $nextPageLink The NextLink from the previous successful call
@@ -1119,7 +1187,7 @@ class RoleAssignments
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listNextAsync($nextPageLink, array $customHeaders = [])
     {
@@ -1137,7 +1205,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -1157,7 +1225,7 @@ class RoleAssignments
         return $response;
     }
 
-    /*
+    /**
      * Gets role assignments of the scope.
      *
      * @param string $nextPageLink The NextLink from the previous successful call
@@ -1165,11 +1233,14 @@ class RoleAssignments
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => '',
      *    'nextLink' => ''
      * ];
+     * </pre>
      */
     public function listForScopeNext($nextPageLink, array $customHeaders = [])
     {
@@ -1185,7 +1256,7 @@ class RoleAssignments
         return [];
     }
 
-    /*
+    /**
      * Gets role assignments of the scope.
      *
      * @param string $nextPageLink The NextLink from the previous successful call
@@ -1193,7 +1264,7 @@ class RoleAssignments
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listForScopeNextAsync($nextPageLink, array $customHeaders = [])
     {
@@ -1211,7 +1282,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 

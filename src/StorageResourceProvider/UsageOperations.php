@@ -5,13 +5,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is
  * regenerated.
  *
- * PHP version: >=5.5
+ * PHP version: 5.5
  *
  * @category    Microsoft
  *
  * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
  * @copyright   2016 Microsoft Corporation
- * @license     http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
+ * @license     https://github.com/yaqiyang/php-sdk-dev/blob/master/LICENSE
  *
  * @link        https://github.com/Azure/azure-sdk-for-php
  *
@@ -55,7 +55,7 @@ class UsageOperations
      *  the HTTP request.
      *
      * @return array
-     * When the resposne status is OK, 
+     * When the resposne status is OK(200), 
      * <pre>
      * [
      *    'value' => ''

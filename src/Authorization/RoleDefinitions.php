@@ -5,13 +5,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is
  * regenerated.
  *
- * PHP version: >=5.5
+ * PHP version: 5.5
  *
  * @category    Microsoft
  *
  * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
  * @copyright   2016 Microsoft Corporation
- * @license     http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
+ * @license     https://github.com/yaqiyang/php-sdk-dev/blob/master/LICENSE
  *
  * @link        https://github.com/Azure/azure-sdk-for-php
  *
@@ -30,6 +30,11 @@ use MicrosoftAzure\Common\Internal\Validate;
  */
 class RoleDefinitions
 {
+    /**
+     * The service client object for the operations.
+     *
+     * @var AuthorizationManagementClient
+     */
     private $_client;
 
     /**
@@ -38,11 +43,11 @@ class RoleDefinitions
      * @param AuthorizationManagementClient, Service client for RoleDefinitions
      */
     public function __construct($client)
-    {
+     {
         $this->_client = $client;
-    }
+     }
 
-    /*
+    /**
      * Deletes the role definition.
      *
      * @param string $scope Scope
@@ -50,7 +55,9 @@ class RoleDefinitions
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'id' => '',
      *    'name' => '',
@@ -63,6 +70,7 @@ class RoleDefinitions
      *       'assignableScopes' => ''
      *    ]
      * ];
+     * </pre>
      */
     public function delete($scope, $roleDefinitionId, array $customHeaders = [])
     {
@@ -78,7 +86,7 @@ class RoleDefinitions
         return [];
     }
 
-    /*
+    /**
      * Deletes the role definition.
      *
      * @param string $scope Scope
@@ -86,7 +94,7 @@ class RoleDefinitions
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function deleteAsync($scope, $roleDefinitionId, array $customHeaders = [])
     {
@@ -110,7 +118,7 @@ class RoleDefinitions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -130,7 +138,7 @@ class RoleDefinitions
         return $response;
     }
 
-    /*
+    /**
      * Get role definition by name (GUID).
      *
      * @param string $scope Scope
@@ -138,7 +146,9 @@ class RoleDefinitions
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'id' => '',
      *    'name' => '',
@@ -151,6 +161,7 @@ class RoleDefinitions
      *       'assignableScopes' => ''
      *    ]
      * ];
+     * </pre>
      */
     public function get($scope, $roleDefinitionId, array $customHeaders = [])
     {
@@ -166,7 +177,7 @@ class RoleDefinitions
         return [];
     }
 
-    /*
+    /**
      * Get role definition by name (GUID).
      *
      * @param string $scope Scope
@@ -174,7 +185,7 @@ class RoleDefinitions
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function getAsync($scope, $roleDefinitionId, array $customHeaders = [])
     {
@@ -198,7 +209,7 @@ class RoleDefinitions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -218,12 +229,13 @@ class RoleDefinitions
         return $response;
     }
 
-    /*
+    /**
      * Creates or updates a role definition.
      *
      * @param string $scope Scope
      * @param string $roleDefinitionId Role definition id.
      * @param array $roleDefinition Role definition. 
+     * <pre>
      * [
      *    'id' => '',
      *    'name' => '',
@@ -236,10 +248,13 @@ class RoleDefinitions
      *       'assignableScopes' => ''
      *    ]
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is Created 
+     * @return array
+     * When the resposne status is Created(201), 
+     * <pre>
      * [
      *    'id' => '',
      *    'name' => '',
@@ -252,6 +267,7 @@ class RoleDefinitions
      *       'assignableScopes' => ''
      *    ]
      * ];
+     * </pre>
      */
     public function createOrUpdate($scope, $roleDefinitionId, array $roleDefinition, array $customHeaders = [])
     {
@@ -267,12 +283,13 @@ class RoleDefinitions
         return [];
     }
 
-    /*
+    /**
      * Creates or updates a role definition.
      *
      * @param string $scope Scope
      * @param string $roleDefinitionId Role definition id.
      * @param array $roleDefinition Role definition. 
+     * <pre>
      * [
      *    'id' => '',
      *    'name' => '',
@@ -285,10 +302,11 @@ class RoleDefinitions
      *       'assignableScopes' => ''
      *    ]
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function createOrUpdateAsync($scope, $roleDefinitionId, array $roleDefinition, array $customHeaders = [])
     {
@@ -315,7 +333,7 @@ class RoleDefinitions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -336,14 +354,16 @@ class RoleDefinitions
         return $response;
     }
 
-    /*
+    /**
      * Get role definition by name (GUID).
      *
      * @param string $roleDefinitionId Fully qualified role definition Id
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'id' => '',
      *    'name' => '',
@@ -356,6 +376,7 @@ class RoleDefinitions
      *       'assignableScopes' => ''
      *    ]
      * ];
+     * </pre>
      */
     public function getById($roleDefinitionId, array $customHeaders = [])
     {
@@ -371,14 +392,14 @@ class RoleDefinitions
         return [];
     }
 
-    /*
+    /**
      * Get role definition by name (GUID).
      *
      * @param string $roleDefinitionId Fully qualified role definition Id
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function getByIdAsync($roleDefinitionId, array $customHeaders = [])
     {
@@ -399,7 +420,7 @@ class RoleDefinitions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -419,22 +440,27 @@ class RoleDefinitions
         return $response;
     }
 
-    /*
+    /**
      * Get all role definitions that are applicable at scope and above. Use
      * atScopeAndBelow filter to search below the given scope as well
      *
      * @param string $scope Scope
      * @param array $filter The filter to apply on the operation. 
+     * <pre>
      * [
      *    'roleName' => ''
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => ''
      * ];
+     * </pre>
      */
     public function listOperation($scope, array $filter, array $customHeaders = [])
     {
@@ -450,19 +476,21 @@ class RoleDefinitions
         return [];
     }
 
-    /*
+    /**
      * Get all role definitions that are applicable at scope and above. Use
      * atScopeAndBelow filter to search below the given scope as well
      *
      * @param string $scope Scope
      * @param array $filter The filter to apply on the operation. 
+     * <pre>
      * [
      *    'roleName' => ''
      * ];
+     * </pre>
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listOperationAsync($scope, array $filter, array $customHeaders = [])
     {
@@ -483,7 +511,7 @@ class RoleDefinitions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -503,7 +531,7 @@ class RoleDefinitions
         return $response;
     }
 
-    /*
+    /**
      * Get all role definitions that are applicable at scope and above. Use
      * atScopeAndBelow filter to search below the given scope as well
      *
@@ -512,10 +540,13 @@ class RoleDefinitions
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => ''
      * ];
+     * </pre>
      */
     public function listNext($nextPageLink, array $customHeaders = [])
     {
@@ -531,7 +562,7 @@ class RoleDefinitions
         return [];
     }
 
-    /*
+    /**
      * Get all role definitions that are applicable at scope and above. Use
      * atScopeAndBelow filter to search below the given scope as well
      *
@@ -540,7 +571,7 @@ class RoleDefinitions
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listNextAsync($nextPageLink, array $customHeaders = [])
     {
@@ -558,7 +589,7 @@ class RoleDefinitions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 

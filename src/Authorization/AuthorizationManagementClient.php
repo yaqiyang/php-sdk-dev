@@ -5,13 +5,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is
  * regenerated.
  *
- * PHP version: >=5.5
+ * PHP version: 5.5
  *
  * @category    Microsoft
  *
  * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
  * @copyright   2016 Microsoft Corporation
- * @license     http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
+ * @license     https://github.com/yaqiyang/php-sdk-dev/blob/master/LICENSE
  *
  * @link        https://github.com/Azure/azure-sdk-for-php
  *
@@ -34,7 +34,7 @@ use MicrosoftAzure\Common\Internal\ServiceRestProxy;
 class AuthorizationManagementClient extends ServiceRestProxy
 {
     /**
-     * Gets Azure subscription credentials.
+     * Credentials needed for the client to connect to Azure.
      *
      * @var OAuthSettings
      */
@@ -161,7 +161,7 @@ class AuthorizationManagementClient extends ServiceRestProxy
     }
 
     /**
-     * Gets credentials, Azure subscription credentials.
+     * Gets credentials, Credentials needed for the client to connect to Azure.
      *
      * @return OAuthSettings
      */
@@ -171,7 +171,7 @@ class AuthorizationManagementClient extends ServiceRestProxy
     }
 
     /**
-     * Sets credentials, Azure subscription credentials.
+     * Sets credentials, Credentials needed for the client to connect to Azure.
      *
      * @param OAuthSettings $credentials
      *

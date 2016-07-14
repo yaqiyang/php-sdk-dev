@@ -32,7 +32,6 @@
     }
 
     $oauthSettings = new OAuthSettings($tenant_id,  $client_id, $client_secret);
-
     $client = new StorageManagementClient($oauthSettings);
     $client->setSubscriptionId($subscriptionId);
     $client->setLongRunningOperationRetryTimeout(600);
@@ -43,9 +42,6 @@
 
     $accountNameArray = ['name' => $accountName, 'type' => 'Microsoft.Storage/storageAccounts'];
     $result = $client->getStorageAccounts()->checkNameAvailability($accountNameArray);
-
-
-    //return;
 
     if (!$result['nameAvailable'])
     {
@@ -136,7 +132,6 @@
             $result = $client->getStorageAccounts()->create($resourceGroup, $accountName, $createParams);
             $client->getStorageAccounts()->create($resourceGroup, $accountName, $createParams);
             echo "\nStorage Account $accountName has been successfully created.\n";
-            var_dump($result);
         }
     }
 

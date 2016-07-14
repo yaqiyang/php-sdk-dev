@@ -5,13 +5,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is
  * regenerated.
  *
- * PHP version: >=5.5
+ * PHP version: 5.5
  *
  * @category    Microsoft
  *
  * @author      Azure PHP SDK <azurephpsdk@microsoft.com>
  * @copyright   2016 Microsoft Corporation
- * @license     http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
+ * @license     https://github.com/yaqiyang/php-sdk-dev/blob/master/LICENSE
  *
  * @link        https://github.com/Azure/azure-sdk-for-php
  *
@@ -30,6 +30,11 @@ use MicrosoftAzure\Common\Internal\Validate;
  */
 class ProviderOperationsMetadataOperations
 {
+    /**
+     * The service client object for the operations.
+     *
+     * @var AuthorizationManagementClient
+     */
     private $_client;
 
     /**
@@ -38,11 +43,11 @@ class ProviderOperationsMetadataOperations
      * @param AuthorizationManagementClient, Service client for ProviderOperationsMetadataOperations
      */
     public function __construct($client)
-    {
+     {
         $this->_client = $client;
-    }
+     }
 
-    /*
+    /**
      * Gets provider operations metadata
      *
      * @param string $resourceProviderNamespace Namespace of the resource provider.
@@ -51,7 +56,9 @@ class ProviderOperationsMetadataOperations
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'id' => '',
      *    'name' => '',
@@ -60,6 +67,7 @@ class ProviderOperationsMetadataOperations
      *    'resourceTypes' => '',
      *    'operations' => ''
      * ];
+     * </pre>
      */
     public function get($resourceProviderNamespace, $apiVersion, $expand = 'resourceTypes', array $customHeaders = [])
     {
@@ -75,7 +83,7 @@ class ProviderOperationsMetadataOperations
         return [];
     }
 
-    /*
+    /**
      * Gets provider operations metadata
      *
      * @param string $resourceProviderNamespace Namespace of the resource provider.
@@ -84,7 +92,7 @@ class ProviderOperationsMetadataOperations
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function getAsync($resourceProviderNamespace, $apiVersion, $expand = 'resourceTypes', array $customHeaders = [])
     {
@@ -105,7 +113,7 @@ class ProviderOperationsMetadataOperations
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -125,7 +133,7 @@ class ProviderOperationsMetadataOperations
         return $response;
     }
 
-    /*
+    /**
      * Gets provider operations metadata list
      *
      * @param string $apiVersion
@@ -133,10 +141,13 @@ class ProviderOperationsMetadataOperations
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => ''
      * ];
+     * </pre>
      */
     public function listOperation($apiVersion, $expand = 'resourceTypes', array $customHeaders = [])
     {
@@ -152,7 +163,7 @@ class ProviderOperationsMetadataOperations
         return [];
     }
 
-    /*
+    /**
      * Gets provider operations metadata list
      *
      * @param string $apiVersion
@@ -160,7 +171,7 @@ class ProviderOperationsMetadataOperations
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listOperationAsync($apiVersion, $expand = 'resourceTypes', array $customHeaders = [])
     {
@@ -178,7 +189,7 @@ class ProviderOperationsMetadataOperations
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -198,7 +209,7 @@ class ProviderOperationsMetadataOperations
         return $response;
     }
 
-    /*
+    /**
      * Gets provider operations metadata list
      *
      * @param string $nextPageLink The NextLink from the previous successful call
@@ -206,10 +217,13 @@ class ProviderOperationsMetadataOperations
      * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
      *  the HTTP request.
      *
-     * @return array when the resposne status is OK 
+     * @return array
+     * When the resposne status is OK(200), 
+     * <pre>
      * [
      *    'value' => ''
      * ];
+     * </pre>
      */
     public function listNext($nextPageLink, array $customHeaders = [])
     {
@@ -225,7 +239,7 @@ class ProviderOperationsMetadataOperations
         return [];
     }
 
-    /*
+    /**
      * Gets provider operations metadata list
      *
      * @param string $nextPageLink The NextLink from the previous successful call
@@ -233,7 +247,7 @@ class ProviderOperationsMetadataOperations
      * @param array $customHeaders ['key' => 'value'] An array of custom headers
      * that will be added to the HTTP request.
      *
-     * @return Guzzle Response object
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function listNextAsync($nextPageLink, array $customHeaders = [])
     {
@@ -251,7 +265,7 @@ class ProviderOperationsMetadataOperations
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-        if ($this->_client->getGenerateClientRequestId()) {
+            if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
