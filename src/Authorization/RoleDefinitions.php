@@ -52,7 +52,7 @@ class RoleDefinitions
      *
      * @param string $scope Scope
      * @param string $roleDefinitionId Role definition id.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -91,7 +91,7 @@ class RoleDefinitions
      *
      * @param string $scope Scope
      * @param string $roleDefinitionId Role definition id.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -143,7 +143,7 @@ class RoleDefinitions
      *
      * @param string $scope Scope
      * @param string $roleDefinitionId Role definition Id
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -182,7 +182,7 @@ class RoleDefinitions
      *
      * @param string $scope Scope
      * @param string $roleDefinitionId Role definition Id
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -249,7 +249,7 @@ class RoleDefinitions
      *    ]
      * ];
      * </pre>
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -303,7 +303,7 @@ class RoleDefinitions
      *    ]
      * ];
      * </pre>
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -358,7 +358,7 @@ class RoleDefinitions
      * Get role definition by name (GUID).
      *
      * @param string $roleDefinitionId Fully qualified role definition Id
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -396,7 +396,7 @@ class RoleDefinitions
      * Get role definition by name (GUID).
      *
      * @param string $roleDefinitionId Fully qualified role definition Id
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -451,7 +451,7 @@ class RoleDefinitions
      *    'roleName' => ''
      * ];
      * </pre>
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -487,7 +487,7 @@ class RoleDefinitions
      *    'roleName' => ''
      * ];
      * </pre>
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -537,7 +537,7 @@ class RoleDefinitions
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -568,7 +568,7 @@ class RoleDefinitions
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response

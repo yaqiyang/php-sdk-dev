@@ -51,7 +51,7 @@ class ClassicAdministrators
      * Gets a list of classic administrators for the subscription.
      *
      * @param string $apiVersion
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -80,7 +80,7 @@ class ClassicAdministrators
      * Gets a list of classic administrators for the subscription.
      *
      * @param string $apiVersion
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -129,7 +129,7 @@ class ClassicAdministrators
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -159,7 +159,7 @@ class ClassicAdministrators
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response

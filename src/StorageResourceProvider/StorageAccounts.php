@@ -59,7 +59,7 @@ class StorageAccounts
      *    'type' => 'Microsoft.Storage/storageAccounts'
      * ];
      * </pre>
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -98,7 +98,7 @@ class StorageAccounts
      *    'type' => 'Microsoft.Storage/storageAccounts'
      * ];
      * </pre>
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -186,7 +186,7 @@ class StorageAccounts
      *    ]
      * ];
      * </pre>
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -295,7 +295,7 @@ class StorageAccounts
      *    ]
      * ];
      * </pre>
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -400,7 +400,7 @@ class StorageAccounts
      *    ]
      * ];
      * </pre>
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -462,7 +462,7 @@ class StorageAccounts
      * @param string $accountName The name of the storage account within the
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -491,7 +491,7 @@ class StorageAccounts
      * @param string $accountName The name of the storage account within the
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -551,7 +551,7 @@ class StorageAccounts
      * @param string $accountName The name of the storage account within the
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -625,7 +625,7 @@ class StorageAccounts
      * @param string $accountName The name of the storage account within the
      * specified resource group. Storage account names must be between 3 and 24
      * characters in length and use numbers and lower-case letters only.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -717,7 +717,7 @@ class StorageAccounts
      *    ]
      * ];
      * </pre>
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -823,7 +823,7 @@ class StorageAccounts
      *    ]
      * ];
      * </pre>
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -881,7 +881,7 @@ class StorageAccounts
      * Lists all the storage accounts available under the subscription. Note that
      * storage keys are not returned; use the ListKeys operation for this.
      *
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -910,7 +910,7 @@ class StorageAccounts
      * Lists all the storage accounts available under the subscription. Note that
      * storage keys are not returned; use the ListKeys operation for this.
      *
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -961,7 +961,7 @@ class StorageAccounts
      *
      * @param string $resourceGroupName The name of the resource group within the
      * user's subscription.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -993,7 +993,7 @@ class StorageAccounts
      *
      * @param string $resourceGroupName The name of the resource group within the
      * user's subscription.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -1045,7 +1045,7 @@ class StorageAccounts
      *
      * @param string $resourceGroupName The name of the resource group.
      * @param string $accountName The name of the storage account.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -1075,7 +1075,7 @@ class StorageAccounts
      *
      * @param string $resourceGroupName The name of the resource group.
      * @param string $accountName The name of the storage account.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -1140,7 +1140,7 @@ class StorageAccounts
      *    'keyName' => 'requiredKeyName'
      * ];
      * </pre>
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -1180,7 +1180,7 @@ class StorageAccounts
      *    'keyName' => 'requiredKeyName'
      * ];
      * </pre>
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response

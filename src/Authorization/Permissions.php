@@ -52,7 +52,7 @@ class Permissions
      *
      * @param string $resourceGroupName Name of the resource group to get the
      * permissions for.The name is case insensitive.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -82,7 +82,7 @@ class Permissions
      *
      * @param string $resourceGroupName Name of the resource group to get the
      * permissions for.The name is case insensitive.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -138,7 +138,7 @@ class Permissions
      * @param string $parentResourcePath Resource
      * @param string $resourceType Resource
      * @param string $resourceName Resource
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -172,7 +172,7 @@ class Permissions
      * @param string $parentResourcePath Resource
      * @param string $resourceType Resource
      * @param string $resourceName Resource
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -236,7 +236,7 @@ class Permissions
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -266,7 +266,7 @@ class Permissions
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -312,7 +312,7 @@ class Permissions
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -342,7 +342,7 @@ class Permissions
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response

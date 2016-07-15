@@ -53,7 +53,7 @@ class ProviderOperationsMetadataOperations
      * @param string $resourceProviderNamespace Namespace of the resource provider.
      * @param string $apiVersion
      * @param string $expand
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -89,7 +89,7 @@ class ProviderOperationsMetadataOperations
      * @param string $resourceProviderNamespace Namespace of the resource provider.
      * @param string $apiVersion
      * @param string $expand
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -138,7 +138,7 @@ class ProviderOperationsMetadataOperations
      *
      * @param string $apiVersion
      * @param string $expand
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -168,7 +168,7 @@ class ProviderOperationsMetadataOperations
      *
      * @param string $apiVersion
      * @param string $expand
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
@@ -214,7 +214,7 @@ class ProviderOperationsMetadataOperations
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers that will be added to
+     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
      *  the HTTP request.
      *
      * @return array
@@ -244,7 +244,7 @@ class ProviderOperationsMetadataOperations
      *
      * @param string $nextPageLink The NextLink from the previous successful call
      * to List operation.
-     * @param array $customHeaders ['key' => 'value'] An array of custom headers
+     * @param array $customHeaders An array of custom headers ['key' => 'value']
      * that will be added to the HTTP request.
      *
      * @return \GuzzleHttp\Psr7\Response
