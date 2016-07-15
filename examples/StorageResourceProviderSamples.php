@@ -6,9 +6,9 @@
     date_default_timezone_set('America/Los_Angeles');
 
     require_once __DIR__ .'/../vendor/autoload.php';
-    use MicrosoftAzure\Common\ServicesBuilder;
-    use MicrosoftAzure\Common\Internal\ServiceException;
     use MicrosoftAzure\Common\Internal\Authentication\OAuthSettings;
+    use MicrosoftAzure\Common\Internal\ServiceException;
+    use MicrosoftAzure\Common\ServicesBuilder;
     use  MicrosoftAzure\StorageResourceProvider\StorageManagementClient;
 
     /** To use the Storage Resource Provider APIs,

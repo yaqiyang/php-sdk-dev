@@ -18,7 +18,6 @@ use MicrosoftAzure\Common\Internal\Authentication\OAuthAccessToken;
 use MicrosoftAzure\Common\Internal\Http\HttpClient;
 use MicrosoftAzure\Common\Internal\Resources;
 use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer;
-use MicrosoftAzure\Common\RestServiceClient;
 
 /**
  * OAuth Service Client.

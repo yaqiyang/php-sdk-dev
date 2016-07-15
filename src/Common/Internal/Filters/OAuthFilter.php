@@ -17,7 +17,7 @@ namespace MicrosoftAzure\Common\Internal\Filters;
 use MicrosoftAzure\Common\Internal\Resources;
 
 /**
- * Add authentication header to the http request object.
+ * Adds authentication header to the http request object.
  */
 class OAuthFilter implements IServiceFilter
 {

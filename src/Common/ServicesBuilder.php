@@ -57,6 +57,7 @@ class ServicesBuilder
     public function createStorageManagementClient($tenant_id, $client_id, $client_secret)
     {
         $oauthSettings = new OAuthSettings($tenant_id, $client_id, $client_secret);
+
         return new StorageManagementClient($oauthSettings);
     }
 

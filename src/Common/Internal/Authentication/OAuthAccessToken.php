@@ -29,7 +29,7 @@ class OAuthAccessToken
     private $_accessToken;
 
     /**
-     * Unix time the access token valid before.
+     * Unix time the access token is valid before.
      *
      * @var int
      */

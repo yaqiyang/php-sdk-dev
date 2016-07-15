@@ -43,9 +43,9 @@ class RoleDefinitions
      * @param AuthorizationManagementClient, Service client for RoleDefinitions
      */
     public function __construct($client)
-     {
+    {
         $this->_client = $client;
-     }
+    }
 
     /**
      * Deletes the role definition.
@@ -118,7 +118,7 @@ class RoleDefinitions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -209,7 +209,7 @@ class RoleDefinitions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -333,7 +333,7 @@ class RoleDefinitions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -420,7 +420,7 @@ class RoleDefinitions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -511,7 +511,7 @@ class RoleDefinitions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -589,7 +589,7 @@ class RoleDefinitions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 

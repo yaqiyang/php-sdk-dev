@@ -21,7 +21,7 @@ use MicrosoftAzure\Internal\ServiceException;
  */
 class RestServiceClient
 {
-        /**
+    /**
      * @var array
      */
     private $_filters;

@@ -43,9 +43,9 @@ class RoleAssignments
      * @param AuthorizationManagementClient, Service client for RoleAssignments
      */
     public function __construct($client)
-     {
+    {
         $this->_client = $client;
-     }
+    }
 
     /**
      * Gets role assignments of the resource.
@@ -140,7 +140,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -233,7 +233,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -322,7 +322,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -432,7 +432,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -522,7 +522,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -606,7 +606,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -711,7 +711,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -796,7 +796,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -884,7 +884,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -974,7 +974,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -1051,7 +1051,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -1128,7 +1128,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -1205,7 +1205,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -1282,7 +1282,7 @@ class RoleAssignments
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 

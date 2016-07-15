@@ -43,9 +43,9 @@ class ClassicAdministrators
      * @param AuthorizationManagementClient, Service client for ClassicAdministrators
      */
     public function __construct($client)
-     {
+    {
         $this->_client = $client;
-     }
+    }
 
     /**
      * Gets a list of classic administrators for the subscription.
@@ -104,7 +104,7 @@ class ClassicAdministrators
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -180,7 +180,7 @@ class ClassicAdministrators
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 

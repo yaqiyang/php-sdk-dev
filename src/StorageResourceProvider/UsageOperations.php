@@ -43,9 +43,9 @@ class UsageOperations
      * @param StorageManagementClient, Service client for UsageOperations
      */
     public function __construct($client)
-     {
+    {
         $this->_client = $client;
-     }
+    }
 
     /**
      * Gets the current usage count and the limit for the resources under the
@@ -104,7 +104,7 @@ class UsageOperations
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 

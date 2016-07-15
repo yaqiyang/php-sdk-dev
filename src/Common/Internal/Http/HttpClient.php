@@ -18,7 +18,6 @@ use MicrosoftAzure\Common\Internal\Resources;
 use MicrosoftAzure\Internal\ServiceException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
 
 /**
  * Holds basic elements for making HTTP calls. This is a wrapper for Guzzle. To use a new external Http

@@ -43,9 +43,9 @@ class Permissions
      * @param AuthorizationManagementClient, Service client for Permissions
      */
     public function __construct($client)
-     {
+    {
         $this->_client = $client;
-     }
+    }
 
     /**
      * Gets a resource group permissions.
@@ -109,7 +109,7 @@ class Permissions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -211,7 +211,7 @@ class Permissions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -287,7 +287,7 @@ class Permissions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
@@ -363,7 +363,7 @@ class Permissions
         if ($this->_client->getAcceptLanguage() != null) {
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
-            if ($this->_client->getGenerateClientRequestId()) {
+        if ($this->_client->getGenerateClientRequestId()) {
             $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
