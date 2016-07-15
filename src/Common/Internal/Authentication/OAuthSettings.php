@@ -12,13 +12,16 @@
  * @version     Release: 0.10.0_2016
  */
 
-namespace MicrosoftAzure\Common\Internal;
+namespace MicrosoftAzure\Common\Internal\Authentication;
+
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
- * Represents the settings used to sign and access a request against the service
- * management.
+ * Represents the OAuth settings used to access the Azure resource management APIs (ARM)
+ * or other OAuth enabled services.
  */
-class OAuthSettings extends ServiceSettings
+class OAuthSettings
 {
     /**
      * @var string
@@ -51,7 +54,7 @@ class OAuthSettings extends ServiceSettings
     private $_oauthEndpointUri;
 
     /**
-     * Creates new media services settings instance.
+     * Creates an OAuth settings instance.
      *
      * @param string $tenant_id      tenant id for the user account
      * @param string $client_id      client id
@@ -76,7 +79,7 @@ class OAuthSettings extends ServiceSettings
     }
 
     /**
-     * Gets array of OAuth parameters.
+     * Gets an array of OAuth parameters.
      *
      * @return array of all parameters for OAuth
      */

@@ -80,7 +80,7 @@ class RoleAssignments
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -189,7 +189,7 @@ class RoleAssignments
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -283,7 +283,7 @@ class RoleAssignments
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -381,7 +381,7 @@ class RoleAssignments
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -483,7 +483,7 @@ class RoleAssignments
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -571,7 +571,7 @@ class RoleAssignments
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -664,7 +664,7 @@ class RoleAssignments
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -761,7 +761,7 @@ class RoleAssignments
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -844,7 +844,7 @@ class RoleAssignments
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -933,7 +933,7 @@ class RoleAssignments
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -1018,7 +1018,7 @@ class RoleAssignments
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -1095,7 +1095,7 @@ class RoleAssignments
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -1172,7 +1172,7 @@ class RoleAssignments
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -1249,7 +1249,7 @@ class RoleAssignments
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 

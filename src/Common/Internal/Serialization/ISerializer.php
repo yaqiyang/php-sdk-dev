@@ -20,7 +20,7 @@ namespace MicrosoftAzure\Common\Internal\Serialization;
 interface ISerializer
 {
     /**
-     * Serialize an object into a XML.
+     * Serializes an object into a XML or other format such as Json.
      *
      * @param object $targetObject The target object to be serialized.
      * @param string $rootName     The name of the root.
@@ -30,7 +30,7 @@ interface ISerializer
     public static function objectSerialize($targetObject, $rootName);
 
     /**
-     * Serializes given array. The array indices must be string to use them as
+     * Serializes the given array. The array indices must be string to use them as
      * as element name.
      *
      * @param array $array      The object to serialize represented in array.
@@ -41,11 +41,11 @@ interface ISerializer
     public function serialize($array, $properties = null);
 
     /**
-     * Unserializes given serialized string.
+     * Deserializes given serialized string.
      *
      * @param string $serialized The serialized object in string representation.
      *
      * @return array
      */
-    public function unserialize($serialized);
+    public function deserialize($serialized);
 }

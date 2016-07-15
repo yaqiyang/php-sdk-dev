@@ -12,7 +12,7 @@
  * @version     Release: 0.10.0_2016
  */
 
-namespace MicrosoftAzure\Common\Models;
+namespace MicrosoftAzure\Common\Internal\Authentication;
 
 use MicrosoftAzure\Common\Internal\Resources;
 
@@ -47,7 +47,7 @@ class OAuthAccessToken
      *
      * @param array $parsedResponse JSON response parsed into array.
      *
-     * @return MicrosoftAzure\Common\Models\OAuthAccessToken
+     * @return MicrosoftAzure\Common\Internal\Authentication\OAuthAccessToken
      */
     public static function create($parsedResponse)
     {

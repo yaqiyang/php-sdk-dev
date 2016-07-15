@@ -23,15 +23,15 @@ namespace MicrosoftAzure\StorageResourceProvider;
 use MicrosoftAzure\Common\Internal\Authentication\OAuthScheme;
 use MicrosoftAzure\Common\Internal\Filters\OAuthFilter;
 use MicrosoftAzure\Common\Internal\Http\HttpClient;
-use MicrosoftAzure\Common\Internal\OAuthRestProxy;
 use MicrosoftAzure\Common\Internal\Resources;
 use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer;
-use MicrosoftAzure\Common\Internal\ServiceRestProxy;
+use MicrosoftAzure\Common\OAuthServiceClient;
+use MicrosoftAzure\Common\RestServiceClient;
 
 /**
  * The Storage Management Client.
  */
-class StorageManagementClient extends ServiceRestProxy
+class StorageManagementClient extends RestServiceClient
 {
     /**
      * Credentials needed for the client to connect to Azure.
@@ -119,10 +119,9 @@ class StorageManagementClient extends ServiceRestProxy
         $this->_credentials = $oauthSettings;
         parent::__construct(
             $this->_credentials->getOAuthEndpointUri(),
-            $this->_credentials->getTenantId(),
             new JsonSerializer()
         );
-        $oauthService = new OAuthRestProxy($this->_credentials);
+        $oauthService = new OAuthServiceClient($this->_credentials);
         $authentification = new OAuthScheme($oauthService);
         $this->_filters = [new OAuthFilter($authentification)];
 

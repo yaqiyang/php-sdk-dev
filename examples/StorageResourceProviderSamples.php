@@ -7,8 +7,8 @@
 
     require_once __DIR__ .'/../vendor/autoload.php';
     use MicrosoftAzure\Common\ServicesBuilder;
-    use MicrosoftAzure\Common\ServiceException;
-    use MicrosoftAzure\Common\Internal\OAuthSettings;
+    use MicrosoftAzure\Common\Internal\ServiceException;
+    use MicrosoftAzure\Common\Internal\Authentication\OAuthSettings;
     use  MicrosoftAzure\StorageResourceProvider\StorageManagementClient;
 
     /** To use the Storage Resource Provider APIs,
@@ -31,7 +31,7 @@
         include_once $config;
     }
 
-    $oauthSettings = new OAuthSettings($tenant_id,  $client_id, $client_secret);
+    $oauthSettings = new OAuthSettings($tenant_id, $client_id, $client_secret);
     $client = new StorageManagementClient($oauthSettings);
     $client->setSubscriptionId($subscriptionId);
     $client->setLongRunningOperationRetryTimeout(600);

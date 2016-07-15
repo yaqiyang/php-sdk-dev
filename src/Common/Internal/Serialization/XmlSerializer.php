@@ -107,7 +107,7 @@ class XmlSerializer implements ISerializer
     }
 
     /**
-     * Serialize an object with specified root element name.
+     * Serializes an object with specified root element name.
      *
      * @param object $targetObject The target object.
      * @param string $rootName     The name of the root element.
@@ -164,7 +164,7 @@ class XmlSerializer implements ISerializer
     }
 
     /**
-     * Serializes given array. The array indices must be string to use them as
+     * Serializes the given array. The array indices must be string to use them as
      * as element name.
      *
      * @param array $array      The object to serialize represented in array.
@@ -212,13 +212,13 @@ class XmlSerializer implements ISerializer
     }
 
     /**
-     * Unserializes given serialized string.
+     * Deserializes given serialized string.
      *
      * @param string $serialized The serialized object in string representation.
      *
      * @return array
      */
-    public function unserialize($serialized)
+    public function deserialize($serialized)
     {
         $sxml = new \SimpleXMLElement($serialized);
 

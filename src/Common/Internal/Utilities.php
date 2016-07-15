@@ -200,7 +200,7 @@ class Utilities
     }
 
     /**
-     * Unserializes the passed $xml into array.
+     * Deserializes the passed $xml into array.
      *
      * @param string $xml XML to be parsed.
      *
@@ -208,7 +208,7 @@ class Utilities
      *
      * @return array
      */
-    public static function unserialize($xml)
+    public static function Deserialize($xml)
     {
         $sxml = new \SimpleXMLElement($xml);
 

@@ -79,7 +79,7 @@ class StorageAccounts
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -248,7 +248,7 @@ class StorageAccounts
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -353,7 +353,7 @@ class StorageAccounts
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -476,7 +476,7 @@ class StorageAccounts
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -608,7 +608,7 @@ class StorageAccounts
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -774,7 +774,7 @@ class StorageAccounts
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -899,7 +899,7 @@ class StorageAccounts
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -979,7 +979,7 @@ class StorageAccounts
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -1063,7 +1063,7 @@ class StorageAccounts
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 
@@ -1158,7 +1158,7 @@ class StorageAccounts
         if ($response->getBody()) {
             $contents = $response->getBody()->getContents();
             if ($contents) {
-                return $this->_client->getDataSerializer()->unserialize($contents);
+                return $this->_client->getDataSerializer()->deserialize($contents);
             }
         }
 

@@ -12,7 +12,7 @@
  * @version     Release: 0.10.0_2016
  */
 
-namespace MicrosoftAzure\Common\Internal;
+namespace MicrosoftAzure\Common;
 
 /**
  * Logger class for debugging purpose.

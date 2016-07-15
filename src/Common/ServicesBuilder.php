@@ -14,13 +14,13 @@
 
 namespace MicrosoftAzure\Common;
 
+use MicrosoftAzure\Common\Internal\Authorization\OAuthSettings;
 use MicrosoftAzure\Common\Internal\Resources;
-use MicrosoftAzure\Common\Internal\OAuthSettings;
 use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer;
 use MicrosoftAzure\Common\Internal\Serialization\XmlSerializer;
 
 /**
- * Builds azure service objects.
+ * Builds azure service clients.
  */
 class ServicesBuilder
 {
@@ -50,15 +50,14 @@ class ServicesBuilder
     }
 
     /**
-     * Gets the StorageResourceProviderProxy.
+     * Gets the StorageManagementClient.
      *
-     * @return MicrosoftAzure\StorageResourceProvider\StorageResourceProviderProxy
+     * @return MicrosoftAzure\StorageResourceProvider\StorageManagementClient
      */
-    public function createStorageResourceProviderService($tenant_id,  $client_id, $client_secret)
+    public function createStorageManagementClient($tenant_id, $client_id, $client_secret)
     {
-        $oauthSettings = new OAuthSettings($tenant_id,  $client_id, $client_secret);
-
-        return new StorageResourceProviderProxy($oauthSettings);
+        $oauthSettings = new OAuthSettings($tenant_id, $client_id, $client_secret);
+        return new StorageManagementClient($oauthSettings);
     }
 
     /**

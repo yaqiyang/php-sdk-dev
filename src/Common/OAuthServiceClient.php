@@ -12,26 +12,28 @@
  * @version     Release: 0.10.0_2016
  */
 
-namespace MicrosoftAzure\Common\Internal;
+namespace MicrosoftAzure\Common;
 
+use MicrosoftAzure\Common\Internal\Authentication\OAuthAccessToken;
 use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
 use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer;
-use MicrosoftAzure\Common\Models\OAuthAccessToken;
+use MicrosoftAzure\Common\RestServiceClient;
 
 /**
- * OAuth rest proxy.
+ * OAuth Service Client.
  */
-class OAuthRestProxy extends ServiceRestProxy
+class OAuthServiceClient extends RestServiceClient
 {
     /**
-     * @var MicrosoftAzure\Common\Internal\OAuthSettings
+     * @var MicrosoftAzure\Common\Internal\Authorization\OAuthSettings
      */
     protected $oauthSettings;
 
     /**
-     * Initializes new OAuthRestProxy object.
+     * Initializes new OAuthServiceClient object.
      *
-     * @param MicrosoftAzure\Common\Internal\OAuthSettings $oauthSettings oauthSettings.
+     * @param MicrosoftAzure\Common\Internal\Authorization\OAuthSettings $oauthSettings oauthSettings.
      */
     public function __construct($oauthSettings)
     {
@@ -39,7 +41,6 @@ class OAuthRestProxy extends ServiceRestProxy
 
         parent::__construct(
             $oauthSettings->getOAuthEndpointUri(),
-            $oauthSettings->getTenantId(),
             new JsonSerializer()
         );
     }
@@ -47,7 +48,7 @@ class OAuthRestProxy extends ServiceRestProxy
     /**
      * Get OAuth access token.
      *
-     * @return MicrosoftAzure\Common\Internal\Models\OAuthAccessToken
+     * @return MicrosoftAzure\Common\Internal\Internal\Authentication\OAuthAccessToken
      */
     public function getOAuthAccessToken()
     {
@@ -67,7 +68,7 @@ class OAuthRestProxy extends ServiceRestProxy
                 $statusCode
         );
 
-        $parsed = $this->dataSerializer->unserialize($response->getBody()->getContents());
+        $parsed = $this->dataSerializer->deserialize($response->getBody()->getContents());
 
         return OAuthAccessToken::create($parsed);
     }

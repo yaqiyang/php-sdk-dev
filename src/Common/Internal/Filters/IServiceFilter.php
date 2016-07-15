@@ -15,7 +15,7 @@
 namespace MicrosoftAzure\Common\Internal\Filters;
 
 /**
- * ServiceFilter is used when sending requests and after receiving responses.
+ * ServiceFilter is used for http requests and responses.
  */
 interface IServiceFilter
 {
@@ -27,14 +27,4 @@ interface IServiceFilter
      * @return $request HTTP channel object.
      */
     public function handleRequest($request);
-
-    /**
-     * Processes HTTP response after send.
-     *
-     * @param $request  HTTP channel object.
-     * @param $response HTTP response object.
-     *
-     * @return $response HTTP channel object.
-     */
-    public function handleResponse($request, $response);
 }

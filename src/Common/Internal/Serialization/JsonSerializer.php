@@ -22,7 +22,7 @@ use MicrosoftAzure\Common\Internal\Validate;
 class JsonSerializer implements ISerializer
 {
     /**
-     * Serialize an object with specified root element name.
+     * Serializes an object with specified root element name.
      *
      * @param object $targetObject The target object.
      * @param string $rootName     The name of the root element.
@@ -58,13 +58,13 @@ class JsonSerializer implements ISerializer
     }
 
     /**
-     * Unserializes given serialized string to array.
+     * Deserializes given serialized string to array.
      *
      * @param string $serialized The serialized object in string representation.
      *
      * @return array
      */
-    public function unserialize($serialized)
+    public function deserialize($serialized)
     {
         Validate::isString($serialized, 'serialized');
 

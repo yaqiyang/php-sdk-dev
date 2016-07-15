@@ -18,24 +18,24 @@ use MicrosoftAzure\Common\Internal\Resources;
 use MicrosoftAzure\Common\Internal\Validate;
 
 /**
- * OAth authentication scheme.
+ * OAuth authentication scheme.
  */
 class OAuthScheme implements IAuthScheme
 {
     /**
-     * @var MicrosoftAzure\Common\Internal\OAuthRestProxy The OAuth service to call the API and get the tokens.
+     * @var MicrosoftAzure\Common\OAuthServiceClient The OAuth service to call the API and get the tokens.
      */
     protected $oauthService;
 
     /**
-     * @var MicrosoftAzure\Common\Models\OAuthAccessToken The OAuth access token.
+     * @var MicrosoftAzure\Common\Internal\Authentication\OAuthAccessToken The OAuth access token.
      */
     protected $oauthAccessToken;
 
     /**
      * Constructor.
      *
-     * @param MicrosoftAzure\Common\Internal\OAuthRestProxy $oauthService oauthService
+     * @param MicrosoftAzure\Common\OAuthServiceClient $oauthService oauthService
      */
     public function __construct($oauthService)
     {
@@ -53,7 +53,7 @@ class OAuthScheme implements IAuthScheme
      *
      * @return string
      */
-    public function getAuthorizationHeader($headers, $url, $queryParams, $httpMethod)
+    public function getAuthorizationHeader(array $headers = [], $url = '', array $queryParams = [], $httpMethod = '')
     {
         if (($this->oauthAccessToken == null) || (time() > $this->oauthAccessToken->getExpiresOn())) {
             $this->oauthAccessToken = $this->oauthService->getOAuthAccessToken();

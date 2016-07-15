@@ -15,14 +15,14 @@
 namespace MicrosoftAzure\Common\Internal\Http;
 
 use MicrosoftAzure\Common\Internal\Resources;
-use MicrosoftAzure\Common\ServiceException;
+use MicrosoftAzure\Internal\ServiceException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 
 /**
- * Holds basic elements for making HTTP calls. This is a wrapper for Guzzle. To change to a new external Http
- * client in the future, change this file should be sufficient.
+ * Holds basic elements for making HTTP calls. This is a wrapper for Guzzle. To use a new external Http
+ * client in the future, change of this file should be sufficient.
  */
 class HttpClient
 {
