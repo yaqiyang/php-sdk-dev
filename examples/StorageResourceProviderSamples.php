@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * These are code samples for Storage Resource Provider at https://msdn.microsoft.com/en-us/library/azure/mt163683.aspx
+ */
+
     // some important settings
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);

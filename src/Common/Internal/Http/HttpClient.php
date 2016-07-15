@@ -15,7 +15,7 @@
 namespace MicrosoftAzure\Common\Internal\Http;
 
 use MicrosoftAzure\Common\Internal\Resources;
-use MicrosoftAzure\Internal\ServiceException;
+use MicrosoftAzure\Common\Internal\ServiceException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 

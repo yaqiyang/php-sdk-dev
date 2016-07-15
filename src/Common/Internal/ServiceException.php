@@ -12,7 +12,7 @@
  * @version     Release: 0.10.0_2016
  */
 
-namespace MicrosoftAzure\Internal;
+namespace MicrosoftAzure\Common\Internal;
 
 use MicrosoftAzure\Common\Internal\Resources;
 
