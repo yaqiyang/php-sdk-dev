@@ -136,7 +136,6 @@
             ];
 
             $result = $client->getStorageAccounts()->create($resourceGroup, $accountName, $createParams);
-            $client->getStorageAccounts()->create($resourceGroup, $accountName, $createParams);
             echo "\nStorage Account $accountName has been successfully created.\n";
         }
     }
