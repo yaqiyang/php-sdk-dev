@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\Network;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * ExpressRouteCircuits for The Microsoft Azure Network management API
@@ -69,7 +69,7 @@ class ExpressRouteCircuits
     {
         $response = $this->begindeleteAsync($resourceGroupName, $circuitName, $customHeaders);
 
-        if ($response->getStatusCode() !== PhpResources::STATUS_OK) {
+        if ($response->getStatusCode() !== Resources::STATUS_OK) {
             $this->_client->awaitAsync($response);
         }
 
@@ -125,16 +125,16 @@ class ExpressRouteCircuits
     public function beginDeleteAsync($resourceGroupName, $circuitName, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($circuitName == null) {
-            PhpValidate::notNullOrEmpty($circuitName, '$circuitName');
+            Validate::notNullOrEmpty($circuitName, '$circuitName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}';
@@ -148,12 +148,12 @@ class ExpressRouteCircuits
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -233,16 +233,16 @@ class ExpressRouteCircuits
     public function getAsync($resourceGroupName, $circuitName, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($circuitName == null) {
-            PhpValidate::notNullOrEmpty($circuitName, '$circuitName');
+            Validate::notNullOrEmpty($circuitName, '$circuitName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}';
@@ -256,12 +256,12 @@ class ExpressRouteCircuits
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -370,7 +370,7 @@ class ExpressRouteCircuits
     {
         $response = $this->begincreateOrUpdateAsync($resourceGroupName, $circuitName, $parameters, $customHeaders);
 
-        if ($response->getStatusCode() !== PhpResources::STATUS_OK) {
+        if ($response->getStatusCode() !== Resources::STATUS_OK) {
             $this->_client->awaitAsync($response);
         }
 
@@ -529,19 +529,19 @@ class ExpressRouteCircuits
     public function beginCreateOrUpdateAsync($resourceGroupName, $circuitName, array $parameters, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($circuitName == null) {
-            PhpValidate::notNullOrEmpty($circuitName, '$circuitName');
+            Validate::notNullOrEmpty($circuitName, '$circuitName');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}';
@@ -555,13 +555,13 @@ class ExpressRouteCircuits
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -601,7 +601,7 @@ class ExpressRouteCircuits
     {
         $response = $this->beginlistArpTableAsync($resourceGroupName, $circuitName, $peeringName, $devicePath, $customHeaders);
 
-        if ($response->getStatusCode() !== PhpResources::STATUS_OK) {
+        if ($response->getStatusCode() !== Resources::STATUS_OK) {
             $this->_client->awaitAsync($response);
         }
 
@@ -668,22 +668,22 @@ class ExpressRouteCircuits
     public function beginListArpTableAsync($resourceGroupName, $circuitName, $peeringName, $devicePath, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($circuitName == null) {
-            PhpValidate::notNullOrEmpty($circuitName, '$circuitName');
+            Validate::notNullOrEmpty($circuitName, '$circuitName');
         }
         if ($peeringName == null) {
-            PhpValidate::notNullOrEmpty($peeringName, '$peeringName');
+            Validate::notNullOrEmpty($peeringName, '$peeringName');
         }
         if ($devicePath == null) {
-            PhpValidate::notNullOrEmpty($devicePath, '$devicePath');
+            Validate::notNullOrEmpty($devicePath, '$devicePath');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}/peerings/{peeringName}/arpTables/{devicePath}';
@@ -697,12 +697,12 @@ class ExpressRouteCircuits
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -742,7 +742,7 @@ class ExpressRouteCircuits
     {
         $response = $this->beginlistRoutesTableAsync($resourceGroupName, $circuitName, $peeringName, $devicePath, $customHeaders);
 
-        if ($response->getStatusCode() !== PhpResources::STATUS_OK) {
+        if ($response->getStatusCode() !== Resources::STATUS_OK) {
             $this->_client->awaitAsync($response);
         }
 
@@ -809,22 +809,22 @@ class ExpressRouteCircuits
     public function beginListRoutesTableAsync($resourceGroupName, $circuitName, $peeringName, $devicePath, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($circuitName == null) {
-            PhpValidate::notNullOrEmpty($circuitName, '$circuitName');
+            Validate::notNullOrEmpty($circuitName, '$circuitName');
         }
         if ($peeringName == null) {
-            PhpValidate::notNullOrEmpty($peeringName, '$peeringName');
+            Validate::notNullOrEmpty($peeringName, '$peeringName');
         }
         if ($devicePath == null) {
-            PhpValidate::notNullOrEmpty($devicePath, '$devicePath');
+            Validate::notNullOrEmpty($devicePath, '$devicePath');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}/peerings/{peeringName}/routeTables/{devicePath}';
@@ -838,12 +838,12 @@ class ExpressRouteCircuits
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -883,7 +883,7 @@ class ExpressRouteCircuits
     {
         $response = $this->beginlistRoutesTableSummaryAsync($resourceGroupName, $circuitName, $peeringName, $devicePath, $customHeaders);
 
-        if ($response->getStatusCode() !== PhpResources::STATUS_OK) {
+        if ($response->getStatusCode() !== Resources::STATUS_OK) {
             $this->_client->awaitAsync($response);
         }
 
@@ -950,22 +950,22 @@ class ExpressRouteCircuits
     public function beginListRoutesTableSummaryAsync($resourceGroupName, $circuitName, $peeringName, $devicePath, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($circuitName == null) {
-            PhpValidate::notNullOrEmpty($circuitName, '$circuitName');
+            Validate::notNullOrEmpty($circuitName, '$circuitName');
         }
         if ($peeringName == null) {
-            PhpValidate::notNullOrEmpty($peeringName, '$peeringName');
+            Validate::notNullOrEmpty($peeringName, '$peeringName');
         }
         if ($devicePath == null) {
-            PhpValidate::notNullOrEmpty($devicePath, '$devicePath');
+            Validate::notNullOrEmpty($devicePath, '$devicePath');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}/peerings/{peeringName}/routeTablesSummary/{devicePath}';
@@ -979,12 +979,12 @@ class ExpressRouteCircuits
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1046,16 +1046,16 @@ class ExpressRouteCircuits
     public function getStatsAsync($resourceGroupName, $circuitName, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($circuitName == null) {
-            PhpValidate::notNullOrEmpty($circuitName, '$circuitName');
+            Validate::notNullOrEmpty($circuitName, '$circuitName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}/stats';
@@ -1069,12 +1069,12 @@ class ExpressRouteCircuits
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1138,19 +1138,19 @@ class ExpressRouteCircuits
     public function getPeeringStatsAsync($resourceGroupName, $circuitName, $peeringName, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($circuitName == null) {
-            PhpValidate::notNullOrEmpty($circuitName, '$circuitName');
+            Validate::notNullOrEmpty($circuitName, '$circuitName');
         }
         if ($peeringName == null) {
-            PhpValidate::notNullOrEmpty($peeringName, '$peeringName');
+            Validate::notNullOrEmpty($peeringName, '$peeringName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}/peerings/{peeringName}/stats';
@@ -1164,12 +1164,12 @@ class ExpressRouteCircuits
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1227,13 +1227,13 @@ class ExpressRouteCircuits
     public function listOperationAsync($resourceGroupName, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits';
@@ -1247,12 +1247,12 @@ class ExpressRouteCircuits
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1308,10 +1308,10 @@ class ExpressRouteCircuits
     public function listAllAsync(array $customHeaders = [])
     {
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/Microsoft.Network/expressRouteCircuits';
@@ -1325,12 +1325,12 @@ class ExpressRouteCircuits
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1390,7 +1390,7 @@ class ExpressRouteCircuits
     public function listNextAsync($nextPageLink, array $customHeaders = [])
     {
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -1404,12 +1404,12 @@ class ExpressRouteCircuits
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1469,7 +1469,7 @@ class ExpressRouteCircuits
     public function listAllNextAsync($nextPageLink, array $customHeaders = [])
     {
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -1483,12 +1483,12 @@ class ExpressRouteCircuits
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

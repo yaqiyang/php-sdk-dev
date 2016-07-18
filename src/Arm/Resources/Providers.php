@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\Resources;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * Providers.
@@ -91,13 +91,13 @@ class Providers
     public function unregisterAsync($resourceProviderNamespace, array $customHeaders = [])
     {
         if ($resourceProviderNamespace == null) {
-            PhpValidate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
+            Validate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/{resourceProviderNamespace}/unregister';
@@ -111,12 +111,12 @@ class Providers
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -174,13 +174,13 @@ class Providers
     public function registerAsync($resourceProviderNamespace, array $customHeaders = [])
     {
         if ($resourceProviderNamespace == null) {
-            PhpValidate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
+            Validate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/{resourceProviderNamespace}/register';
@@ -194,12 +194,12 @@ class Providers
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -255,10 +255,10 @@ class Providers
     public function listOperationAsync($top = null, array $customHeaders = [])
     {
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers';
@@ -272,12 +272,12 @@ class Providers
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -335,13 +335,13 @@ class Providers
     public function getAsync($resourceProviderNamespace, array $customHeaders = [])
     {
         if ($resourceProviderNamespace == null) {
-            PhpValidate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
+            Validate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/{resourceProviderNamespace}';
@@ -355,12 +355,12 @@ class Providers
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -418,7 +418,7 @@ class Providers
     public function listNextAsync($nextPageLink, array $customHeaders = [])
     {
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -432,12 +432,12 @@ class Providers
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

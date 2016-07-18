@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\DataLakeStoreFileSystem;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * FileSystem for Creates an Azure Data Lake Store filesystem client.
@@ -105,19 +105,19 @@ class FileSystem
     public function concurrentAppendAsync($accountName, $filePath, $streamContents, array $appendMode, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($filePath == null) {
-            PhpValidate::notNullOrEmpty($filePath, '$filePath');
+            Validate::notNullOrEmpty($filePath, '$filePath');
         }
         if ($streamContents == null) {
-            PhpValidate::notNullOrEmpty($streamContents, '$streamContents');
+            Validate::notNullOrEmpty($streamContents, '$streamContents');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/WebHdfsExt/{filePath}';
@@ -134,13 +134,13 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/octet-stream';
         $body = $this->_client->getDataSerializer()->serialize($streamContents);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -200,16 +200,16 @@ class FileSystem
     public function checkAccessAsync($accountName, $path, $fsaction = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($path == null) {
-            PhpValidate::notNullOrEmpty($path, '$path');
+            Validate::notNullOrEmpty($path, '$path');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/v1/{path}';
@@ -223,12 +223,12 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -289,16 +289,16 @@ class FileSystem
     public function mkdirsAsync($accountName, $path, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($path == null) {
-            PhpValidate::notNullOrEmpty($path, '$path');
+            Validate::notNullOrEmpty($path, '$path');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/v1/{path}';
@@ -312,12 +312,12 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -381,19 +381,19 @@ class FileSystem
     public function concatAsync($accountName, $destinationPath, array $sources, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($destinationPath == null) {
-            PhpValidate::notNullOrEmpty($destinationPath, '$destinationPath');
+            Validate::notNullOrEmpty($destinationPath, '$destinationPath');
         }
         if ($sources == null) {
-            PhpValidate::notNullOrEmpty($sources, '$sources');
+            Validate::notNullOrEmpty($sources, '$sources');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/v1/{destinationPath}';
@@ -407,12 +407,12 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -494,19 +494,19 @@ class FileSystem
     public function msConcatAsync($accountName, $msConcatDestinationPath, $streamContents, $deleteSourceDirectory = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($msConcatDestinationPath == null) {
-            PhpValidate::notNullOrEmpty($msConcatDestinationPath, '$msConcatDestinationPath');
+            Validate::notNullOrEmpty($msConcatDestinationPath, '$msConcatDestinationPath');
         }
         if ($streamContents == null) {
-            PhpValidate::notNullOrEmpty($streamContents, '$streamContents');
+            Validate::notNullOrEmpty($streamContents, '$streamContents');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/v1/{msConcatDestinationPath}';
@@ -520,13 +520,13 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/octet-stream';
         $body = $this->_client->getDataSerializer()->serialize($streamContents);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -609,16 +609,16 @@ class FileSystem
     public function listFileStatusAsync($accountName, $listFilePath, $listSize = null, $listAfter = null, $listBefore = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($listFilePath == null) {
-            PhpValidate::notNullOrEmpty($listFilePath, '$listFilePath');
+            Validate::notNullOrEmpty($listFilePath, '$listFilePath');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/v1/{listFilePath}';
@@ -632,12 +632,12 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -703,16 +703,16 @@ class FileSystem
     public function getContentSummaryAsync($accountName, $getContentSummaryFilePath, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($getContentSummaryFilePath == null) {
-            PhpValidate::notNullOrEmpty($getContentSummaryFilePath, '$getContentSummaryFilePath');
+            Validate::notNullOrEmpty($getContentSummaryFilePath, '$getContentSummaryFilePath');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/va/{getContentSummaryFilePath}';
@@ -726,12 +726,12 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -803,16 +803,16 @@ class FileSystem
     public function getFileStatusAsync($accountName, $getFilePath, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($getFilePath == null) {
-            PhpValidate::notNullOrEmpty($getFilePath, '$getFilePath');
+            Validate::notNullOrEmpty($getFilePath, '$getFilePath');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/v1/{getFilePath}';
@@ -826,12 +826,12 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -905,19 +905,19 @@ class FileSystem
     public function appendAsync($accountName, $directFilePath, $streamContents, $offset = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($directFilePath == null) {
-            PhpValidate::notNullOrEmpty($directFilePath, '$directFilePath');
+            Validate::notNullOrEmpty($directFilePath, '$directFilePath');
         }
         if ($streamContents == null) {
-            PhpValidate::notNullOrEmpty($streamContents, '$streamContents');
+            Validate::notNullOrEmpty($streamContents, '$streamContents');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/v1/{directFilePath}';
@@ -934,13 +934,13 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/octet-stream';
         $body = $this->_client->getDataSerializer()->serialize($streamContents);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1004,16 +1004,16 @@ class FileSystem
     public function createAsync($accountName, $directFilePath, $streamContents = null, $overwrite = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($directFilePath == null) {
-            PhpValidate::notNullOrEmpty($directFilePath, '$directFilePath');
+            Validate::notNullOrEmpty($directFilePath, '$directFilePath');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/v1/{directFilePath}';
@@ -1030,13 +1030,13 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/octet-stream';
         $body = $this->_client->getDataSerializer()->serialize($streamContents);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1096,16 +1096,16 @@ class FileSystem
     public function openAsync($accountName, $directFilePath, $length = null, $offset = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($directFilePath == null) {
-            PhpValidate::notNullOrEmpty($directFilePath, '$directFilePath');
+            Validate::notNullOrEmpty($directFilePath, '$directFilePath');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/v1/{directFilePath}';
@@ -1119,12 +1119,12 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1184,19 +1184,19 @@ class FileSystem
     public function setAclAsync($accountName, $setAclFilePath, $aclspec, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($setAclFilePath == null) {
-            PhpValidate::notNullOrEmpty($setAclFilePath, '$setAclFilePath');
+            Validate::notNullOrEmpty($setAclFilePath, '$setAclFilePath');
         }
         if ($aclspec == null) {
-            PhpValidate::notNullOrEmpty($aclspec, '$aclspec');
+            Validate::notNullOrEmpty($aclspec, '$aclspec');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/v1/{setAclFilePath}';
@@ -1210,12 +1210,12 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1275,19 +1275,19 @@ class FileSystem
     public function modifyAclEntriesAsync($accountName, $modifyAclFilePath, $aclspec, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($modifyAclFilePath == null) {
-            PhpValidate::notNullOrEmpty($modifyAclFilePath, '$modifyAclFilePath');
+            Validate::notNullOrEmpty($modifyAclFilePath, '$modifyAclFilePath');
         }
         if ($aclspec == null) {
-            PhpValidate::notNullOrEmpty($aclspec, '$aclspec');
+            Validate::notNullOrEmpty($aclspec, '$aclspec');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/v1/{modifyAclFilePath}';
@@ -1301,12 +1301,12 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1366,19 +1366,19 @@ class FileSystem
     public function removeAclEntriesAsync($accountName, $removeAclFilePath, $aclspec, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($removeAclFilePath == null) {
-            PhpValidate::notNullOrEmpty($removeAclFilePath, '$removeAclFilePath');
+            Validate::notNullOrEmpty($removeAclFilePath, '$removeAclFilePath');
         }
         if ($aclspec == null) {
-            PhpValidate::notNullOrEmpty($aclspec, '$aclspec');
+            Validate::notNullOrEmpty($aclspec, '$aclspec');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/v1/{removeAclFilePath}';
@@ -1392,12 +1392,12 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1463,16 +1463,16 @@ class FileSystem
     public function getAclStatusAsync($accountName, $aclFilePath, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($aclFilePath == null) {
-            PhpValidate::notNullOrEmpty($aclFilePath, '$aclFilePath');
+            Validate::notNullOrEmpty($aclFilePath, '$aclFilePath');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/v1/{aclFilePath}';
@@ -1486,12 +1486,12 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1556,16 +1556,16 @@ class FileSystem
     public function deleteAsync($accountName, $filePath, $recursive = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($filePath == null) {
-            PhpValidate::notNullOrEmpty($filePath, '$filePath');
+            Validate::notNullOrEmpty($filePath, '$filePath');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/v1/{filePath}';
@@ -1579,12 +1579,12 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1647,19 +1647,19 @@ class FileSystem
     public function renameAsync($accountName, $renameFilePath, $destination, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($renameFilePath == null) {
-            PhpValidate::notNullOrEmpty($renameFilePath, '$renameFilePath');
+            Validate::notNullOrEmpty($renameFilePath, '$renameFilePath');
         }
         if ($destination == null) {
-            PhpValidate::notNullOrEmpty($destination, '$destination');
+            Validate::notNullOrEmpty($destination, '$destination');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/v1/{renameFilePath}';
@@ -1673,12 +1673,12 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1742,16 +1742,16 @@ class FileSystem
     public function setOwnerAsync($accountName, $setOwnerFilePath, $owner = null, $group = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($setOwnerFilePath == null) {
-            PhpValidate::notNullOrEmpty($setOwnerFilePath, '$setOwnerFilePath');
+            Validate::notNullOrEmpty($setOwnerFilePath, '$setOwnerFilePath');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/v1/{setOwnerFilePath}';
@@ -1765,12 +1765,12 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1830,16 +1830,16 @@ class FileSystem
     public function setPermissionAsync($accountName, $setPermissionFilePath, $permission = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlsFileSystemDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlsFileSystemDnsSuffix(), '$this->_client->getAdlsFileSystemDnsSuffix()');
         }
         if ($setPermissionFilePath == null) {
-            PhpValidate::notNullOrEmpty($setPermissionFilePath, '$setPermissionFilePath');
+            Validate::notNullOrEmpty($setPermissionFilePath, '$setPermissionFilePath');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/webhdfs/v1/{setPermissionFilePath}';
@@ -1853,12 +1853,12 @@ class FileSystem
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

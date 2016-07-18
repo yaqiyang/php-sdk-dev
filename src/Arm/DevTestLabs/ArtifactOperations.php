@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\DevTestLabs;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * ArtifactOperations for The DevTest Labs Client.
@@ -137,19 +137,19 @@ class ArtifactOperations
     public function listOperationAsync($resourceGroupName, $labName, $artifactSourceName, array $filter, $top = null, $orderBy = null, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($labName == null) {
-            PhpValidate::notNullOrEmpty($labName, '$labName');
+            Validate::notNullOrEmpty($labName, '$labName');
         }
         if ($artifactSourceName == null) {
-            PhpValidate::notNullOrEmpty($artifactSourceName, '$artifactSourceName');
+            Validate::notNullOrEmpty($artifactSourceName, '$artifactSourceName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/artifactsources/{artifactSourceName}/artifacts';
@@ -163,12 +163,12 @@ class ArtifactOperations
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -241,22 +241,22 @@ class ArtifactOperations
     public function getResourceAsync($resourceGroupName, $labName, $artifactSourceName, $name, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($labName == null) {
-            PhpValidate::notNullOrEmpty($labName, '$labName');
+            Validate::notNullOrEmpty($labName, '$labName');
         }
         if ($artifactSourceName == null) {
-            PhpValidate::notNullOrEmpty($artifactSourceName, '$artifactSourceName');
+            Validate::notNullOrEmpty($artifactSourceName, '$artifactSourceName');
         }
         if ($name == null) {
-            PhpValidate::notNullOrEmpty($name, '$name');
+            Validate::notNullOrEmpty($name, '$name');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/artifactsources/{artifactSourceName}/artifacts/{name}';
@@ -270,12 +270,12 @@ class ArtifactOperations
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -355,25 +355,25 @@ class ArtifactOperations
     public function generateArmTemplateAsync($resourceGroupName, $labName, $artifactSourceName, $name, array $generateArmTemplateRequest, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($labName == null) {
-            PhpValidate::notNullOrEmpty($labName, '$labName');
+            Validate::notNullOrEmpty($labName, '$labName');
         }
         if ($artifactSourceName == null) {
-            PhpValidate::notNullOrEmpty($artifactSourceName, '$artifactSourceName');
+            Validate::notNullOrEmpty($artifactSourceName, '$artifactSourceName');
         }
         if ($name == null) {
-            PhpValidate::notNullOrEmpty($name, '$name');
+            Validate::notNullOrEmpty($name, '$name');
         }
         if ($generateArmTemplateRequest == null) {
-            PhpValidate::notNullOrEmpty($generateArmTemplateRequest, '$generateArmTemplateRequest');
+            Validate::notNullOrEmpty($generateArmTemplateRequest, '$generateArmTemplateRequest');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/artifactsources/{artifactSourceName}/artifacts/{name}/generateArmTemplate';
@@ -387,13 +387,13 @@ class ArtifactOperations
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($generateArmTemplateRequest);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -451,7 +451,7 @@ class ArtifactOperations
     public function listNextAsync($nextPageLink, array $customHeaders = [])
     {
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -465,12 +465,12 @@ class ArtifactOperations
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

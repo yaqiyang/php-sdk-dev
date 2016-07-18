@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\Logic;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * IntegrationAccountPartners.
@@ -105,16 +105,16 @@ class IntegrationAccountPartners
     public function listOperationAsync($resourceGroupName, $integrationAccountName, $top = null, array $filter, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($integrationAccountName == null) {
-            PhpValidate::notNullOrEmpty($integrationAccountName, '$integrationAccountName');
+            Validate::notNullOrEmpty($integrationAccountName, '$integrationAccountName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/partners';
@@ -128,12 +128,12 @@ class IntegrationAccountPartners
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -202,19 +202,19 @@ class IntegrationAccountPartners
     public function getAsync($resourceGroupName, $integrationAccountName, $partnerName, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($integrationAccountName == null) {
-            PhpValidate::notNullOrEmpty($integrationAccountName, '$integrationAccountName');
+            Validate::notNullOrEmpty($integrationAccountName, '$integrationAccountName');
         }
         if ($partnerName == null) {
-            PhpValidate::notNullOrEmpty($partnerName, '$partnerName');
+            Validate::notNullOrEmpty($partnerName, '$partnerName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/partners/{partnerName}';
@@ -228,12 +228,12 @@ class IntegrationAccountPartners
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -350,22 +350,22 @@ class IntegrationAccountPartners
     public function createOrUpdateAsync($resourceGroupName, $integrationAccountName, $partnerName, array $partner, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($integrationAccountName == null) {
-            PhpValidate::notNullOrEmpty($integrationAccountName, '$integrationAccountName');
+            Validate::notNullOrEmpty($integrationAccountName, '$integrationAccountName');
         }
         if ($partnerName == null) {
-            PhpValidate::notNullOrEmpty($partnerName, '$partnerName');
+            Validate::notNullOrEmpty($partnerName, '$partnerName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($partner == null) {
-            PhpValidate::notNullOrEmpty($partner, '$partner');
+            Validate::notNullOrEmpty($partner, '$partner');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/partners/{partnerName}';
@@ -379,13 +379,13 @@ class IntegrationAccountPartners
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($partner);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -440,19 +440,19 @@ class IntegrationAccountPartners
     public function deleteAsync($resourceGroupName, $integrationAccountName, $partnerName, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($integrationAccountName == null) {
-            PhpValidate::notNullOrEmpty($integrationAccountName, '$integrationAccountName');
+            Validate::notNullOrEmpty($integrationAccountName, '$integrationAccountName');
         }
         if ($partnerName == null) {
-            PhpValidate::notNullOrEmpty($partnerName, '$partnerName');
+            Validate::notNullOrEmpty($partnerName, '$partnerName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/partners/{partnerName}';
@@ -466,12 +466,12 @@ class IntegrationAccountPartners
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -529,7 +529,7 @@ class IntegrationAccountPartners
     public function listNextAsync($nextPageLink, array $customHeaders = [])
     {
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -543,12 +543,12 @@ class IntegrationAccountPartners
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\MediaServices;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * MediaServiceOperations for Media Services resource management APIs.
@@ -104,13 +104,13 @@ class MediaServiceOperations
     public function checkNameAvailabiltyAsync(array $checkNameAvailabilityInput, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($checkNameAvailabilityInput == null) {
-            PhpValidate::notNullOrEmpty($checkNameAvailabilityInput, '$checkNameAvailabilityInput');
+            Validate::notNullOrEmpty($checkNameAvailabilityInput, '$checkNameAvailabilityInput');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/Microsoft.Media/CheckNameAvailability';
@@ -124,13 +124,13 @@ class MediaServiceOperations
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($checkNameAvailabilityInput);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -187,13 +187,13 @@ class MediaServiceOperations
     public function listByResourceGroupAsync($resourceGroupName, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaservices';
@@ -207,12 +207,12 @@ class MediaServiceOperations
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -274,16 +274,16 @@ class MediaServiceOperations
     public function getAsync($resourceGroupName, $mediaServiceName, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($mediaServiceName == null) {
-            PhpValidate::notNullOrEmpty($mediaServiceName, '$mediaServiceName');
+            Validate::notNullOrEmpty($mediaServiceName, '$mediaServiceName');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaservices/{mediaServiceName}';
@@ -297,12 +297,12 @@ class MediaServiceOperations
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -391,19 +391,19 @@ class MediaServiceOperations
     public function createAsync($resourceGroupName, $mediaServiceName, array $mediaService, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($mediaServiceName == null) {
-            PhpValidate::notNullOrEmpty($mediaServiceName, '$mediaServiceName');
+            Validate::notNullOrEmpty($mediaServiceName, '$mediaServiceName');
         }
         if ($mediaService == null) {
-            PhpValidate::notNullOrEmpty($mediaService, '$mediaService');
+            Validate::notNullOrEmpty($mediaService, '$mediaService');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaservices/{mediaServiceName}';
@@ -417,13 +417,13 @@ class MediaServiceOperations
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($mediaService);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -477,16 +477,16 @@ class MediaServiceOperations
     public function deleteAsync($resourceGroupName, $mediaServiceName, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($mediaServiceName == null) {
-            PhpValidate::notNullOrEmpty($mediaServiceName, '$mediaServiceName');
+            Validate::notNullOrEmpty($mediaServiceName, '$mediaServiceName');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaservices/{mediaServiceName}';
@@ -500,12 +500,12 @@ class MediaServiceOperations
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -585,19 +585,19 @@ class MediaServiceOperations
     public function updateAsync($resourceGroupName, $mediaServiceName, array $mediaService, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($mediaServiceName == null) {
-            PhpValidate::notNullOrEmpty($mediaServiceName, '$mediaServiceName');
+            Validate::notNullOrEmpty($mediaServiceName, '$mediaServiceName');
         }
         if ($mediaService == null) {
-            PhpValidate::notNullOrEmpty($mediaService, '$mediaService');
+            Validate::notNullOrEmpty($mediaService, '$mediaService');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaservices/{mediaServiceName}';
@@ -611,13 +611,13 @@ class MediaServiceOperations
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($mediaService);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -689,19 +689,19 @@ class MediaServiceOperations
     public function regenerateKeyAsync($resourceGroupName, $mediaServiceName, array $regenerateKeyInput, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($mediaServiceName == null) {
-            PhpValidate::notNullOrEmpty($mediaServiceName, '$mediaServiceName');
+            Validate::notNullOrEmpty($mediaServiceName, '$mediaServiceName');
         }
         if ($regenerateKeyInput == null) {
-            PhpValidate::notNullOrEmpty($regenerateKeyInput, '$regenerateKeyInput');
+            Validate::notNullOrEmpty($regenerateKeyInput, '$regenerateKeyInput');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaservices/{mediaServiceName}/regenerateKey';
@@ -715,13 +715,13 @@ class MediaServiceOperations
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($regenerateKeyInput);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -785,16 +785,16 @@ class MediaServiceOperations
     public function listKeysAsync($resourceGroupName, $mediaServiceName, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($mediaServiceName == null) {
-            PhpValidate::notNullOrEmpty($mediaServiceName, '$mediaServiceName');
+            Validate::notNullOrEmpty($mediaServiceName, '$mediaServiceName');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaservices/{mediaServiceName}/listKeys';
@@ -808,12 +808,12 @@ class MediaServiceOperations
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -890,19 +890,19 @@ class MediaServiceOperations
     public function syncStorageKeysAsync($resourceGroupName, $mediaServiceName, array $syncStorageKeysInput, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($mediaServiceName == null) {
-            PhpValidate::notNullOrEmpty($mediaServiceName, '$mediaServiceName');
+            Validate::notNullOrEmpty($mediaServiceName, '$mediaServiceName');
         }
         if ($syncStorageKeysInput == null) {
-            PhpValidate::notNullOrEmpty($syncStorageKeysInput, '$syncStorageKeysInput');
+            Validate::notNullOrEmpty($syncStorageKeysInput, '$syncStorageKeysInput');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaservices/{mediaServiceName}/syncStorageKeys';
@@ -916,13 +916,13 @@ class MediaServiceOperations
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($syncStorageKeysInput);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

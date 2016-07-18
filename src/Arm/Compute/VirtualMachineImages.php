@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\Compute;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * VirtualMachineImages for The Compute Management Client.
@@ -106,25 +106,25 @@ class VirtualMachineImages
     public function getAsync($location, $publisherName, $offer, $skus, $version, array $customHeaders = [])
     {
         if ($location == null) {
-            PhpValidate::notNullOrEmpty($location, '$location');
+            Validate::notNullOrEmpty($location, '$location');
         }
         if ($publisherName == null) {
-            PhpValidate::notNullOrEmpty($publisherName, '$publisherName');
+            Validate::notNullOrEmpty($publisherName, '$publisherName');
         }
         if ($offer == null) {
-            PhpValidate::notNullOrEmpty($offer, '$offer');
+            Validate::notNullOrEmpty($offer, '$offer');
         }
         if ($skus == null) {
-            PhpValidate::notNullOrEmpty($skus, '$skus');
+            Validate::notNullOrEmpty($skus, '$skus');
         }
         if ($version == null) {
-            PhpValidate::notNullOrEmpty($version, '$version');
+            Validate::notNullOrEmpty($version, '$version');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus/{skus}/versions/{version}';
@@ -138,12 +138,12 @@ class VirtualMachineImages
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -227,22 +227,22 @@ class VirtualMachineImages
     public function listOperationAsync($location, $publisherName, $offer, $skus, array $filter, $top = null, $orderby = null, array $customHeaders = [])
     {
         if ($location == null) {
-            PhpValidate::notNullOrEmpty($location, '$location');
+            Validate::notNullOrEmpty($location, '$location');
         }
         if ($publisherName == null) {
-            PhpValidate::notNullOrEmpty($publisherName, '$publisherName');
+            Validate::notNullOrEmpty($publisherName, '$publisherName');
         }
         if ($offer == null) {
-            PhpValidate::notNullOrEmpty($offer, '$offer');
+            Validate::notNullOrEmpty($offer, '$offer');
         }
         if ($skus == null) {
-            PhpValidate::notNullOrEmpty($skus, '$skus');
+            Validate::notNullOrEmpty($skus, '$skus');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus/{skus}/versions';
@@ -256,12 +256,12 @@ class VirtualMachineImages
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -321,16 +321,16 @@ class VirtualMachineImages
     public function listOffersAsync($location, $publisherName, array $customHeaders = [])
     {
         if ($location == null) {
-            PhpValidate::notNullOrEmpty($location, '$location');
+            Validate::notNullOrEmpty($location, '$location');
         }
         if ($publisherName == null) {
-            PhpValidate::notNullOrEmpty($publisherName, '$publisherName');
+            Validate::notNullOrEmpty($publisherName, '$publisherName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmimage/offers';
@@ -344,12 +344,12 @@ class VirtualMachineImages
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -407,13 +407,13 @@ class VirtualMachineImages
     public function listPublishersAsync($location, array $customHeaders = [])
     {
         if ($location == null) {
-            PhpValidate::notNullOrEmpty($location, '$location');
+            Validate::notNullOrEmpty($location, '$location');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers';
@@ -427,12 +427,12 @@ class VirtualMachineImages
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -494,19 +494,19 @@ class VirtualMachineImages
     public function listSkusAsync($location, $publisherName, $offer, array $customHeaders = [])
     {
         if ($location == null) {
-            PhpValidate::notNullOrEmpty($location, '$location');
+            Validate::notNullOrEmpty($location, '$location');
         }
         if ($publisherName == null) {
-            PhpValidate::notNullOrEmpty($publisherName, '$publisherName');
+            Validate::notNullOrEmpty($publisherName, '$publisherName');
         }
         if ($offer == null) {
-            PhpValidate::notNullOrEmpty($offer, '$offer');
+            Validate::notNullOrEmpty($offer, '$offer');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus';
@@ -520,12 +520,12 @@ class VirtualMachineImages
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

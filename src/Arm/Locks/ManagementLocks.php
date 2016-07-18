@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\Locks;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * ManagementLocks.
@@ -132,19 +132,19 @@ class ManagementLocks
     public function createOrUpdateAtResourceGroupLevelAsync($resourceGroupName, $lockName, array $parameters, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($lockName == null) {
-            PhpValidate::notNullOrEmpty($lockName, '$lockName');
+            Validate::notNullOrEmpty($lockName, '$lockName');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Authorization/locks/{lockName}';
@@ -158,13 +158,13 @@ class ManagementLocks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -273,31 +273,31 @@ class ManagementLocks
     public function createOrUpdateAtResourceLevelAsync($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, $lockName, array $parameters, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($resourceProviderNamespace == null) {
-            PhpValidate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
+            Validate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
         }
         if ($parentResourcePath == null) {
-            PhpValidate::notNullOrEmpty($parentResourcePath, '$parentResourcePath');
+            Validate::notNullOrEmpty($parentResourcePath, '$parentResourcePath');
         }
         if ($resourceType == null) {
-            PhpValidate::notNullOrEmpty($resourceType, '$resourceType');
+            Validate::notNullOrEmpty($resourceType, '$resourceType');
         }
         if ($resourceName == null) {
-            PhpValidate::notNullOrEmpty($resourceName, '$resourceName');
+            Validate::notNullOrEmpty($resourceName, '$resourceName');
         }
         if ($lockName == null) {
-            PhpValidate::notNullOrEmpty($lockName, '$lockName');
+            Validate::notNullOrEmpty($lockName, '$lockName');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/locks/{lockName}';
@@ -311,13 +311,13 @@ class ManagementLocks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -379,28 +379,28 @@ class ManagementLocks
     public function deleteAtResourceLevelAsync($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, $lockName, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($resourceProviderNamespace == null) {
-            PhpValidate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
+            Validate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
         }
         if ($parentResourcePath == null) {
-            PhpValidate::notNullOrEmpty($parentResourcePath, '$parentResourcePath');
+            Validate::notNullOrEmpty($parentResourcePath, '$parentResourcePath');
         }
         if ($resourceType == null) {
-            PhpValidate::notNullOrEmpty($resourceType, '$resourceType');
+            Validate::notNullOrEmpty($resourceType, '$resourceType');
         }
         if ($resourceName == null) {
-            PhpValidate::notNullOrEmpty($resourceName, '$resourceName');
+            Validate::notNullOrEmpty($resourceName, '$resourceName');
         }
         if ($lockName == null) {
-            PhpValidate::notNullOrEmpty($lockName, '$lockName');
+            Validate::notNullOrEmpty($lockName, '$lockName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/locks/{lockName}';
@@ -414,12 +414,12 @@ class ManagementLocks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -516,16 +516,16 @@ class ManagementLocks
     public function createOrUpdateAtSubscriptionLevelAsync($lockName, array $parameters, array $customHeaders = [])
     {
         if ($lockName == null) {
-            PhpValidate::notNullOrEmpty($lockName, '$lockName');
+            Validate::notNullOrEmpty($lockName, '$lockName');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/locks/{lockName}';
@@ -539,13 +539,13 @@ class ManagementLocks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -597,13 +597,13 @@ class ManagementLocks
     public function deleteAtSubscriptionLevelAsync($lockName, array $customHeaders = [])
     {
         if ($lockName == null) {
-            PhpValidate::notNullOrEmpty($lockName, '$lockName');
+            Validate::notNullOrEmpty($lockName, '$lockName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/locks/{lockName}';
@@ -617,12 +617,12 @@ class ManagementLocks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -695,13 +695,13 @@ class ManagementLocks
     public function getAsync($lockName, array $customHeaders = [])
     {
         if ($lockName == null) {
-            PhpValidate::notNullOrEmpty($lockName, '$lockName');
+            Validate::notNullOrEmpty($lockName, '$lockName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/locks/{lockName}';
@@ -715,12 +715,12 @@ class ManagementLocks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -774,16 +774,16 @@ class ManagementLocks
     public function deleteAtResourceGroupLevelAsync($resourceGroup, $lockName, array $customHeaders = [])
     {
         if ($resourceGroup == null) {
-            PhpValidate::notNullOrEmpty($resourceGroup, '$resourceGroup');
+            Validate::notNullOrEmpty($resourceGroup, '$resourceGroup');
         }
         if ($lockName == null) {
-            PhpValidate::notNullOrEmpty($lockName, '$lockName');
+            Validate::notNullOrEmpty($lockName, '$lockName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Authorization/locks/{lockName}';
@@ -797,12 +797,12 @@ class ManagementLocks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -882,13 +882,13 @@ class ManagementLocks
     public function listAtResourceGroupLevelAsync($resourceGroupName, array $filter, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Authorization/locks';
@@ -902,12 +902,12 @@ class ManagementLocks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -997,25 +997,25 @@ class ManagementLocks
     public function listAtResourceLevelAsync($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, array $filter, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($resourceProviderNamespace == null) {
-            PhpValidate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
+            Validate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
         }
         if ($parentResourcePath == null) {
-            PhpValidate::notNullOrEmpty($parentResourcePath, '$parentResourcePath');
+            Validate::notNullOrEmpty($parentResourcePath, '$parentResourcePath');
         }
         if ($resourceType == null) {
-            PhpValidate::notNullOrEmpty($resourceType, '$resourceType');
+            Validate::notNullOrEmpty($resourceType, '$resourceType');
         }
         if ($resourceName == null) {
-            PhpValidate::notNullOrEmpty($resourceName, '$resourceName');
+            Validate::notNullOrEmpty($resourceName, '$resourceName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/locks';
@@ -1029,12 +1029,12 @@ class ManagementLocks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1092,10 +1092,10 @@ class ManagementLocks
     public function listNextAsync($nextLink, array $customHeaders = [])
     {
         if ($nextLink == null) {
-            PhpValidate::notNullOrEmpty($nextLink, '$nextLink');
+            Validate::notNullOrEmpty($nextLink, '$nextLink');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/{nextLink}';
@@ -1109,12 +1109,12 @@ class ManagementLocks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1192,10 +1192,10 @@ class ManagementLocks
     public function listAtSubscriptionLevelAsync(array $filter, array $customHeaders = [])
     {
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/locks';
@@ -1209,12 +1209,12 @@ class ManagementLocks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1272,7 +1272,7 @@ class ManagementLocks
     public function listAtResourceGroupLevelNextAsync($nextPageLink, array $customHeaders = [])
     {
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -1286,12 +1286,12 @@ class ManagementLocks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1349,7 +1349,7 @@ class ManagementLocks
     public function listAtResourceLevelNextAsync($nextPageLink, array $customHeaders = [])
     {
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -1363,12 +1363,12 @@ class ManagementLocks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1426,7 +1426,7 @@ class ManagementLocks
     public function listNextNextAsync($nextPageLink, array $customHeaders = [])
     {
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -1440,12 +1440,12 @@ class ManagementLocks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1503,7 +1503,7 @@ class ManagementLocks
     public function listAtSubscriptionLevelNextAsync($nextPageLink, array $customHeaders = [])
     {
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -1517,12 +1517,12 @@ class ManagementLocks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

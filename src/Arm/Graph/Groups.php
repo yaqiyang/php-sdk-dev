@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\Graph;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * Groups for The Graph RBAC Management Client
@@ -102,13 +102,13 @@ class Groups
     public function isMemberOfAsync(array $parameters, array $customHeaders = [])
     {
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getTenantID() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
+            Validate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
         }
 
         $path = '/{tenantID}/isMemberOf';
@@ -122,13 +122,13 @@ class Groups
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -182,16 +182,16 @@ class Groups
     public function removeMemberAsync($groupObjectId, $memberObjectId, array $customHeaders = [])
     {
         if ($groupObjectId == null) {
-            PhpValidate::notNullOrEmpty($groupObjectId, '$groupObjectId');
+            Validate::notNullOrEmpty($groupObjectId, '$groupObjectId');
         }
         if ($memberObjectId == null) {
-            PhpValidate::notNullOrEmpty($memberObjectId, '$memberObjectId');
+            Validate::notNullOrEmpty($memberObjectId, '$memberObjectId');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getTenantID() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
+            Validate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
         }
 
         $path = '/{tenantID}/groups/{groupObjectId}/$links/members/{memberObjectId}';
@@ -205,12 +205,12 @@ class Groups
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -276,16 +276,16 @@ class Groups
     public function addMemberAsync($groupObjectId, array $parameters, array $customHeaders = [])
     {
         if ($groupObjectId == null) {
-            PhpValidate::notNullOrEmpty($groupObjectId, '$groupObjectId');
+            Validate::notNullOrEmpty($groupObjectId, '$groupObjectId');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getTenantID() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
+            Validate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
         }
 
         $path = '/{tenantID}/groups/{groupObjectId}/$links/members';
@@ -299,13 +299,13 @@ class Groups
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -357,13 +357,13 @@ class Groups
     public function deleteAsync($groupObjectId, array $customHeaders = [])
     {
         if ($groupObjectId == null) {
-            PhpValidate::notNullOrEmpty($groupObjectId, '$groupObjectId');
+            Validate::notNullOrEmpty($groupObjectId, '$groupObjectId');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getTenantID() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
+            Validate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
         }
 
         $path = '/{tenantID}/groups/{groupObjectId}';
@@ -377,12 +377,12 @@ class Groups
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -459,13 +459,13 @@ class Groups
     public function createAsync(array $parameters, array $customHeaders = [])
     {
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getTenantID() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
+            Validate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
         }
 
         $path = '/{tenantID}/groups';
@@ -479,13 +479,13 @@ class Groups
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -559,10 +559,10 @@ class Groups
     public function listOperationAsync(array $filter, array $customHeaders = [])
     {
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getTenantID() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
+            Validate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
         }
 
         $path = '/{tenantID}/groups';
@@ -576,12 +576,12 @@ class Groups
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -637,13 +637,13 @@ class Groups
     public function getGroupMembersAsync($objectId, array $customHeaders = [])
     {
         if ($objectId == null) {
-            PhpValidate::notNullOrEmpty($objectId, '$objectId');
+            Validate::notNullOrEmpty($objectId, '$objectId');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getTenantID() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
+            Validate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
         }
 
         $path = '/{tenantID}/groups/{objectId}/members';
@@ -657,12 +657,12 @@ class Groups
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -721,13 +721,13 @@ class Groups
     public function getAsync($objectId, array $customHeaders = [])
     {
         if ($objectId == null) {
-            PhpValidate::notNullOrEmpty($objectId, '$objectId');
+            Validate::notNullOrEmpty($objectId, '$objectId');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getTenantID() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
+            Validate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
         }
 
         $path = '/{tenantID}/groups/{objectId}';
@@ -741,12 +741,12 @@ class Groups
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -815,16 +815,16 @@ class Groups
     public function getMemberGroupsAsync($objectId, array $parameters, array $customHeaders = [])
     {
         if ($objectId == null) {
-            PhpValidate::notNullOrEmpty($objectId, '$objectId');
+            Validate::notNullOrEmpty($objectId, '$objectId');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getTenantID() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
+            Validate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
         }
 
         $path = '/{tenantID}/groups/{objectId}/getMemberGroups';
@@ -838,13 +838,13 @@ class Groups
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -900,13 +900,13 @@ class Groups
     public function listNextAsync($nextLink, array $customHeaders = [])
     {
         if ($nextLink == null) {
-            PhpValidate::notNullOrEmpty($nextLink, '$nextLink');
+            Validate::notNullOrEmpty($nextLink, '$nextLink');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getTenantID() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
+            Validate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
         }
 
         $path = '/{tenantID}/{nextLink}';
@@ -920,12 +920,12 @@ class Groups
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -981,13 +981,13 @@ class Groups
     public function getGroupMembersNextAsync($nextLink, array $customHeaders = [])
     {
         if ($nextLink == null) {
-            PhpValidate::notNullOrEmpty($nextLink, '$nextLink');
+            Validate::notNullOrEmpty($nextLink, '$nextLink');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getTenantID() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
+            Validate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
         }
 
         $path = '/{tenantID}/{nextLink}';
@@ -1001,12 +1001,12 @@ class Groups
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

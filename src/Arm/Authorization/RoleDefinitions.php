@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\Authorization;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * RoleDefinitions.
@@ -99,13 +99,13 @@ class RoleDefinitions
     public function deleteAsync($scope, $roleDefinitionId, array $customHeaders = [])
     {
         if ($scope == null) {
-            PhpValidate::notNullOrEmpty($scope, '$scope');
+            Validate::notNullOrEmpty($scope, '$scope');
         }
         if ($roleDefinitionId == null) {
-            PhpValidate::notNullOrEmpty($roleDefinitionId, '$roleDefinitionId');
+            Validate::notNullOrEmpty($roleDefinitionId, '$roleDefinitionId');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/{scope}/providers/Microsoft.Authorization/roleDefinitions/{roleDefinitionId}';
@@ -119,12 +119,12 @@ class RoleDefinitions
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -190,13 +190,13 @@ class RoleDefinitions
     public function getAsync($scope, $roleDefinitionId, array $customHeaders = [])
     {
         if ($scope == null) {
-            PhpValidate::notNullOrEmpty($scope, '$scope');
+            Validate::notNullOrEmpty($scope, '$scope');
         }
         if ($roleDefinitionId == null) {
-            PhpValidate::notNullOrEmpty($roleDefinitionId, '$roleDefinitionId');
+            Validate::notNullOrEmpty($roleDefinitionId, '$roleDefinitionId');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/{scope}/providers/Microsoft.Authorization/roleDefinitions/{roleDefinitionId}';
@@ -210,12 +210,12 @@ class RoleDefinitions
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -311,16 +311,16 @@ class RoleDefinitions
     public function createOrUpdateAsync($scope, $roleDefinitionId, array $roleDefinition, array $customHeaders = [])
     {
         if ($scope == null) {
-            PhpValidate::notNullOrEmpty($scope, '$scope');
+            Validate::notNullOrEmpty($scope, '$scope');
         }
         if ($roleDefinitionId == null) {
-            PhpValidate::notNullOrEmpty($roleDefinitionId, '$roleDefinitionId');
+            Validate::notNullOrEmpty($roleDefinitionId, '$roleDefinitionId');
         }
         if ($roleDefinition == null) {
-            PhpValidate::notNullOrEmpty($roleDefinition, '$roleDefinition');
+            Validate::notNullOrEmpty($roleDefinition, '$roleDefinition');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/{scope}/providers/Microsoft.Authorization/roleDefinitions/{roleDefinitionId}';
@@ -334,13 +334,13 @@ class RoleDefinitions
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($roleDefinition);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -404,10 +404,10 @@ class RoleDefinitions
     public function getByIdAsync($roleDefinitionId, array $customHeaders = [])
     {
         if ($roleDefinitionId == null) {
-            PhpValidate::notNullOrEmpty($roleDefinitionId, '$roleDefinitionId');
+            Validate::notNullOrEmpty($roleDefinitionId, '$roleDefinitionId');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/{roleDefinitionId}';
@@ -421,12 +421,12 @@ class RoleDefinitions
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -495,10 +495,10 @@ class RoleDefinitions
     public function listOperationAsync($scope, array $filter, array $customHeaders = [])
     {
         if ($scope == null) {
-            PhpValidate::notNullOrEmpty($scope, '$scope');
+            Validate::notNullOrEmpty($scope, '$scope');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/{scope}/providers/Microsoft.Authorization/roleDefinitions';
@@ -512,12 +512,12 @@ class RoleDefinitions
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -576,7 +576,7 @@ class RoleDefinitions
     public function listNextAsync($nextPageLink, array $customHeaders = [])
     {
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -590,12 +590,12 @@ class RoleDefinitions
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\Graph;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * Applications for The Graph RBAC Management Client
@@ -120,13 +120,13 @@ class Applications
     public function createAsync(array $parameters, array $customHeaders = [])
     {
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getTenantID() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
+            Validate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
         }
 
         $path = '/{tenantID}/applications';
@@ -140,13 +140,13 @@ class Applications
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -217,10 +217,10 @@ class Applications
     public function listOperationAsync(array $filter, array $customHeaders = [])
     {
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getTenantID() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
+            Validate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
         }
 
         $path = '/{tenantID}/applications';
@@ -234,12 +234,12 @@ class Applications
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -291,13 +291,13 @@ class Applications
     public function deleteAsync($applicationObjectId, array $customHeaders = [])
     {
         if ($applicationObjectId == null) {
-            PhpValidate::notNullOrEmpty($applicationObjectId, '$applicationObjectId');
+            Validate::notNullOrEmpty($applicationObjectId, '$applicationObjectId');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getTenantID() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
+            Validate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
         }
 
         $path = '/{tenantID}/applications/{applicationObjectId}';
@@ -311,12 +311,12 @@ class Applications
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -381,13 +381,13 @@ class Applications
     public function getAsync($applicationObjectId, array $customHeaders = [])
     {
         if ($applicationObjectId == null) {
-            PhpValidate::notNullOrEmpty($applicationObjectId, '$applicationObjectId');
+            Validate::notNullOrEmpty($applicationObjectId, '$applicationObjectId');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getTenantID() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
+            Validate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
         }
 
         $path = '/{tenantID}/applications/{applicationObjectId}';
@@ -401,12 +401,12 @@ class Applications
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -480,16 +480,16 @@ class Applications
     public function patchAsync($applicationObjectId, array $parameters, array $customHeaders = [])
     {
         if ($applicationObjectId == null) {
-            PhpValidate::notNullOrEmpty($applicationObjectId, '$applicationObjectId');
+            Validate::notNullOrEmpty($applicationObjectId, '$applicationObjectId');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getTenantID() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
+            Validate::notNullOrEmpty($this->_client->getTenantID(), '$this->_client->getTenantID()');
         }
 
         $path = '/{tenantID}/applications/{applicationObjectId}';
@@ -503,13 +503,13 @@ class Applications
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

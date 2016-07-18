@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\Cdn;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * CustomDomains for Use these APIs to manage Azure CDN resources through the
@@ -100,19 +100,19 @@ class CustomDomains
     public function listByEndpointAsync($endpointName, $profileName, $resourceGroupName, array $customHeaders = [])
     {
         if ($endpointName == null) {
-            PhpValidate::notNullOrEmpty($endpointName, '$endpointName');
+            Validate::notNullOrEmpty($endpointName, '$endpointName');
         }
         if ($profileName == null) {
-            PhpValidate::notNullOrEmpty($profileName, '$profileName');
+            Validate::notNullOrEmpty($profileName, '$profileName');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/endpoints/{endpointName}/customDomains';
@@ -126,12 +126,12 @@ class CustomDomains
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -202,22 +202,22 @@ class CustomDomains
     public function getAsync($customDomainName, $endpointName, $profileName, $resourceGroupName, array $customHeaders = [])
     {
         if ($customDomainName == null) {
-            PhpValidate::notNullOrEmpty($customDomainName, '$customDomainName');
+            Validate::notNullOrEmpty($customDomainName, '$customDomainName');
         }
         if ($endpointName == null) {
-            PhpValidate::notNullOrEmpty($endpointName, '$endpointName');
+            Validate::notNullOrEmpty($endpointName, '$endpointName');
         }
         if ($profileName == null) {
-            PhpValidate::notNullOrEmpty($profileName, '$profileName');
+            Validate::notNullOrEmpty($profileName, '$profileName');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/endpoints/{endpointName}/customDomains/{customDomainName}';
@@ -231,12 +231,12 @@ class CustomDomains
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -307,7 +307,7 @@ class CustomDomains
     {
         $response = $this->begincreateAsync($customDomainName, $customDomainProperties, $endpointName, $profileName, $resourceGroupName, $customHeaders);
 
-        if ($response->getStatusCode() !== PhpResources::STATUS_OK) {
+        if ($response->getStatusCode() !== Resources::STATUS_OK) {
             $this->_client->awaitAsync($response);
         }
 
@@ -414,25 +414,25 @@ class CustomDomains
     public function beginCreateAsync($customDomainName, array $customDomainProperties, $endpointName, $profileName, $resourceGroupName, array $customHeaders = [])
     {
         if ($customDomainName == null) {
-            PhpValidate::notNullOrEmpty($customDomainName, '$customDomainName');
+            Validate::notNullOrEmpty($customDomainName, '$customDomainName');
         }
         if ($customDomainProperties == null) {
-            PhpValidate::notNullOrEmpty($customDomainProperties, '$customDomainProperties');
+            Validate::notNullOrEmpty($customDomainProperties, '$customDomainProperties');
         }
         if ($endpointName == null) {
-            PhpValidate::notNullOrEmpty($endpointName, '$endpointName');
+            Validate::notNullOrEmpty($endpointName, '$endpointName');
         }
         if ($profileName == null) {
-            PhpValidate::notNullOrEmpty($profileName, '$profileName');
+            Validate::notNullOrEmpty($profileName, '$profileName');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/endpoints/{endpointName}/customDomains/{customDomainName}';
@@ -446,13 +446,13 @@ class CustomDomains
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($customDomainProperties);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -528,25 +528,25 @@ class CustomDomains
     public function updateAsync($customDomainName, array $customDomainProperties, $endpointName, $profileName, $resourceGroupName, array $customHeaders = [])
     {
         if ($customDomainName == null) {
-            PhpValidate::notNullOrEmpty($customDomainName, '$customDomainName');
+            Validate::notNullOrEmpty($customDomainName, '$customDomainName');
         }
         if ($customDomainProperties == null) {
-            PhpValidate::notNullOrEmpty($customDomainProperties, '$customDomainProperties');
+            Validate::notNullOrEmpty($customDomainProperties, '$customDomainProperties');
         }
         if ($endpointName == null) {
-            PhpValidate::notNullOrEmpty($endpointName, '$endpointName');
+            Validate::notNullOrEmpty($endpointName, '$endpointName');
         }
         if ($profileName == null) {
-            PhpValidate::notNullOrEmpty($profileName, '$profileName');
+            Validate::notNullOrEmpty($profileName, '$profileName');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/endpoints/{endpointName}/customDomains/{customDomainName}';
@@ -560,13 +560,13 @@ class CustomDomains
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($customDomainProperties);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -611,7 +611,7 @@ class CustomDomains
     {
         $response = $this->begindeleteIfExistsAsync($customDomainName, $endpointName, $profileName, $resourceGroupName, $customHeaders);
 
-        if ($response->getStatusCode() !== PhpResources::STATUS_OK) {
+        if ($response->getStatusCode() !== Resources::STATUS_OK) {
             $this->_client->awaitAsync($response);
         }
 
@@ -684,22 +684,22 @@ class CustomDomains
     public function beginDeleteIfExistsAsync($customDomainName, $endpointName, $profileName, $resourceGroupName, array $customHeaders = [])
     {
         if ($customDomainName == null) {
-            PhpValidate::notNullOrEmpty($customDomainName, '$customDomainName');
+            Validate::notNullOrEmpty($customDomainName, '$customDomainName');
         }
         if ($endpointName == null) {
-            PhpValidate::notNullOrEmpty($endpointName, '$endpointName');
+            Validate::notNullOrEmpty($endpointName, '$endpointName');
         }
         if ($profileName == null) {
-            PhpValidate::notNullOrEmpty($profileName, '$profileName');
+            Validate::notNullOrEmpty($profileName, '$profileName');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/endpoints/{endpointName}/customDomains/{customDomainName}';
@@ -713,12 +713,12 @@ class CustomDomains
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

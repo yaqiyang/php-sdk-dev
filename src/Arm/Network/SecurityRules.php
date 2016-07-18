@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\Network;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * SecurityRules for The Microsoft Azure Network management API provides a
@@ -71,7 +71,7 @@ class SecurityRules
     {
         $response = $this->begindeleteAsync($resourceGroupName, $networkSecurityGroupName, $securityRuleName, $customHeaders);
 
-        if ($response->getStatusCode() !== PhpResources::STATUS_OK) {
+        if ($response->getStatusCode() !== Resources::STATUS_OK) {
             $this->_client->awaitAsync($response);
         }
 
@@ -131,19 +131,19 @@ class SecurityRules
     public function beginDeleteAsync($resourceGroupName, $networkSecurityGroupName, $securityRuleName, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($networkSecurityGroupName == null) {
-            PhpValidate::notNullOrEmpty($networkSecurityGroupName, '$networkSecurityGroupName');
+            Validate::notNullOrEmpty($networkSecurityGroupName, '$networkSecurityGroupName');
         }
         if ($securityRuleName == null) {
-            PhpValidate::notNullOrEmpty($securityRuleName, '$securityRuleName');
+            Validate::notNullOrEmpty($securityRuleName, '$securityRuleName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups/{networkSecurityGroupName}/securityRules/{securityRuleName}';
@@ -157,12 +157,12 @@ class SecurityRules
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -238,19 +238,19 @@ class SecurityRules
     public function getAsync($resourceGroupName, $networkSecurityGroupName, $securityRuleName, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($networkSecurityGroupName == null) {
-            PhpValidate::notNullOrEmpty($networkSecurityGroupName, '$networkSecurityGroupName');
+            Validate::notNullOrEmpty($networkSecurityGroupName, '$networkSecurityGroupName');
         }
         if ($securityRuleName == null) {
-            PhpValidate::notNullOrEmpty($securityRuleName, '$securityRuleName');
+            Validate::notNullOrEmpty($securityRuleName, '$securityRuleName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups/{networkSecurityGroupName}/securityRules/{securityRuleName}';
@@ -264,12 +264,12 @@ class SecurityRules
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -358,7 +358,7 @@ class SecurityRules
     {
         $response = $this->begincreateOrUpdateAsync($resourceGroupName, $networkSecurityGroupName, $securityRuleName, $securityRuleParameters, $customHeaders);
 
-        if ($response->getStatusCode() !== PhpResources::STATUS_OK) {
+        if ($response->getStatusCode() !== Resources::STATUS_OK) {
             $this->_client->awaitAsync($response);
         }
 
@@ -493,22 +493,22 @@ class SecurityRules
     public function beginCreateOrUpdateAsync($resourceGroupName, $networkSecurityGroupName, $securityRuleName, array $securityRuleParameters, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($networkSecurityGroupName == null) {
-            PhpValidate::notNullOrEmpty($networkSecurityGroupName, '$networkSecurityGroupName');
+            Validate::notNullOrEmpty($networkSecurityGroupName, '$networkSecurityGroupName');
         }
         if ($securityRuleName == null) {
-            PhpValidate::notNullOrEmpty($securityRuleName, '$securityRuleName');
+            Validate::notNullOrEmpty($securityRuleName, '$securityRuleName');
         }
         if ($securityRuleParameters == null) {
-            PhpValidate::notNullOrEmpty($securityRuleParameters, '$securityRuleParameters');
+            Validate::notNullOrEmpty($securityRuleParameters, '$securityRuleParameters');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups/{networkSecurityGroupName}/securityRules/{securityRuleName}';
@@ -522,13 +522,13 @@ class SecurityRules
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($securityRuleParameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -590,16 +590,16 @@ class SecurityRules
     public function listOperationAsync($resourceGroupName, $networkSecurityGroupName, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($networkSecurityGroupName == null) {
-            PhpValidate::notNullOrEmpty($networkSecurityGroupName, '$networkSecurityGroupName');
+            Validate::notNullOrEmpty($networkSecurityGroupName, '$networkSecurityGroupName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups/{networkSecurityGroupName}/securityRules';
@@ -613,12 +613,12 @@ class SecurityRules
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -678,7 +678,7 @@ class SecurityRules
     public function listNextAsync($nextPageLink, array $customHeaders = [])
     {
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -692,12 +692,12 @@ class SecurityRules
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

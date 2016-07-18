@@ -20,18 +20,18 @@
 
 namespace MicrosoftAzure\Arm\Cdn;
 
-use MicrosoftAzure\Common\Internal\Authentication\OAuthScheme as PhpOAuthScheme;
-use MicrosoftAzure\Common\Internal\Filters\OAuthFilter as PhpOAuthFilter;
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer as PhpJsonSerializer;
-use MicrosoftAzure\Common\OAuthServiceClient as PhpOAuthServiceClient;
-use MicrosoftAzure\Common\RestServiceClient as PhpRestServiceClient;
+use MicrosoftAzure\Common\Internal\Authentication\OAuthScheme;
+use MicrosoftAzure\Common\Internal\Filters\OAuthFilter;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer;
+use MicrosoftAzure\Common\OAuthServiceClient;
+use MicrosoftAzure\Common\RestServiceClient;
 
 /**
  * Use these APIs to manage Azure CDN resources through the Azure Resource Manager. You must make sure that requests made to these resources are secure. For more information, see <a href="https://msdn.microsoft.com/en-us/library/azure/dn790557.aspx">Authenticating Azure Resource Manager requests.</a>
  */
-class CdnManagementClient extends PhpRestServiceClient
+class CdnManagementClient extends RestServiceClient
 {
     /**
      * Credentials needed for the client to connect to Azure.
@@ -146,11 +146,11 @@ class CdnManagementClient extends PhpRestServiceClient
         $this->_credentials = $oauthSettings;
         parent::__construct(
             $this->_credentials->getOAuthEndpointUri(),
-            new PhpJsonSerializer()
+            new JsonSerializer()
         );
-        $oauthService = new PhpOAuthServiceClient($this->_credentials);
-        $authentification = new PhpOAuthScheme($oauthService);
-        $this->_filters = [new PhpOAuthFilter($authentification)];
+        $oauthService = new OAuthServiceClient($this->_credentials);
+        $authentification = new OAuthScheme($oauthService);
+        $this->_filters = [new OAuthFilter($authentification)];
 
         $this->_profiles = new Profiles($this);
         $this->_endpoints = new Endpoints($this);
@@ -431,14 +431,14 @@ class CdnManagementClient extends PhpRestServiceClient
      */
     public function pollAsyncOperation($path, $requestId)
     {
-        $queryParams = [PhpResources::API_VERSION => '2016-04-02', 'monitor' => 'true'];
-        $method = PhpResources::HTTP_GET;
-        $statusCodes = [PhpResources::STATUS_OK, Resources::STATUS_ACCEPTED];
+        $queryParams = [Resources::API_VERSION => '2016-04-02', 'monitor' => 'true'];
+        $method = Resources::HTTP_GET;
+        $statusCodes = [Resources::STATUS_OK, Resources::STATUS_ACCEPTED];
 
-        $headers = [PhpResources::X_MS_REQUEST_ID => $requestId];
+        $headers = [Resources::X_MS_REQUEST_ID => $requestId];
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -464,11 +464,11 @@ class CdnManagementClient extends PhpRestServiceClient
         $status = $response->getStatusCode();
         $headers = $response->getHeaders();
 
-        if (array_key_exists(PhpResources::XTAG_LOCATION, $headers) && array_key_exists(PhpResources::X_MS_REQUEST_ID, $headers)) {
-            $locations = $headers[PhpResources::XTAG_LOCATION];
-            $requestIds = $headers[PhpResources::X_MS_REQUEST_ID];
+        if (array_key_exists(Resources::XTAG_LOCATION, $headers) && array_key_exists(Resources::X_MS_REQUEST_ID, $headers)) {
+            $locations = $headers[Resources::XTAG_LOCATION];
+            $requestIds = $headers[Resources::X_MS_REQUEST_ID];
 
-            while ($status == PhpResources::STATUS_ACCEPTED) {
+            while ($status == Resources::STATUS_ACCEPTED) {
                 sleep($this->getRetryInterval());
                 $status = $this->pollAsyncOperation($locations[0], $requestIds[0]);
                 echo '.';

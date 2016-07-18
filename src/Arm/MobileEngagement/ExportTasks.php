@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\MobileEngagement;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * ExportTasks for Microsoft Azure Mobile Engagement REST APIs.
@@ -121,19 +121,19 @@ class ExportTasks
     public function listOperationAsync($skip = 0, $top = 20, $orderby = null, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getResourceGroupName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
+            Validate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
         }
         if ($this->_client->getAppCollection() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
+            Validate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
         }
         if ($this->_client->getAppName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
+            Validate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileEngagement/appcollections/{appCollection}/apps/{appName}/devices/exportTasks';
@@ -147,12 +147,12 @@ class ExportTasks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -213,22 +213,22 @@ class ExportTasks
     public function getAsync($id, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getResourceGroupName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
+            Validate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
         }
         if ($this->_client->getAppCollection() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
+            Validate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
         }
         if ($this->_client->getAppName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
+            Validate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($id == null) {
-            PhpValidate::notNullOrEmpty($id, '$id');
+            Validate::notNullOrEmpty($id, '$id');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileEngagement/appcollections/{appCollection}/apps/{appName}/devices/exportTasks/{id}';
@@ -242,12 +242,12 @@ class ExportTasks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -326,22 +326,22 @@ class ExportTasks
     public function createActivitiesTaskAsync(array $parameters, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getResourceGroupName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
+            Validate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
         }
         if ($this->_client->getAppCollection() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
+            Validate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
         }
         if ($this->_client->getAppName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
+            Validate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileEngagement/appcollections/{appCollection}/apps/{appName}/devices/exportTasks/activities';
@@ -355,13 +355,13 @@ class ExportTasks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -440,22 +440,22 @@ class ExportTasks
     public function createCrashesTaskAsync(array $parameters, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getResourceGroupName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
+            Validate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
         }
         if ($this->_client->getAppCollection() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
+            Validate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
         }
         if ($this->_client->getAppName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
+            Validate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileEngagement/appcollections/{appCollection}/apps/{appName}/devices/exportTasks/crashes';
@@ -469,13 +469,13 @@ class ExportTasks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -554,22 +554,22 @@ class ExportTasks
     public function createErrorsTaskAsync(array $parameters, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getResourceGroupName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
+            Validate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
         }
         if ($this->_client->getAppCollection() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
+            Validate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
         }
         if ($this->_client->getAppName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
+            Validate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileEngagement/appcollections/{appCollection}/apps/{appName}/devices/exportTasks/errors';
@@ -583,13 +583,13 @@ class ExportTasks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -668,22 +668,22 @@ class ExportTasks
     public function createEventsTaskAsync(array $parameters, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getResourceGroupName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
+            Validate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
         }
         if ($this->_client->getAppCollection() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
+            Validate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
         }
         if ($this->_client->getAppName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
+            Validate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileEngagement/appcollections/{appCollection}/apps/{appName}/devices/exportTasks/events';
@@ -697,13 +697,13 @@ class ExportTasks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -782,22 +782,22 @@ class ExportTasks
     public function createJobsTaskAsync(array $parameters, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getResourceGroupName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
+            Validate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
         }
         if ($this->_client->getAppCollection() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
+            Validate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
         }
         if ($this->_client->getAppName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
+            Validate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileEngagement/appcollections/{appCollection}/apps/{appName}/devices/exportTasks/jobs';
@@ -811,13 +811,13 @@ class ExportTasks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -896,22 +896,22 @@ class ExportTasks
     public function createSessionsTaskAsync(array $parameters, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getResourceGroupName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
+            Validate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
         }
         if ($this->_client->getAppCollection() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
+            Validate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
         }
         if ($this->_client->getAppName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
+            Validate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileEngagement/appcollections/{appCollection}/apps/{appName}/devices/exportTasks/sessions';
@@ -925,13 +925,13 @@ class ExportTasks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1006,22 +1006,22 @@ class ExportTasks
     public function createTagsTaskAsync(array $parameters, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getResourceGroupName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
+            Validate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
         }
         if ($this->_client->getAppCollection() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
+            Validate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
         }
         if ($this->_client->getAppName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
+            Validate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileEngagement/appcollections/{appCollection}/apps/{appName}/devices/exportTasks/tags';
@@ -1035,13 +1035,13 @@ class ExportTasks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1116,22 +1116,22 @@ class ExportTasks
     public function createTokensTaskAsync(array $parameters, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getResourceGroupName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
+            Validate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
         }
         if ($this->_client->getAppCollection() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
+            Validate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
         }
         if ($this->_client->getAppName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
+            Validate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileEngagement/appcollections/{appCollection}/apps/{appName}/devices/exportTasks/tokens';
@@ -1145,13 +1145,13 @@ class ExportTasks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1232,22 +1232,22 @@ class ExportTasks
     public function createFeedbackTaskByDateRangeAsync(array $parameters, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getResourceGroupName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
+            Validate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
         }
         if ($this->_client->getAppCollection() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
+            Validate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
         }
         if ($this->_client->getAppName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
+            Validate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileEngagement/appcollections/{appCollection}/apps/{appName}/devices/exportTasks/feedbackByDate';
@@ -1261,13 +1261,13 @@ class ExportTasks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1346,22 +1346,22 @@ class ExportTasks
     public function createFeedbackTaskByCampaignAsync(array $parameters, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getResourceGroupName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
+            Validate::notNullOrEmpty($this->_client->getResourceGroupName(), '$this->_client->getResourceGroupName()');
         }
         if ($this->_client->getAppCollection() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
+            Validate::notNullOrEmpty($this->_client->getAppCollection(), '$this->_client->getAppCollection()');
         }
         if ($this->_client->getAppName() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
+            Validate::notNullOrEmpty($this->_client->getAppName(), '$this->_client->getAppName()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileEngagement/appcollections/{appCollection}/apps/{appName}/devices/exportTasks/feedbackByCampaign';
@@ -1375,13 +1375,13 @@ class ExportTasks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1439,7 +1439,7 @@ class ExportTasks
     public function listNextAsync($nextPageLink, array $customHeaders = [])
     {
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -1453,12 +1453,12 @@ class ExportTasks
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

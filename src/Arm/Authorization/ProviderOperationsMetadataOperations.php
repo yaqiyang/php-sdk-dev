@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\Authorization;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * ProviderOperationsMetadataOperations.
@@ -97,10 +97,10 @@ class ProviderOperationsMetadataOperations
     public function getAsync($resourceProviderNamespace, $apiVersion, $expand = 'resourceTypes', array $customHeaders = [])
     {
         if ($resourceProviderNamespace == null) {
-            PhpValidate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
+            Validate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
         }
         if ($apiVersion == null) {
-            PhpValidate::notNullOrEmpty($apiVersion, '$apiVersion');
+            Validate::notNullOrEmpty($apiVersion, '$apiVersion');
         }
 
         $path = '/providers/Microsoft.Authorization/providerOperations/{resourceProviderNamespace}';
@@ -114,12 +114,12 @@ class ProviderOperationsMetadataOperations
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -176,7 +176,7 @@ class ProviderOperationsMetadataOperations
     public function listOperationAsync($apiVersion, $expand = 'resourceTypes', array $customHeaders = [])
     {
         if ($apiVersion == null) {
-            PhpValidate::notNullOrEmpty($apiVersion, '$apiVersion');
+            Validate::notNullOrEmpty($apiVersion, '$apiVersion');
         }
 
         $path = '/providers/Microsoft.Authorization/providerOperations';
@@ -190,12 +190,12 @@ class ProviderOperationsMetadataOperations
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -252,7 +252,7 @@ class ProviderOperationsMetadataOperations
     public function listNextAsync($nextPageLink, array $customHeaders = [])
     {
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -266,12 +266,12 @@ class ProviderOperationsMetadataOperations
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\Network;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * Usages for The Microsoft Azure Network management API provides a RESTful
@@ -91,13 +91,13 @@ class Usages
     public function listOperationAsync($location, array $customHeaders = [])
     {
         if ($location == null) {
-            PhpValidate::notNullOrEmpty($location, '$location');
+            Validate::notNullOrEmpty($location, '$location');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/Microsoft.Network/locations/{location}/usages';
@@ -111,88 +111,12 @@ class Usages
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
-            $method,
-            $headers,
-            $queryParams,
-            [],
-            $this->_client->getUrl($path),
-            $statusCodes,
-            $body,
-            $this->_client->getFilters()
-        );
-
-        return $response;
-    }
-
-    /**
-     * Lists compute usages for a subscription.
-     *
-     * @param string $nextPageLink The NextLink from the previous successful call
-     * to List operation.
-     * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
-     *  the HTTP request.
-     *
-     * @return array
-     * When the resposne status is OK(200), 
-     * <pre>
-     * [
-     *    'value' => ''
-     * ];
-     * </pre>
-     */
-    public function listNext($nextPageLink, array $customHeaders = [])
-    {
-        $response = $this->listNextAsync($nextPageLink, $customHeaders);
-
-        if ($response->getBody()) {
-            $contents = $response->getBody()->getContents();
-            if ($contents) {
-                return $this->_client->getDataSerializer()->deserialize($contents);
-            }
-        }
-
-        return [];
-    }
-
-    /**
-     * Lists compute usages for a subscription.
-     *
-     * @param string $nextPageLink The NextLink from the previous successful call
-     * to List operation.
-     * @param array $customHeaders An array of custom headers ['key' => 'value']
-     * that will be added to the HTTP request.
-     *
-     * @return \GuzzleHttp\Psr7\Response
-     */
-    public function listNextAsync($nextPageLink, array $customHeaders = [])
-    {
-        if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
-        }
-
-        $path = '{nextLink}';
-        $statusCodes = [200];
-        $method = 'GET';
-
-        $path = strtr($path, []);
-        $queryParams = [];
-        $headers = $customHeaders;
-        if ($this->_client->getAcceptLanguage() != null) {
-            $headers['accept-language'] = $this->_client->getAcceptLanguage();
-        }
-        if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
-        }
-
-        $body = '';
-
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

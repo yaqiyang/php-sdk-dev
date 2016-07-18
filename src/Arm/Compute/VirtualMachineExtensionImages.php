@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\Compute;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * VirtualMachineExtensionImages for The Compute Management Client.
@@ -100,22 +100,22 @@ class VirtualMachineExtensionImages
     public function getAsync($location, $publisherName, $type, $version, array $customHeaders = [])
     {
         if ($location == null) {
-            PhpValidate::notNullOrEmpty($location, '$location');
+            Validate::notNullOrEmpty($location, '$location');
         }
         if ($publisherName == null) {
-            PhpValidate::notNullOrEmpty($publisherName, '$publisherName');
+            Validate::notNullOrEmpty($publisherName, '$publisherName');
         }
         if ($type == null) {
-            PhpValidate::notNullOrEmpty($type, '$type');
+            Validate::notNullOrEmpty($type, '$type');
         }
         if ($version == null) {
-            PhpValidate::notNullOrEmpty($version, '$version');
+            Validate::notNullOrEmpty($version, '$version');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmextension/types/{type}/versions/{version}';
@@ -129,12 +129,12 @@ class VirtualMachineExtensionImages
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -198,16 +198,16 @@ class VirtualMachineExtensionImages
     public function listTypesAsync($location, $publisherName, array $customHeaders = [])
     {
         if ($location == null) {
-            PhpValidate::notNullOrEmpty($location, '$location');
+            Validate::notNullOrEmpty($location, '$location');
         }
         if ($publisherName == null) {
-            PhpValidate::notNullOrEmpty($publisherName, '$publisherName');
+            Validate::notNullOrEmpty($publisherName, '$publisherName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmextension/types';
@@ -221,12 +221,12 @@ class VirtualMachineExtensionImages
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -320,19 +320,19 @@ class VirtualMachineExtensionImages
     public function listVersionsAsync($location, $publisherName, $type, array $filter, $top = null, $orderby = null, array $customHeaders = [])
     {
         if ($location == null) {
-            PhpValidate::notNullOrEmpty($location, '$location');
+            Validate::notNullOrEmpty($location, '$location');
         }
         if ($publisherName == null) {
-            PhpValidate::notNullOrEmpty($publisherName, '$publisherName');
+            Validate::notNullOrEmpty($publisherName, '$publisherName');
         }
         if ($type == null) {
-            PhpValidate::notNullOrEmpty($type, '$type');
+            Validate::notNullOrEmpty($type, '$type');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmextension/types/{type}/versions';
@@ -346,12 +346,12 @@ class VirtualMachineExtensionImages
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

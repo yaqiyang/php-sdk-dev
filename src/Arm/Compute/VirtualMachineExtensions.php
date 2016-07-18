@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\Compute;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * VirtualMachineExtensions for The Compute Management Client.
@@ -130,7 +130,7 @@ class VirtualMachineExtensions
     {
         $response = $this->begincreateOrUpdateAsync($resourceGroupName, $vmName, $vmExtensionName, $extensionParameters, $customHeaders);
 
-        if ($response->getStatusCode() !== PhpResources::STATUS_OK) {
+        if ($response->getStatusCode() !== Resources::STATUS_OK) {
             $this->_client->awaitAsync($response);
         }
 
@@ -275,22 +275,22 @@ class VirtualMachineExtensions
     public function beginCreateOrUpdateAsync($resourceGroupName, $vmName, $vmExtensionName, array $extensionParameters, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($vmName == null) {
-            PhpValidate::notNullOrEmpty($vmName, '$vmName');
+            Validate::notNullOrEmpty($vmName, '$vmName');
         }
         if ($vmExtensionName == null) {
-            PhpValidate::notNullOrEmpty($vmExtensionName, '$vmExtensionName');
+            Validate::notNullOrEmpty($vmExtensionName, '$vmExtensionName');
         }
         if ($extensionParameters == null) {
-            PhpValidate::notNullOrEmpty($extensionParameters, '$extensionParameters');
+            Validate::notNullOrEmpty($extensionParameters, '$extensionParameters');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/extensions/{vmExtensionName}';
@@ -304,13 +304,13 @@ class VirtualMachineExtensions
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($extensionParameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -342,7 +342,7 @@ class VirtualMachineExtensions
     {
         $response = $this->begindeleteAsync($resourceGroupName, $vmName, $vmExtensionName, $customHeaders);
 
-        if ($response->getStatusCode() !== PhpResources::STATUS_OK) {
+        if ($response->getStatusCode() !== Resources::STATUS_OK) {
             $this->_client->awaitAsync($response);
         }
 
@@ -399,19 +399,19 @@ class VirtualMachineExtensions
     public function beginDeleteAsync($resourceGroupName, $vmName, $vmExtensionName, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($vmName == null) {
-            PhpValidate::notNullOrEmpty($vmName, '$vmName');
+            Validate::notNullOrEmpty($vmName, '$vmName');
         }
         if ($vmExtensionName == null) {
-            PhpValidate::notNullOrEmpty($vmExtensionName, '$vmExtensionName');
+            Validate::notNullOrEmpty($vmExtensionName, '$vmExtensionName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/extensions/{vmExtensionName}';
@@ -425,12 +425,12 @@ class VirtualMachineExtensions
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -509,19 +509,19 @@ class VirtualMachineExtensions
     public function getAsync($resourceGroupName, $vmName, $vmExtensionName, $expand = null, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($vmName == null) {
-            PhpValidate::notNullOrEmpty($vmName, '$vmName');
+            Validate::notNullOrEmpty($vmName, '$vmName');
         }
         if ($vmExtensionName == null) {
-            PhpValidate::notNullOrEmpty($vmExtensionName, '$vmExtensionName');
+            Validate::notNullOrEmpty($vmExtensionName, '$vmExtensionName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/extensions/{vmExtensionName}';
@@ -535,12 +535,12 @@ class VirtualMachineExtensions
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

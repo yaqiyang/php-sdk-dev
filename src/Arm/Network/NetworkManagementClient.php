@@ -20,18 +20,18 @@
 
 namespace MicrosoftAzure\Arm\Network;
 
-use MicrosoftAzure\Common\Internal\Authentication\OAuthScheme as PhpOAuthScheme;
-use MicrosoftAzure\Common\Internal\Filters\OAuthFilter as PhpOAuthFilter;
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer as PhpJsonSerializer;
-use MicrosoftAzure\Common\OAuthServiceClient as PhpOAuthServiceClient;
-use MicrosoftAzure\Common\RestServiceClient as PhpRestServiceClient;
+use MicrosoftAzure\Common\Internal\Authentication\OAuthScheme;
+use MicrosoftAzure\Common\Internal\Filters\OAuthFilter;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Serialization\JsonSerializer;
+use MicrosoftAzure\Common\OAuthServiceClient;
+use MicrosoftAzure\Common\RestServiceClient;
 
 /**
  * The Microsoft Azure Network management API provides a RESTful set of web services that interact with Microsoft Azure Networks service to manage your network resrources. The API has entities that capture the relationship between an end user and the Microsoft Azure Networks service.
  */
-class NetworkManagementClient extends PhpRestServiceClient
+class NetworkManagementClient extends RestServiceClient
 {
     /**
      * Credentials needed for the client to connect to Azure.
@@ -238,11 +238,11 @@ class NetworkManagementClient extends PhpRestServiceClient
         $this->_credentials = $oauthSettings;
         parent::__construct(
             $this->_credentials->getOAuthEndpointUri(),
-            new PhpJsonSerializer()
+            new JsonSerializer()
         );
-        $oauthService = new PhpOAuthServiceClient($this->_credentials);
-        $authentification = new PhpOAuthScheme($oauthService);
-        $this->_filters = [new PhpOAuthFilter($authentification)];
+        $oauthService = new OAuthServiceClient($this->_credentials);
+        $authentification = new OAuthScheme($oauthService);
+        $this->_filters = [new OAuthFilter($authentification)];
 
         $this->_applicationGateways = new ApplicationGateways($this);
         $this->_expressRouteCircuitAuthorizations = new ExpressRouteCircuitAuthorizations($this);
@@ -668,14 +668,14 @@ class NetworkManagementClient extends PhpRestServiceClient
      */
     public function pollAsyncOperation($path, $requestId)
     {
-        $queryParams = [PhpResources::API_VERSION => '2016-06-01', 'monitor' => 'true'];
-        $method = PhpResources::HTTP_GET;
-        $statusCodes = [PhpResources::STATUS_OK, Resources::STATUS_ACCEPTED];
+        $queryParams = [Resources::API_VERSION => '2016-06-01', 'monitor' => 'true'];
+        $method = Resources::HTTP_GET;
+        $statusCodes = [Resources::STATUS_OK, Resources::STATUS_ACCEPTED];
 
-        $headers = [PhpResources::X_MS_REQUEST_ID => $requestId];
+        $headers = [Resources::X_MS_REQUEST_ID => $requestId];
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -701,11 +701,11 @@ class NetworkManagementClient extends PhpRestServiceClient
         $status = $response->getStatusCode();
         $headers = $response->getHeaders();
 
-        if (array_key_exists(PhpResources::XTAG_LOCATION, $headers) && array_key_exists(PhpResources::X_MS_REQUEST_ID, $headers)) {
-            $locations = $headers[PhpResources::XTAG_LOCATION];
-            $requestIds = $headers[PhpResources::X_MS_REQUEST_ID];
+        if (array_key_exists(Resources::XTAG_LOCATION, $headers) && array_key_exists(Resources::X_MS_REQUEST_ID, $headers)) {
+            $locations = $headers[Resources::XTAG_LOCATION];
+            $requestIds = $headers[Resources::X_MS_REQUEST_ID];
 
-            while ($status == PhpResources::STATUS_ACCEPTED) {
+            while ($status == Resources::STATUS_ACCEPTED) {
                 sleep($this->getRetryInterval());
                 $status = $this->pollAsyncOperation($locations[0], $requestIds[0]);
                 echo '.';
@@ -762,13 +762,13 @@ class NetworkManagementClient extends PhpRestServiceClient
        public function checkDnsNameAvailabilityAsync($location, $domainNameLabel = null, array $customHeaders = [])
        {
            if ($location == null) {
-               PhpValidate::notNullOrEmpty($location, '$location');
+               Validate::notNullOrEmpty($location, '$location');
            }
            if ($apiVersion == null) {
-               PhpValidate::notNullOrEmpty($apiVersion, '$apiVersion');
+               Validate::notNullOrEmpty($apiVersion, '$apiVersion');
            }
            if ($subscriptionId == null) {
-               PhpValidate::notNullOrEmpty($subscriptionId, '$subscriptionId');
+               Validate::notNullOrEmpty($subscriptionId, '$subscriptionId');
            }
 
            $path = '/subscriptions/{subscriptionId}/providers/Microsoft.Network/locations/{location}/CheckDnsNameAvailability';
@@ -782,12 +782,12 @@ class NetworkManagementClient extends PhpRestServiceClient
                $headers['accept-language'] = $acceptLanguage;
            }
            if ($this->_client->getGenerateClientRequestId()) {
-               $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+               $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
            }
 
            $body = '';
 
-           $response = PhpHttpClient::send(
+           $response = HttpClient::send(
                $method,
                $headers,
                $queryParams,

@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\DataLakeAnalyticsCatalog;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * Catalog for Creates an Azure Data Lake Analytics catalog client.
@@ -116,22 +116,22 @@ class Catalog
     public function createSecretAsync($accountName, $databaseName, $secretName, array $parameters, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($secretName == null) {
-            PhpValidate::notNullOrEmpty($secretName, '$secretName');
+            Validate::notNullOrEmpty($secretName, '$secretName');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/secrets/{secretName}';
@@ -145,13 +145,13 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -232,22 +232,22 @@ class Catalog
     public function updateSecretAsync($accountName, $databaseName, $secretName, array $parameters, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($secretName == null) {
-            PhpValidate::notNullOrEmpty($secretName, '$secretName');
+            Validate::notNullOrEmpty($secretName, '$secretName');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/secrets/{secretName}';
@@ -261,13 +261,13 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -332,19 +332,19 @@ class Catalog
     public function getSecretAsync($accountName, $databaseName, $secretName, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($secretName == null) {
-            PhpValidate::notNullOrEmpty($secretName, '$secretName');
+            Validate::notNullOrEmpty($secretName, '$secretName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/secrets/{secretName}';
@@ -358,12 +358,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -419,19 +419,19 @@ class Catalog
     public function deleteSecretAsync($accountName, $databaseName, $secretName, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($secretName == null) {
-            PhpValidate::notNullOrEmpty($secretName, '$secretName');
+            Validate::notNullOrEmpty($secretName, '$secretName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/secrets/{secretName}';
@@ -445,12 +445,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -504,16 +504,16 @@ class Catalog
     public function deleteAllSecretsAsync($accountName, $databaseName, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/secrets';
@@ -527,12 +527,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -601,19 +601,19 @@ class Catalog
     public function getExternalDataSourceAsync($accountName, $databaseName, $externalDataSourceName, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($externalDataSourceName == null) {
-            PhpValidate::notNullOrEmpty($externalDataSourceName, '$externalDataSourceName');
+            Validate::notNullOrEmpty($externalDataSourceName, '$externalDataSourceName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/externaldatasources/{externalDataSourceName}';
@@ -627,12 +627,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -747,16 +747,16 @@ class Catalog
     public function listExternalDataSourcesAsync($accountName, $databaseName, array $filter, $top = null, $skip = null, $expand = null, $select = null, $orderby = null, $count = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/externaldatasources';
@@ -770,12 +770,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -839,19 +839,19 @@ class Catalog
     public function getCredentialAsync($accountName, $databaseName, $credentialName, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($credentialName == null) {
-            PhpValidate::notNullOrEmpty($credentialName, '$credentialName');
+            Validate::notNullOrEmpty($credentialName, '$credentialName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/credentials/{credentialName}';
@@ -865,12 +865,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -979,16 +979,16 @@ class Catalog
     public function listCredentialsAsync($accountName, $databaseName, array $filter, $top = null, $skip = null, $expand = null, $select = null, $orderby = null, $count = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/credentials';
@@ -1002,12 +1002,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1075,22 +1075,22 @@ class Catalog
     public function getProcedureAsync($accountName, $databaseName, $schemaName, $procedureName, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($schemaName == null) {
-            PhpValidate::notNullOrEmpty($schemaName, '$schemaName');
+            Validate::notNullOrEmpty($schemaName, '$schemaName');
         }
         if ($procedureName == null) {
-            PhpValidate::notNullOrEmpty($procedureName, '$procedureName');
+            Validate::notNullOrEmpty($procedureName, '$procedureName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/schemas/{schemaName}/procedures/{procedureName}';
@@ -1104,12 +1104,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1222,19 +1222,19 @@ class Catalog
     public function listProceduresAsync($accountName, $databaseName, $schemaName, array $filter, $top = null, $skip = null, $expand = null, $select = null, $orderby = null, $count = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($schemaName == null) {
-            PhpValidate::notNullOrEmpty($schemaName, '$schemaName');
+            Validate::notNullOrEmpty($schemaName, '$schemaName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/schemas/{schemaName}/procedures';
@@ -1248,12 +1248,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1339,22 +1339,22 @@ class Catalog
     public function getTableAsync($accountName, $databaseName, $schemaName, $tableName, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($schemaName == null) {
-            PhpValidate::notNullOrEmpty($schemaName, '$schemaName');
+            Validate::notNullOrEmpty($schemaName, '$schemaName');
         }
         if ($tableName == null) {
-            PhpValidate::notNullOrEmpty($tableName, '$tableName');
+            Validate::notNullOrEmpty($tableName, '$tableName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/schemas/{schemaName}/tables/{tableName}';
@@ -1368,12 +1368,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1524,19 +1524,19 @@ class Catalog
     public function listTablesAsync($accountName, $databaseName, $schemaName, array $filter, $top = null, $skip = null, $expand = null, $select = null, $orderby = null, $count = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($schemaName == null) {
-            PhpValidate::notNullOrEmpty($schemaName, '$schemaName');
+            Validate::notNullOrEmpty($schemaName, '$schemaName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/schemas/{schemaName}/tables';
@@ -1550,12 +1550,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1620,22 +1620,22 @@ class Catalog
     public function getTableTypeAsync($accountName, $databaseName, $schemaName, $tableTypeName, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($schemaName == null) {
-            PhpValidate::notNullOrEmpty($schemaName, '$schemaName');
+            Validate::notNullOrEmpty($schemaName, '$schemaName');
         }
         if ($tableTypeName == null) {
-            PhpValidate::notNullOrEmpty($tableTypeName, '$tableTypeName');
+            Validate::notNullOrEmpty($tableTypeName, '$tableTypeName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/schemas/{schemaName}/tabletypes/{tableTypeName}';
@@ -1649,12 +1649,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1761,19 +1761,19 @@ class Catalog
     public function listTableTypesAsync($accountName, $databaseName, $schemaName, array $filter, $top = null, $skip = null, $expand = null, $select = null, $orderby = null, $count = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($schemaName == null) {
-            PhpValidate::notNullOrEmpty($schemaName, '$schemaName');
+            Validate::notNullOrEmpty($schemaName, '$schemaName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/schemas/{schemaName}/tabletypes';
@@ -1787,12 +1787,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -1858,22 +1858,22 @@ class Catalog
     public function getViewAsync($accountName, $databaseName, $schemaName, $viewName, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($schemaName == null) {
-            PhpValidate::notNullOrEmpty($schemaName, '$schemaName');
+            Validate::notNullOrEmpty($schemaName, '$schemaName');
         }
         if ($viewName == null) {
-            PhpValidate::notNullOrEmpty($viewName, '$viewName');
+            Validate::notNullOrEmpty($viewName, '$viewName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/schemas/{schemaName}/views/{viewName}';
@@ -1887,12 +1887,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -2003,19 +2003,19 @@ class Catalog
     public function listViewsAsync($accountName, $databaseName, $schemaName, array $filter, $top = null, $skip = null, $expand = null, $select = null, $orderby = null, $count = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($schemaName == null) {
-            PhpValidate::notNullOrEmpty($schemaName, '$schemaName');
+            Validate::notNullOrEmpty($schemaName, '$schemaName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/schemas/{schemaName}/views';
@@ -2029,12 +2029,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -2115,25 +2115,25 @@ class Catalog
     public function getTableStatisticAsync($accountName, $databaseName, $schemaName, $tableName, $statisticsName, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($schemaName == null) {
-            PhpValidate::notNullOrEmpty($schemaName, '$schemaName');
+            Validate::notNullOrEmpty($schemaName, '$schemaName');
         }
         if ($tableName == null) {
-            PhpValidate::notNullOrEmpty($tableName, '$tableName');
+            Validate::notNullOrEmpty($tableName, '$tableName');
         }
         if ($statisticsName == null) {
-            PhpValidate::notNullOrEmpty($statisticsName, '$statisticsName');
+            Validate::notNullOrEmpty($statisticsName, '$statisticsName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/schemas/{schemaName}/tables/{tableName}/statistics/{statisticsName}';
@@ -2147,12 +2147,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -2285,22 +2285,22 @@ class Catalog
     public function listTableStatisticsAsync($accountName, $databaseName, $schemaName, $tableName, array $filter, $top = null, $skip = null, $expand = null, $select = null, $orderby = null, $count = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($schemaName == null) {
-            PhpValidate::notNullOrEmpty($schemaName, '$schemaName');
+            Validate::notNullOrEmpty($schemaName, '$schemaName');
         }
         if ($tableName == null) {
-            PhpValidate::notNullOrEmpty($tableName, '$tableName');
+            Validate::notNullOrEmpty($tableName, '$tableName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/schemas/{schemaName}/tables/{tableName}/statistics';
@@ -2314,12 +2314,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -2399,25 +2399,25 @@ class Catalog
     public function getTablePartitionAsync($accountName, $databaseName, $schemaName, $tableName, $partitionName, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($schemaName == null) {
-            PhpValidate::notNullOrEmpty($schemaName, '$schemaName');
+            Validate::notNullOrEmpty($schemaName, '$schemaName');
         }
         if ($tableName == null) {
-            PhpValidate::notNullOrEmpty($tableName, '$tableName');
+            Validate::notNullOrEmpty($tableName, '$tableName');
         }
         if ($partitionName == null) {
-            PhpValidate::notNullOrEmpty($partitionName, '$partitionName');
+            Validate::notNullOrEmpty($partitionName, '$partitionName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/schemas/{schemaName}/tables/{tableName}/partitions/{partitionName}';
@@ -2431,12 +2431,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -2567,22 +2567,22 @@ class Catalog
     public function listTablePartitionsAsync($accountName, $databaseName, $schemaName, $tableName, array $filter, $top = null, $skip = null, $expand = null, $select = null, $orderby = null, $count = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($schemaName == null) {
-            PhpValidate::notNullOrEmpty($schemaName, '$schemaName');
+            Validate::notNullOrEmpty($schemaName, '$schemaName');
         }
         if ($tableName == null) {
-            PhpValidate::notNullOrEmpty($tableName, '$tableName');
+            Validate::notNullOrEmpty($tableName, '$tableName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/schemas/{schemaName}/tables/{tableName}/partitions';
@@ -2596,12 +2596,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -2736,19 +2736,19 @@ class Catalog
     public function listTypesAsync($accountName, $databaseName, $schemaName, array $filter, $top = null, $skip = null, $expand = null, $select = null, $orderby = null, $count = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($schemaName == null) {
-            PhpValidate::notNullOrEmpty($schemaName, '$schemaName');
+            Validate::notNullOrEmpty($schemaName, '$schemaName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/schemas/{schemaName}/types';
@@ -2762,12 +2762,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -2839,22 +2839,22 @@ class Catalog
     public function getTableValuedFunctionAsync($accountName, $databaseName, $schemaName, $tableValuedFunctionName, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($schemaName == null) {
-            PhpValidate::notNullOrEmpty($schemaName, '$schemaName');
+            Validate::notNullOrEmpty($schemaName, '$schemaName');
         }
         if ($tableValuedFunctionName == null) {
-            PhpValidate::notNullOrEmpty($tableValuedFunctionName, '$tableValuedFunctionName');
+            Validate::notNullOrEmpty($tableValuedFunctionName, '$tableValuedFunctionName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/schemas/{schemaName}/tablevaluedfunctions/{tableValuedFunctionName}';
@@ -2868,12 +2868,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -2990,19 +2990,19 @@ class Catalog
     public function listTableValuedFunctionsAsync($accountName, $databaseName, $schemaName, array $filter, $top = null, $skip = null, $expand = null, $select = null, $orderby = null, $count = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($schemaName == null) {
-            PhpValidate::notNullOrEmpty($schemaName, '$schemaName');
+            Validate::notNullOrEmpty($schemaName, '$schemaName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/schemas/{schemaName}/tablevaluedfunctions';
@@ -3016,12 +3016,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -3090,19 +3090,19 @@ class Catalog
     public function getAssemblyAsync($accountName, $databaseName, $assemblyName, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($assemblyName == null) {
-            PhpValidate::notNullOrEmpty($assemblyName, '$assemblyName');
+            Validate::notNullOrEmpty($assemblyName, '$assemblyName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/assemblies/{assemblyName}';
@@ -3116,12 +3116,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -3238,16 +3238,16 @@ class Catalog
     public function listAssembliesAsync($accountName, $databaseName, array $filter, $top = null, $skip = null, $expand = null, $select = null, $orderby = null, $count = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/assemblies';
@@ -3261,12 +3261,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -3328,19 +3328,19 @@ class Catalog
     public function getSchemaAsync($accountName, $databaseName, $schemaName, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($schemaName == null) {
-            PhpValidate::notNullOrEmpty($schemaName, '$schemaName');
+            Validate::notNullOrEmpty($schemaName, '$schemaName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/schemas/{schemaName}';
@@ -3354,12 +3354,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -3464,16 +3464,16 @@ class Catalog
     public function listSchemasAsync($accountName, $databaseName, array $filter, $top = null, $skip = null, $expand = null, $select = null, $orderby = null, $count = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}/schemas';
@@ -3487,12 +3487,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -3551,16 +3551,16 @@ class Catalog
     public function getDatabaseAsync($accountName, $databaseName, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($databaseName == null) {
-            PhpValidate::notNullOrEmpty($databaseName, '$databaseName');
+            Validate::notNullOrEmpty($databaseName, '$databaseName');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases/{databaseName}';
@@ -3574,12 +3574,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -3680,13 +3680,13 @@ class Catalog
     public function listDatabasesAsync($accountName, array $filter, $top = null, $skip = null, $expand = null, $select = null, $orderby = null, $count = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/catalog/usql/databases';
@@ -3700,12 +3700,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -3768,13 +3768,13 @@ class Catalog
     public function listExternalDataSourcesNextAsync($accountName, $nextPageLink, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -3788,12 +3788,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -3854,13 +3854,13 @@ class Catalog
     public function listCredentialsNextAsync($accountName, $nextPageLink, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -3874,12 +3874,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -3940,13 +3940,13 @@ class Catalog
     public function listProceduresNextAsync($accountName, $nextPageLink, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -3960,12 +3960,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -4026,13 +4026,13 @@ class Catalog
     public function listTablesNextAsync($accountName, $nextPageLink, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -4046,12 +4046,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -4112,13 +4112,13 @@ class Catalog
     public function listTableTypesNextAsync($accountName, $nextPageLink, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -4132,12 +4132,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -4198,13 +4198,13 @@ class Catalog
     public function listViewsNextAsync($accountName, $nextPageLink, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -4218,12 +4218,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -4284,13 +4284,13 @@ class Catalog
     public function listTableStatisticsNextAsync($accountName, $nextPageLink, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -4304,12 +4304,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -4370,13 +4370,13 @@ class Catalog
     public function listTablePartitionsNextAsync($accountName, $nextPageLink, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -4390,12 +4390,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -4458,13 +4458,13 @@ class Catalog
     public function listTypesNextAsync($accountName, $nextPageLink, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -4478,12 +4478,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -4546,13 +4546,13 @@ class Catalog
     public function listTableValuedFunctionsNextAsync($accountName, $nextPageLink, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -4566,12 +4566,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -4632,13 +4632,13 @@ class Catalog
     public function listAssembliesNextAsync($accountName, $nextPageLink, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -4652,12 +4652,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -4718,13 +4718,13 @@ class Catalog
     public function listSchemasNextAsync($accountName, $nextPageLink, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -4738,12 +4738,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -4804,13 +4804,13 @@ class Catalog
     public function listDatabasesNextAsync($accountName, $nextPageLink, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaCatalogDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaCatalogDnsSuffix(), '$this->_client->getAdlaCatalogDnsSuffix()');
         }
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -4824,12 +4824,12 @@ class Catalog
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\Cdn;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * NameAvailability for Use these APIs to manage Azure CDN resources through
@@ -110,10 +110,10 @@ class NameAvailability
     public function checkNameAvailabilityAsync(array $checkNameAvailabilityInput, array $customHeaders = [])
     {
         if ($checkNameAvailabilityInput == null) {
-            PhpValidate::notNullOrEmpty($checkNameAvailabilityInput, '$checkNameAvailabilityInput');
+            Validate::notNullOrEmpty($checkNameAvailabilityInput, '$checkNameAvailabilityInput');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/providers/Microsoft.Cdn/checkNameAvailability';
@@ -127,13 +127,13 @@ class NameAvailability
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($checkNameAvailabilityInput);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

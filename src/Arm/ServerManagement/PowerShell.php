@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\ServerManagement;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * PowerShell for REST API for Azure Server Management Service
@@ -95,19 +95,19 @@ class PowerShell
     public function listSessionAsync($resourceGroupName, $nodeName, $session, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($nodeName == null) {
-            PhpValidate::notNullOrEmpty($nodeName, '$nodeName');
+            Validate::notNullOrEmpty($nodeName, '$nodeName');
         }
         if ($session == null) {
-            PhpValidate::notNullOrEmpty($session, '$session');
+            Validate::notNullOrEmpty($session, '$session');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServerManagement/nodes/{nodeName}/sessions/{session}/features/powerShellConsole/pssessions';
@@ -121,12 +121,12 @@ class PowerShell
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -179,7 +179,7 @@ class PowerShell
     {
         $response = $this->begincreateSessionAsync($resourceGroupName, $nodeName, $session, $pssession, $customHeaders);
 
-        if ($response->getStatusCode() !== PhpResources::STATUS_OK) {
+        if ($response->getStatusCode() !== Resources::STATUS_OK) {
             $this->_client->awaitAsync($response);
         }
 
@@ -258,22 +258,22 @@ class PowerShell
     public function beginCreateSessionAsync($resourceGroupName, $nodeName, $session, $pssession, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($nodeName == null) {
-            PhpValidate::notNullOrEmpty($nodeName, '$nodeName');
+            Validate::notNullOrEmpty($nodeName, '$nodeName');
         }
         if ($session == null) {
-            PhpValidate::notNullOrEmpty($session, '$session');
+            Validate::notNullOrEmpty($session, '$session');
         }
         if ($pssession == null) {
-            PhpValidate::notNullOrEmpty($pssession, '$pssession');
+            Validate::notNullOrEmpty($pssession, '$pssession');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServerManagement/nodes/{nodeName}/sessions/{session}/features/powerShellConsole/pssessions/{pssession}';
@@ -287,12 +287,12 @@ class PowerShell
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -364,22 +364,22 @@ class PowerShell
     public function getCommandStatusAsync($resourceGroupName, $nodeName, $session, $pssession, array $expand, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($nodeName == null) {
-            PhpValidate::notNullOrEmpty($nodeName, '$nodeName');
+            Validate::notNullOrEmpty($nodeName, '$nodeName');
         }
         if ($session == null) {
-            PhpValidate::notNullOrEmpty($session, '$session');
+            Validate::notNullOrEmpty($session, '$session');
         }
         if ($pssession == null) {
-            PhpValidate::notNullOrEmpty($pssession, '$pssession');
+            Validate::notNullOrEmpty($pssession, '$pssession');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServerManagement/nodes/{nodeName}/sessions/{session}/features/powerShellConsole/pssessions/{pssession}';
@@ -393,12 +393,12 @@ class PowerShell
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -439,7 +439,7 @@ class PowerShell
     {
         $response = $this->beginupdateCommandAsync($resourceGroupName, $nodeName, $session, $pssession, $customHeaders);
 
-        if ($response->getStatusCode() !== PhpResources::STATUS_OK) {
+        if ($response->getStatusCode() !== Resources::STATUS_OK) {
             $this->_client->awaitAsync($response);
         }
 
@@ -506,22 +506,22 @@ class PowerShell
     public function beginUpdateCommandAsync($resourceGroupName, $nodeName, $session, $pssession, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($nodeName == null) {
-            PhpValidate::notNullOrEmpty($nodeName, '$nodeName');
+            Validate::notNullOrEmpty($nodeName, '$nodeName');
         }
         if ($session == null) {
-            PhpValidate::notNullOrEmpty($session, '$session');
+            Validate::notNullOrEmpty($session, '$session');
         }
         if ($pssession == null) {
-            PhpValidate::notNullOrEmpty($pssession, '$pssession');
+            Validate::notNullOrEmpty($pssession, '$pssession');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServerManagement/nodes/{nodeName}/sessions/{session}/features/powerShellConsole/pssessions/{pssession}';
@@ -535,12 +535,12 @@ class PowerShell
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -590,7 +590,7 @@ class PowerShell
     {
         $response = $this->begininvokeCommandAsync($resourceGroupName, $nodeName, $session, $pssession, $powerShellCommandParameters, $customHeaders);
 
-        if ($response->getStatusCode() !== PhpResources::STATUS_OK) {
+        if ($response->getStatusCode() !== Resources::STATUS_OK) {
             $this->_client->awaitAsync($response);
         }
 
@@ -675,25 +675,25 @@ class PowerShell
     public function beginInvokeCommandAsync($resourceGroupName, $nodeName, $session, $pssession, array $powerShellCommandParameters, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($nodeName == null) {
-            PhpValidate::notNullOrEmpty($nodeName, '$nodeName');
+            Validate::notNullOrEmpty($nodeName, '$nodeName');
         }
         if ($session == null) {
-            PhpValidate::notNullOrEmpty($session, '$session');
+            Validate::notNullOrEmpty($session, '$session');
         }
         if ($pssession == null) {
-            PhpValidate::notNullOrEmpty($pssession, '$pssession');
+            Validate::notNullOrEmpty($pssession, '$pssession');
         }
         if ($powerShellCommandParameters == null) {
-            PhpValidate::notNullOrEmpty($powerShellCommandParameters, '$powerShellCommandParameters');
+            Validate::notNullOrEmpty($powerShellCommandParameters, '$powerShellCommandParameters');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServerManagement/nodes/{nodeName}/sessions/{session}/features/powerShellConsole/pssessions/{pssession}/invokeCommand';
@@ -707,13 +707,13 @@ class PowerShell
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($powerShellCommandParameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -754,7 +754,7 @@ class PowerShell
     {
         $response = $this->begincancelCommandAsync($resourceGroupName, $nodeName, $session, $pssession, $customHeaders);
 
-        if ($response->getStatusCode() !== PhpResources::STATUS_OK) {
+        if ($response->getStatusCode() !== Resources::STATUS_OK) {
             $this->_client->awaitAsync($response);
         }
 
@@ -821,22 +821,22 @@ class PowerShell
     public function beginCancelCommandAsync($resourceGroupName, $nodeName, $session, $pssession, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($nodeName == null) {
-            PhpValidate::notNullOrEmpty($nodeName, '$nodeName');
+            Validate::notNullOrEmpty($nodeName, '$nodeName');
         }
         if ($session == null) {
-            PhpValidate::notNullOrEmpty($session, '$session');
+            Validate::notNullOrEmpty($session, '$session');
         }
         if ($pssession == null) {
-            PhpValidate::notNullOrEmpty($pssession, '$pssession');
+            Validate::notNullOrEmpty($pssession, '$pssession');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServerManagement/nodes/{nodeName}/sessions/{session}/features/powerShellConsole/pssessions/{pssession}/cancel';
@@ -850,12 +850,12 @@ class PowerShell
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -930,25 +930,25 @@ class PowerShell
     public function tabCompletionAsync($resourceGroupName, $nodeName, $session, $pssession, array $powerShellTabCompletionParamters, array $customHeaders = [])
     {
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($nodeName == null) {
-            PhpValidate::notNullOrEmpty($nodeName, '$nodeName');
+            Validate::notNullOrEmpty($nodeName, '$nodeName');
         }
         if ($session == null) {
-            PhpValidate::notNullOrEmpty($session, '$session');
+            Validate::notNullOrEmpty($session, '$session');
         }
         if ($pssession == null) {
-            PhpValidate::notNullOrEmpty($pssession, '$pssession');
+            Validate::notNullOrEmpty($pssession, '$pssession');
         }
         if ($powerShellTabCompletionParamters == null) {
-            PhpValidate::notNullOrEmpty($powerShellTabCompletionParamters, '$powerShellTabCompletionParamters');
+            Validate::notNullOrEmpty($powerShellTabCompletionParamters, '$powerShellTabCompletionParamters');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServerManagement/nodes/{nodeName}/sessions/{session}/features/powerShellConsole/pssessions/{pssession}/tab';
@@ -962,13 +962,13 @@ class PowerShell
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($powerShellTabCompletionParamters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

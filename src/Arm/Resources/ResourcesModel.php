@@ -20,15 +20,15 @@
 
 namespace MicrosoftAzure\Arm\Resources;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
- * Resources.
+ * ResourcesModel.
  */
-class Resources
+class ResourcesModel
 {
     /**
      * The service client object for the operations.
@@ -38,9 +38,9 @@ class Resources
     private $_client;
 
     /**
-     * Creates a new instance for Resources.
+     * Creates a new instance for ResourcesModel.
      *
-     * @param ResourceManagementClient, Service client for Resources
+     * @param ResourceManagementClient, Service client for ResourcesModel
      */
     public function __construct($client)
     {
@@ -70,7 +70,7 @@ class Resources
     {
         $response = $this->beginmoveResourcesAsync($sourceResourceGroupName, $parameters, $customHeaders);
 
-        if ($response->getStatusCode() !== PhpResources::STATUS_OK) {
+        if ($response->getStatusCode() !== Resources::STATUS_OK) {
             $this->_client->awaitAsync($response);
         }
 
@@ -137,16 +137,16 @@ class Resources
     public function beginMoveResourcesAsync($sourceResourceGroupName, array $parameters, array $customHeaders = [])
     {
         if ($sourceResourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($sourceResourceGroupName, '$sourceResourceGroupName');
+            Validate::notNullOrEmpty($sourceResourceGroupName, '$sourceResourceGroupName');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourceGroups/{sourceResourceGroupName}/moveResources';
@@ -160,13 +160,13 @@ class Resources
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -242,10 +242,10 @@ class Resources
     public function listOperationAsync(array $filter, $top = null, array $customHeaders = [])
     {
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resources';
@@ -259,12 +259,12 @@ class Resources
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -327,25 +327,25 @@ class Resources
     public function checkExistenceAsync($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, $apiVersion, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($resourceProviderNamespace == null) {
-            PhpValidate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
+            Validate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
         }
         if ($parentResourcePath == null) {
-            PhpValidate::notNullOrEmpty($parentResourcePath, '$parentResourcePath');
+            Validate::notNullOrEmpty($parentResourcePath, '$parentResourcePath');
         }
         if ($resourceType == null) {
-            PhpValidate::notNullOrEmpty($resourceType, '$resourceType');
+            Validate::notNullOrEmpty($resourceType, '$resourceType');
         }
         if ($resourceName == null) {
-            PhpValidate::notNullOrEmpty($resourceName, '$resourceName');
+            Validate::notNullOrEmpty($resourceName, '$resourceName');
         }
         if ($apiVersion == null) {
-            PhpValidate::notNullOrEmpty($apiVersion, '$apiVersion');
+            Validate::notNullOrEmpty($apiVersion, '$apiVersion');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}';
@@ -359,12 +359,12 @@ class Resources
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -428,25 +428,25 @@ class Resources
     public function deleteAsync($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, $apiVersion, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($resourceProviderNamespace == null) {
-            PhpValidate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
+            Validate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
         }
         if ($parentResourcePath == null) {
-            PhpValidate::notNullOrEmpty($parentResourcePath, '$parentResourcePath');
+            Validate::notNullOrEmpty($parentResourcePath, '$parentResourcePath');
         }
         if ($resourceType == null) {
-            PhpValidate::notNullOrEmpty($resourceType, '$resourceType');
+            Validate::notNullOrEmpty($resourceType, '$resourceType');
         }
         if ($resourceName == null) {
-            PhpValidate::notNullOrEmpty($resourceName, '$resourceName');
+            Validate::notNullOrEmpty($resourceName, '$resourceName');
         }
         if ($apiVersion == null) {
-            PhpValidate::notNullOrEmpty($apiVersion, '$apiVersion');
+            Validate::notNullOrEmpty($apiVersion, '$apiVersion');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}';
@@ -460,12 +460,12 @@ class Resources
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -634,28 +634,28 @@ class Resources
     public function createOrUpdateAsync($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, $apiVersion, array $parameters, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($resourceProviderNamespace == null) {
-            PhpValidate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
+            Validate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
         }
         if ($parentResourcePath == null) {
-            PhpValidate::notNullOrEmpty($parentResourcePath, '$parentResourcePath');
+            Validate::notNullOrEmpty($parentResourcePath, '$parentResourcePath');
         }
         if ($resourceType == null) {
-            PhpValidate::notNullOrEmpty($resourceType, '$resourceType');
+            Validate::notNullOrEmpty($resourceType, '$resourceType');
         }
         if ($resourceName == null) {
-            PhpValidate::notNullOrEmpty($resourceName, '$resourceName');
+            Validate::notNullOrEmpty($resourceName, '$resourceName');
         }
         if ($apiVersion == null) {
-            PhpValidate::notNullOrEmpty($apiVersion, '$apiVersion');
+            Validate::notNullOrEmpty($apiVersion, '$apiVersion');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}';
@@ -669,13 +669,13 @@ class Resources
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -763,25 +763,25 @@ class Resources
     public function getAsync($resourceGroupName, $resourceProviderNamespace, $parentResourcePath, $resourceType, $resourceName, $apiVersion, array $customHeaders = [])
     {
         if ($resourceGroupName == null) {
-            PhpValidate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
+            Validate::notNullOrEmpty($resourceGroupName, '$resourceGroupName');
         }
         if ($resourceProviderNamespace == null) {
-            PhpValidate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
+            Validate::notNullOrEmpty($resourceProviderNamespace, '$resourceProviderNamespace');
         }
         if ($parentResourcePath == null) {
-            PhpValidate::notNullOrEmpty($parentResourcePath, '$parentResourcePath');
+            Validate::notNullOrEmpty($parentResourcePath, '$parentResourcePath');
         }
         if ($resourceType == null) {
-            PhpValidate::notNullOrEmpty($resourceType, '$resourceType');
+            Validate::notNullOrEmpty($resourceType, '$resourceType');
         }
         if ($resourceName == null) {
-            PhpValidate::notNullOrEmpty($resourceName, '$resourceName');
+            Validate::notNullOrEmpty($resourceName, '$resourceName');
         }
         if ($apiVersion == null) {
-            PhpValidate::notNullOrEmpty($apiVersion, '$apiVersion');
+            Validate::notNullOrEmpty($apiVersion, '$apiVersion');
         }
         if ($this->_client->getSubscriptionId() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
+            Validate::notNullOrEmpty($this->_client->getSubscriptionId(), '$this->_client->getSubscriptionId()');
         }
 
         $path = '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}';
@@ -795,12 +795,12 @@ class Resources
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -858,7 +858,7 @@ class Resources
     public function listNextAsync($nextPageLink, array $customHeaders = [])
     {
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -872,12 +872,12 @@ class Resources
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,

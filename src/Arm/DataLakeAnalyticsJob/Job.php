@@ -20,10 +20,10 @@
 
 namespace MicrosoftAzure\Arm\DataLakeAnalyticsJob;
 
-use MicrosoftAzure\Common\Internal\Http\HttpClient as PhpHttpClient;
-use MicrosoftAzure\Common\Internal\Resources as PhpResources;
-use MicrosoftAzure\Common\Internal\Utilities as PhpUtilities;
-use MicrosoftAzure\Common\Internal\Validate as PhpValidate;
+use MicrosoftAzure\Common\Internal\Http\HttpClient;
+use MicrosoftAzure\Common\Internal\Resources;
+use MicrosoftAzure\Common\Internal\Utilities;
+use MicrosoftAzure\Common\Internal\Validate;
 
 /**
  * Job for Creates an Azure Data Lake Analytics job client.
@@ -93,16 +93,16 @@ class Job
     public function getStatisticsAsync($accountName, $jobIdentity, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaJobDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaJobDnsSuffix(), '$this->_client->getAdlaJobDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaJobDnsSuffix(), '$this->_client->getAdlaJobDnsSuffix()');
         }
         if ($jobIdentity == null) {
-            PhpValidate::notNullOrEmpty($jobIdentity, '$jobIdentity');
+            Validate::notNullOrEmpty($jobIdentity, '$jobIdentity');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/Jobs/{jobIdentity}/GetStatistics';
@@ -116,12 +116,12 @@ class Job
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -182,16 +182,16 @@ class Job
     public function getDebugDataPathAsync($accountName, $jobIdentity, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaJobDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaJobDnsSuffix(), '$this->_client->getAdlaJobDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaJobDnsSuffix(), '$this->_client->getAdlaJobDnsSuffix()');
         }
         if ($jobIdentity == null) {
-            PhpValidate::notNullOrEmpty($jobIdentity, '$jobIdentity');
+            Validate::notNullOrEmpty($jobIdentity, '$jobIdentity');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/Jobs/{jobIdentity}/GetDebugDataPath';
@@ -205,12 +205,12 @@ class Job
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -338,16 +338,16 @@ class Job
     public function buildAsync($accountName, array $parameters, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaJobDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaJobDnsSuffix(), '$this->_client->getAdlaJobDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaJobDnsSuffix(), '$this->_client->getAdlaJobDnsSuffix()');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/BuildJob';
@@ -361,13 +361,13 @@ class Job
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -421,16 +421,16 @@ class Job
     public function cancelAsync($accountName, $jobIdentity, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaJobDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaJobDnsSuffix(), '$this->_client->getAdlaJobDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaJobDnsSuffix(), '$this->_client->getAdlaJobDnsSuffix()');
         }
         if ($jobIdentity == null) {
-            PhpValidate::notNullOrEmpty($jobIdentity, '$jobIdentity');
+            Validate::notNullOrEmpty($jobIdentity, '$jobIdentity');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/Jobs/{jobIdentity}/CancelJob';
@@ -444,12 +444,12 @@ class Job
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -527,16 +527,16 @@ class Job
     public function getAsync($accountName, $jobIdentity, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaJobDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaJobDnsSuffix(), '$this->_client->getAdlaJobDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaJobDnsSuffix(), '$this->_client->getAdlaJobDnsSuffix()');
         }
         if ($jobIdentity == null) {
-            PhpValidate::notNullOrEmpty($jobIdentity, '$jobIdentity');
+            Validate::notNullOrEmpty($jobIdentity, '$jobIdentity');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/Jobs/{jobIdentity}';
@@ -550,12 +550,12 @@ class Job
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -683,19 +683,19 @@ class Job
     public function createAsync($accountName, $jobIdentity, array $parameters, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaJobDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaJobDnsSuffix(), '$this->_client->getAdlaJobDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaJobDnsSuffix(), '$this->_client->getAdlaJobDnsSuffix()');
         }
         if ($jobIdentity == null) {
-            PhpValidate::notNullOrEmpty($jobIdentity, '$jobIdentity');
+            Validate::notNullOrEmpty($jobIdentity, '$jobIdentity');
         }
         if ($parameters == null) {
-            PhpValidate::notNullOrEmpty($parameters, '$parameters');
+            Validate::notNullOrEmpty($parameters, '$parameters');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/Jobs/{jobIdentity}';
@@ -709,13 +709,13 @@ class Job
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $headers['Content-Type'] = 'application/json; charset=utf-8';
         $body = $this->_client->getDataSerializer()->serialize($parameters);
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -870,13 +870,13 @@ class Job
     public function listOperationAsync($accountName, array $filter, $top = null, $skip = null, $expand = null, $select = null, $orderby = null, $count = null, $search = null, $format = null, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaJobDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaJobDnsSuffix(), '$this->_client->getAdlaJobDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaJobDnsSuffix(), '$this->_client->getAdlaJobDnsSuffix()');
         }
         if ($this->_client->getApiVersion() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
+            Validate::notNullOrEmpty($this->_client->getApiVersion(), '$this->_client->getApiVersion()');
         }
 
         $path = '/Jobs';
@@ -890,12 +890,12 @@ class Job
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
@@ -960,13 +960,13 @@ class Job
     public function listNextAsync($accountName, $nextPageLink, array $customHeaders = [])
     {
         if ($accountName == null) {
-            PhpValidate::notNullOrEmpty($accountName, '$accountName');
+            Validate::notNullOrEmpty($accountName, '$accountName');
         }
         if ($this->_client->getAdlaJobDnsSuffix() == null) {
-            PhpValidate::notNullOrEmpty($this->_client->getAdlaJobDnsSuffix(), '$this->_client->getAdlaJobDnsSuffix()');
+            Validate::notNullOrEmpty($this->_client->getAdlaJobDnsSuffix(), '$this->_client->getAdlaJobDnsSuffix()');
         }
         if ($nextPageLink == null) {
-            PhpValidate::notNullOrEmpty($nextPageLink, '$nextPageLink');
+            Validate::notNullOrEmpty($nextPageLink, '$nextPageLink');
         }
 
         $path = '{nextLink}';
@@ -980,12 +980,12 @@ class Job
             $headers['accept-language'] = $this->_client->getAcceptLanguage();
         }
         if ($this->_client->getGenerateClientRequestId()) {
-            $headers[PhpResources::X_MS_REQUEST_ID] = PhpUtilities::getGuid();
+            $headers[Resources::X_MS_REQUEST_ID] = Utilities::getGuid();
         }
 
         $body = '';
 
-        $response = PhpHttpClient::send(
+        $response = HttpClient::send(
             $method,
             $headers,
             $queryParams,
