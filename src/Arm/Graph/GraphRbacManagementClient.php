@@ -73,6 +73,13 @@ class GraphRbacManagementClient extends RestServiceClient
     private $_generateClientRequestId;
 
     /**
+     * Method group: Objects.
+     *
+     * @var Objects
+     */
+    private $_objects;
+
+    /**
      * Method group: Applications.
      *
      * @var Applications
@@ -137,6 +144,7 @@ class GraphRbacManagementClient extends RestServiceClient
         $authentification = new OAuthScheme($oauthService);
         $this->_filters = [new OAuthFilter($authentification)];
 
+        $this->_objects = new Objects($this);
         $this->_applications = new Applications($this);
         $this->_groups = new Groups($this);
         $this->_servicePrincipals = new ServicePrincipals($this);
@@ -286,6 +294,16 @@ class GraphRbacManagementClient extends RestServiceClient
     public function setGenerateClientRequestId($generateClientRequestId)
     {
         $this->_generateClientRequestId = $generateClientRequestId;
+    }
+
+    /**
+     * Gets method group Objects.
+     *
+     * @return Objects
+     */
+    public function getObjects()
+    {
+        return $this->_objects;
     }
 
     /**

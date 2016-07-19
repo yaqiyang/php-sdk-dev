@@ -167,9 +167,15 @@ class Applications
      * @param array $filter The filters to apply on the operation 
      * <pre>
      * [
-     *    'displayNameStartsWith' => '',
+     *    'objectId' => '',
+     *    'objectType' => '',
      *    'appId' => '',
-     *    'identifierUri' => ''
+     *    'appPermissions' => '',
+     *    'availableToOtherTenants' => 'false',
+     *    'displayName' => '',
+     *    'identifierUris' => '',
+     *    'replyUrls' => '',
+     *    'homepage' => ''
      * ];
      * </pre>
      * @param array $customHeaders An array of custom headers ['key' => 'value'] that will be added to
@@ -204,9 +210,15 @@ class Applications
      * @param array $filter The filters to apply on the operation 
      * <pre>
      * [
-     *    'displayNameStartsWith' => '',
+     *    'objectId' => '',
+     *    'objectType' => '',
      *    'appId' => '',
-     *    'identifierUri' => ''
+     *    'appPermissions' => '',
+     *    'availableToOtherTenants' => 'false',
+     *    'displayName' => '',
+     *    'identifierUris' => '',
+     *    'replyUrls' => '',
+     *    'homepage' => ''
      * ];
      * </pre>
      * @param array $customHeaders An array of custom headers ['key' => 'value']
